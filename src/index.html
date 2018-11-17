@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Todos</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-weight: 400;
+        text-decoration: none;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+      body {
+        background: #f4f4f4;
+        font-size: 62.5%;
+      }
+      header {
+        background: white;
+      }
+      form,
+      .todo {
+        width: 95%;
+      }
+      div {
+        width: inherit;
+      }
+      form {
+        max-width: 250px;
+        border-radius: 25px;
+        border: 1px solid #ccc;
+        margin: 0 auto;
+        padding: 0 25px;
+        position: relative;
+        bottom: -25px;
+        height: 50px;
+        background: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .caption {
+        color: #666666;
+        font-size: 0.8rem;
+      }
+      .title {
+        color: #191919;
+        font-size: 1.1rem;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+      .todo {
+        display: flex;
+        max-width: 600px;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 0;
+        margin: 0 auto;
+        border-top: 1px solid #ccc;
+      }
+      .todo:first-of-type {
+        border-top: none;
+        margin-top: 32px;
+      }
+      button,
+      input {
+        border: none;
+        background: none;
+        outline: none;
+      }
+      button {
+        cursor: pointer;
+      }
+      .submit {
+        font-weight: 500;
+        font-size: 1.4rem;
+      }
+      .delete {
+        width: 20px;
+        height: 20px;
+      }
+      .delete:after {
+        content: '';
+        display: block;
+        height: 2px;
+        background: #000;
+        width: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <noscript><p>Please enable javascript in your brower</p></noscript>
+  </body>
+</html>
