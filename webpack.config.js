@@ -8,10 +8,21 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 const isProduction = process.env.NODE_ENV === 'production';
 const plugins = isProduction
   ? [
-      new ManifestPlugin(),
+      new ManifestPlugin({
+        seed: {
+          short_name: 'Todos',
+          name: 'Todos',
+          background_color: '#eeeeee',
+          display: 'standalone',
+          theme_color: '#eeeeee',
+        },
+      }),
       new SWPrecacheWebpackPlugin({
-        minify: true,
         filename: 'service-worker.js',
+        dontCacheBustUrlsMatching: /\.\w{8}\./,
+        filename: 'service-worker.js',
+        minify: true,
+        staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
       }),
     ]
   : [];
@@ -21,7 +32,7 @@ module.exports = {
   entry: './src',
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].[contenthash].js',
+    filename: '[name]-[contenthash].js',
     pathinfo: !isProduction,
   },
   devtool: isProduction ? 'none' : 'eval-source-map',
