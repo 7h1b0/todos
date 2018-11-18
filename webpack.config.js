@@ -2,15 +2,24 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV === 'production';
+const plugins = isProduction
+  ? [
+      new SWPrecacheWebpackPlugin({
+        minify: true,
+        filename: 'service-worker.js',
+      }),
+    ]
+  : [];
 
 module.exports = {
   mode: isProduction ? 'production' : 'development',
   entry: './src',
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: '[name].[contenthash].js',
     pathinfo: !isProduction,
   },
   devtool: isProduction ? 'none' : 'eval-source-map',
@@ -26,6 +35,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({ template: 'src/index.html' }),
     new CleanWebpackPlugin('dist', { verbose: false }),
+    ...plugins,
   ],
   devServer: {
     contentBase: path.join(__dirname, 'src'),
