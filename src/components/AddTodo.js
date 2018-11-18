@@ -16,15 +16,17 @@ export default class AddTodos extends Component {
   render({ title, autoFocus = false }, { value }) {
     return (
       <form onSubmit={this.handleSubmit}>
-        <input
-          id={title}
-          name={title}
-          type="text"
-          value={value}
-          onChange={this.handleChange}
-          autoFocus={autoFocus}
-          placeholder={title}
-        />
+        <label for="add">
+          <input
+            id="add"
+            name="add"
+            type="text"
+            value={value}
+            onChange={this.handleChange}
+            autoFocus={autoFocus}
+            placeholder={title}
+          />
+        </label>
         <button class="submit" type="submit">
           +
         </button>
