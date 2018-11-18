@@ -1,4 +1,9 @@
 {
-  "main.js": "main.d065908cdb461e539bcb.js",
+  "short_name": "Todos",
+  "name": "Todos",
+  "background_color": "#eeeeee",
+  "display": "standalone",
+  "theme_color": "#eeeeee",
+  "main.js": "main-bb1c852e374cacd1f95f.js",
   "index.html": "index.html"
 }
