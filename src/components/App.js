@@ -1,7 +1,8 @@
 import { h, Component } from 'preact';
-import Todo from './Todo';
 import AddTodo from './AddTodo';
+import TodoList from './TodoList';
 import getDb from '../database';
+import { STATUS } from '../status';
 
 function formatDate(timestamp) {
   const dt = new Date(timestamp);
@@ -20,6 +21,16 @@ function addTodo(todo) {
   });
 }
 
+function groupBy(items, key) {
+  return items.reduce(
+    (result, item) => ({
+      ...result,
+      [item[key]]: [...(result[item[key]] || []), item],
+    }),
+    {},
+  );
+}
+
 export default class App extends Component {
   state = {
     todos: [],
@@ -36,9 +47,9 @@ export default class App extends Component {
     }
   }
 
-  handleSubmit = async ({ title, date }) => {
+  handleSubmit = async ({ title, date, category }) => {
     const caption = formatDate(date);
-    const todo = { title, caption };
+    const todo = { title, caption, category };
     try {
       const res = await this.db.add(todo);
       todo.id = res.target.result;
@@ -54,6 +65,7 @@ export default class App extends Component {
   };
 
   render(_, { todos }) {
+    const groupedTodos = groupBy(todos, 'category');
     return (
       <div>
         <header>
@@ -63,14 +75,16 @@ export default class App extends Component {
             onSubmit={this.handleSubmit}
           />
         </header>
-        {todos.map(({ title, caption, id }) => (
-          <Todo
-            key={id}
-            title={title}
-            caption={caption}
-            onDelete={this.handleDelete(id)}
-          />
-        ))}
+        <div class="wrapper">
+          {STATUS.map(({ id, label }) => (
+            <TodoList
+              label={label}
+              key={id}
+              todos={groupedTodos[id] || []}
+              onDelete={this.handleDelete(id)}
+            />
+          ))}
+        </div>
       </div>
     );
   }
