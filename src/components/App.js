@@ -21,6 +21,12 @@ function addTodo(todo) {
   });
 }
 
+function updateTodo(todo, insertAt) {
+  return ({ todos }) => ({
+    todos: [...todos.slice(0, insertAt), todo, ...todos.slice(insertAt + 1)],
+  });
+}
+
 function groupBy(items, key) {
   return items.reduce(
     (result, item) => ({
@@ -64,6 +70,32 @@ export default class App extends Component {
     this.setState(removeTodo(id));
   };
 
+  handleDragStart = id => () => {
+    event.dataTransfer.setData('dragContent', JSON.stringify({ id }));
+  };
+
+  handleDragOver = id => e => {
+    e.preventDefault();
+    return false;
+  };
+
+  handleDrop = categoryId => e => {
+    e.preventDefault();
+
+    const { id: targetId } = JSON.parse(
+      event.dataTransfer.getData('dragContent'),
+    );
+
+    const { todos } = this.state;
+    const indedTargetTodo = todos.findIndex(({ id }) => id === targetId);
+    if (~indedTargetTodo) {
+      const targetToto = todos[indedTargetTodo];
+      const updatedToto = { ...targetToto, category: categoryId };
+      this.setState(updateTodo(updatedToto, indedTargetTodo));
+    }
+    return false;
+  };
+
   render(_, { todos }) {
     const groupedTodos = groupBy(todos, 'category');
     return (
@@ -80,8 +112,12 @@ export default class App extends Component {
             <TodoList
               label={label}
               key={id}
+              id={id}
               todos={groupedTodos[id] || []}
-              onDelete={this.handleDelete(id)}
+              onDelete={this.handleDelete}
+              onDragStart={this.handleDragStart}
+              onDragOver={this.handleDragOver}
+              onDrop={this.handleDrop}
             />
           ))}
         </div>

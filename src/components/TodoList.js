@@ -8,16 +8,16 @@ export default class TodoList extends Component {
     );
   }
 
-  render({ label, todos, handleDelete }) {
+  render({ id, label, todos, onDelete, onDragStart, onDragOver, onDrop }) {
     return (
-      <section>
+      <section onDragOver={onDragOver(id)} onDrop={onDrop(id)}>
         <h2>{label}</h2>
-        {todos.map(({ title, caption, id }) => (
+        {todos.map(todo => (
           <Todo
-            key={id}
-            title={title}
-            caption={caption}
-            onDelete={handleDelete}
+            key={todo.id}
+            onDelete={onDelete}
+            onDragStart={onDragStart}
+            {...todo}
           />
         ))}
       </section>
