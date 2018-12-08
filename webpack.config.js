@@ -45,6 +45,12 @@ module.exports = ({ prod = false } = {}) => {
         },
       ],
     },
+    resolve: {
+      alias: {
+        components: path.join(__dirname, 'src/components/'),
+        utils: path.join(__dirname, 'src/utils/'),
+      },
+    },
     plugins: [
       new HtmlWebpackPlugin({
         template: 'src/index.html',

@@ -1,5 +1,5 @@
 import { h, Component } from 'preact';
-import { TODO } from '../status';
+import { TODO } from 'utils/status';
 
 export default class AddTodos extends Component {
   state = { value: null };

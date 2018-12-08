@@ -1,8 +1,8 @@
 import { h, Component } from 'preact';
+import getDb from 'utils/database';
+import { STATUS } from 'utils/status';
 import AddTodo from './AddTodo';
 import TodoList from './TodoList';
-import getDb from '../database';
-import { STATUS } from '../status';
 
 function formatDate(timestamp) {
   const dt = new Date(timestamp);
@@ -79,7 +79,7 @@ export default class App extends Component {
     return false;
   };
 
-  handleDrop = categoryId => e => {
+  handleDrop = categoryId => async e => {
     e.preventDefault();
 
     const { id: targetId } = JSON.parse(
@@ -92,6 +92,7 @@ export default class App extends Component {
       const targetToto = todos[indedTargetTodo];
       const updatedToto = { ...targetToto, category: categoryId };
       this.setState(updateTodo(updatedToto, indedTargetTodo));
+      await this.db.edit(updatedToto);
     }
     return false;
   };
