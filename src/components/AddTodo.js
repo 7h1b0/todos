@@ -1,4 +1,5 @@
 import { h, Component } from 'preact';
+import { TODO } from 'utils/status';
 
 export default class AddTodos extends Component {
   state = { value: null };
@@ -9,7 +10,11 @@ export default class AddTodos extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.onSubmit({ title: this.state.value, date: Date.now() });
+    this.props.onSubmit({
+      title: this.state.value,
+      date: Date.now(),
+      category: TODO.id,
+    });
     this.setState({ value: null });
   };
 

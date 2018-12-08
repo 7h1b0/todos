@@ -26,6 +26,7 @@
       }
       header {
         background: white;
+        margin-bottom: 32px;
       }
       form,
       .todo {
@@ -65,11 +66,21 @@
         justify-content: space-between;
         padding: 16px 0;
         margin: 0 auto;
-        border-top: 1px solid #ccc;
+        border: 1px solid #ccc;
+        background: white;
+        padding: 14px;
+        margin: 14px 0;
       }
-      .todo:first-of-type {
-        border-top: none;
-        margin-top: 32px;
+      .wrapper {
+        max-width: 1200px;
+        width: 95%;
+        height: 100%;
+        margin: 0 auto;
+        display: flex;
+      }
+      section {
+        flex: 1;
+        padding: 14px;
       }
       button,
       input {
@@ -94,6 +105,11 @@
         height: 2px;
         background: #000;
         width: 20px;
+      }
+      .app {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
       }
     </style>
   </head>

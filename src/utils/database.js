@@ -35,6 +35,17 @@ export default function getDb() {
     });
   }
 
+  function edit(todo) {
+    return new Promise((resolve, reject) => {
+      const request = db
+        .transaction(['todo'], 'readwrite')
+        .objectStore('todo')
+        .put(todo);
+      request.onerror = reject;
+      request.onsuccess = resolve;
+    });
+  }
+
   return new Promise((resolve, reject) => {
     const request = window.indexedDB.open('Todos', 3);
     request.onerror = reject;
@@ -44,6 +55,7 @@ export default function getDb() {
         findAll,
         add,
         remove,
+        edit,
       });
     };
 

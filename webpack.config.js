@@ -5,7 +5,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 
-module.exports = ({ prod = false }) => {
+module.exports = ({ prod = false } = {}) => {
   const plugins = prod
     ? [
         new ManifestPlugin({
@@ -44,6 +44,12 @@ module.exports = ({ prod = false }) => {
           exclude: /node_modules/,
         },
       ],
+    },
+    resolve: {
+      alias: {
+        components: path.join(__dirname, 'src/components/'),
+        utils: path.join(__dirname, 'src/utils/'),
+      },
     },
     plugins: [
       new HtmlWebpackPlugin({
