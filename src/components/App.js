@@ -1,41 +1,10 @@
 import { h, Component } from 'preact';
 import getDb from 'utils/database';
+import { removeTodo, addTodo, updateTodo } from 'utils/action';
+import { formatDate, groupBy } from 'utils/utils';
 import { STATUS } from 'utils/status';
 import AddTodo from './AddTodo';
 import TodoList from './TodoList';
-
-function formatDate(timestamp) {
-  const dt = new Date(timestamp);
-  return `${dt.getDate()}.${dt.getMonth() + 1}.${dt.getFullYear()}`;
-}
-
-function removeTodo(idToRemoved) {
-  return ({ todos }) => ({
-    todos: todos.filter(({ id }) => id !== idToRemoved),
-  });
-}
-
-function addTodo(todo) {
-  return ({ todos }) => ({
-    todos: todos.concat([todo]),
-  });
-}
-
-function updateTodo(todo, insertAt) {
-  return ({ todos }) => ({
-    todos: [...todos.slice(0, insertAt), todo, ...todos.slice(insertAt + 1)],
-  });
-}
-
-function groupBy(items, key) {
-  return items.reduce(
-    (result, item) => ({
-      ...result,
-      [item[key]]: [...(result[item[key]] || []), item],
-    }),
-    {},
-  );
-}
 
 export default class App extends Component {
   state = {
@@ -82,25 +51,30 @@ export default class App extends Component {
   handleDrop = categoryId => async e => {
     e.preventDefault();
 
-    const { id: targetId } = JSON.parse(
-      event.dataTransfer.getData('dragContent'),
-    );
+    try {
+      const { id: targetId } = JSON.parse(
+        event.dataTransfer.getData('dragContent'),
+      );
 
-    const { todos } = this.state;
-    const indedTargetTodo = todos.findIndex(({ id }) => id === targetId);
-    if (~indedTargetTodo) {
-      const targetToto = todos[indedTargetTodo];
-      const updatedToto = { ...targetToto, category: categoryId };
-      this.setState(updateTodo(updatedToto, indedTargetTodo));
-      await this.db.edit(updatedToto);
+      const { todos } = this.state;
+      const indedTargetTodo = todos.findIndex(({ id }) => id === targetId);
+      if (~indedTargetTodo) {
+        const targetToto = todos[indedTargetTodo];
+        const updatedToto = { ...targetToto, category: categoryId };
+        this.setState(updateTodo(updatedToto, indedTargetTodo));
+        await this.db.edit(updatedToto);
+      }
+    } catch (err) {
+      console.log(err);
     }
+
     return false;
   };
 
   render(_, { todos }) {
     const groupedTodos = groupBy(todos, 'category');
     return (
-      <div>
+      <div class="app">
         <header>
           <AddTodo
             title="Add todo"
