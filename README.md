@@ -1,4 +1,4 @@
-# Todos
+# Todos [![Build Status](https://travis-ci.org/7h1b0/todos.svg?branch=master)](https://travis-ci.org/7h1b0/todos)
 
 Todo application built with Preact and IndexedDB
 
