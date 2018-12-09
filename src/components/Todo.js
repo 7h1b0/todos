@@ -1,16 +1,17 @@
 import { h, Component } from 'preact';
+import { formatDate, diffByDay, getClassByDiffDay } from 'utils/utils';
 
 export default class Todo extends Component {
-  shouldComponentUpdate({ title, caption }) {
-    return title !== this.props.title || caption !== this.props.caption;
+  shouldComponentUpdate({ title, date }) {
+    return title !== this.props.title || date !== this.props.date;
   }
 
-  render({ id, title, caption, onDelete, onDragStart }) {
+  render({ id, title, date, onDelete, onDragStart }) {
     return (
-      <div class="todo" draggable={true} onDragStart={onDragStart(id)}>
-        <div>
+      <div class="todo" draggable onDragStart={onDragStart(id)}>
+        <div class={getClassByDiffDay(diffByDay(date))}>
           <p class="title">{title}</p>
-          <p class="caption">Added on: {caption}</p>
+          <p class="caption">Added on: {formatDate(date)}</p>
         </div>
         <button class="delete" onClick={onDelete(id)} />
       </div>

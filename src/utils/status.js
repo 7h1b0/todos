@@ -3,7 +3,7 @@ export const TODO = {
   id: 0,
 };
 export const IN_PROGRESS = {
-  label: 'In progress',
+  label: 'In Progress',
   id: 1,
 };
 export const DONE = {

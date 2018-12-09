@@ -21,24 +21,25 @@
         height: 100%;
       }
       body {
-        background: #f4f4f4;
+        background: #f5f7fa;
         font-size: 62.5%;
       }
       header {
         background: white;
         margin-bottom: 32px;
+        box-shadow: 0 1px 7px rgba(0, 0, 0, 0.05);
       }
-      form,
-      .todo {
-        width: 95%;
+      h2 {
+        font-size: 1.15rem;
       }
       div {
         width: inherit;
       }
       form {
+        width: 95%;
         max-width: 250px;
         border-radius: 25px;
-        border: 1px solid #ccc;
+        border: 1px solid #e0e0e0;
         margin: 0 auto;
         padding: 0 25px;
         position: relative;
@@ -53,34 +54,73 @@
         color: #666666;
         font-size: 0.8rem;
       }
+      .title-header {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+      }
+      .counter {
+        background: black;
+        color: white;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        line-height: 20px;
+        font-size: 12px;
+        margin-right: 14px;
+      }
       .title {
         color: #191919;
-        font-size: 1.1rem;
+        font-size: 1.05rem;
         text-overflow: ellipsis;
         overflow: hidden;
       }
       .todo {
         display: flex;
-        max-width: 600px;
+        width: 100%;
         align-items: center;
         justify-content: space-between;
-        padding: 16px 0;
-        margin: 0 auto;
-        border: 1px solid #ccc;
-        background: white;
-        padding: 14px;
+        border: 1px solid #e0e0e0;
+        border-radius: 2px;
+        padding: 20px 14px 14px;
         margin: 14px 0;
       }
+      .young:before,
+      .old:before,
+      .very-old:before {
+        content: '';
+        display: block;
+        height: 3px;
+
+        width: 40px;
+        position: relative;
+        top: -5px;
+      }
+      .young:before {
+        background: #4680ff;
+      }
+      .very-old:before {
+        background: #fc6280;
+      }
+      .old:before {
+        background: #feb64d;
+      }
       .wrapper {
-        max-width: 1200px;
+        max-width: 1400px;
         width: 95%;
-        height: 100%;
         margin: 0 auto;
         display: flex;
+        align-items: flex-start;
       }
       section {
         flex: 1;
-        padding: 14px;
+        padding: 35px 14px;
+        min-height: 110px;
+        margin: 0 14px;
+        background: white;
+        border-radius: 2px;
+        box-shadow: 0 1px 7px rgba(0, 0, 0, 0.05);
       }
       button,
       input {
@@ -109,7 +149,6 @@
       .app {
         display: flex;
         flex-direction: column;
-        height: 100%;
       }
     </style>
   </head>

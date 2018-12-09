@@ -23,8 +23,7 @@ export default class App extends Component {
   }
 
   handleSubmit = async ({ title, date, category }) => {
-    const caption = formatDate(date);
-    const todo = { title, caption, category };
+    const todo = { title, date, category };
     try {
       const res = await this.db.add(todo);
       todo.id = res.target.result;
@@ -39,22 +38,19 @@ export default class App extends Component {
     this.setState(removeTodo(id));
   };
 
-  handleDragStart = id => () => {
-    event.dataTransfer.setData('dragContent', JSON.stringify({ id }));
+  handleDragStart = id => e => {
+    e.dataTransfer.setData('todoId', JSON.stringify({ id }));
   };
 
   handleDragOver = id => e => {
     e.preventDefault();
-    return false;
   };
 
   handleDrop = categoryId => async e => {
     e.preventDefault();
 
     try {
-      const { id: targetId } = JSON.parse(
-        event.dataTransfer.getData('dragContent'),
-      );
+      const { id: targetId } = JSON.parse(e.dataTransfer.getData('todoId'));
 
       const { todos } = this.state;
       const indedTargetTodo = todos.findIndex(({ id }) => id === targetId);
@@ -67,8 +63,6 @@ export default class App extends Component {
     } catch (err) {
       console.log(err);
     }
-
-    return false;
   };
 
   render(_, { todos }) {
