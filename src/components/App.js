@@ -1,7 +1,7 @@
 import { h, Component } from 'preact';
 import getDb from 'utils/database';
 import { removeTodo, addTodo, updateTodo } from 'utils/action';
-import { formatDate, groupBy } from 'utils/utils';
+import { groupBy } from 'utils/utils';
 import { STATUS } from 'utils/status';
 import AddTodo from './AddTodo';
 import TodoList from './TodoList';
