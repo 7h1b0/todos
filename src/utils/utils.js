@@ -4,13 +4,15 @@ export function formatDate(timestamp) {
 }
 
 export function groupBy(items, key) {
-  return items.reduce(
-    (result, item) => ({
-      ...result,
-      [item[key]]: [...(result[item[key]] || []), item],
-    }),
-    {},
-  );
+  return items.reduce((result, item) => {
+    if (item[key]) {
+      return {
+        ...result,
+        [item[key]]: [...(result[item[key]] || []), item],
+      };
+    }
+    return result;
+  }, {});
 }
 
 export function diffByDay(date) {
