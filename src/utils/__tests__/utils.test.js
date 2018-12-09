@@ -71,7 +71,7 @@ describe('Utils', () => {
       ];
 
       expect(groupBy(todos, 'group')).toEqual({
-        1: [{ id: 2, group: 0 }, { id: 1, group: 0 }],
+        0: [{ id: 2, group: 0 }, { id: 1, group: 0 }],
         2: [{ id: 3, group: 2 }],
       });
     });
