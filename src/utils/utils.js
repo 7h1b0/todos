@@ -5,7 +5,7 @@ export function formatDate(timestamp) {
 
 export function groupBy(items, key) {
   return items.reduce((result, item) => {
-    if (item[key]) {
+    if (item.hasOwnProperty(key)) {
       return {
         ...result,
         [item[key]]: [...(result[item[key]] || []), item],

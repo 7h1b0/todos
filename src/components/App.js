@@ -38,15 +38,7 @@ export default class App extends Component {
     this.setState(removeTodo(id));
   };
 
-  handleDragStart = id => e => {
-    e.dataTransfer.setData('todoId', JSON.stringify({ id }));
-  };
-
-  handleDragOver = id => e => {
-    e.preventDefault();
-  };
-
-  handleDrop = categoryId => async e => {
+  handleDrop = async (e, categoryId) => {
     e.preventDefault();
 
     try {
@@ -84,8 +76,6 @@ export default class App extends Component {
               id={id}
               todos={groupedTodos[id] || []}
               onDelete={this.handleDelete}
-              onDragStart={this.handleDragStart}
-              onDragOver={this.handleDragOver}
               onDrop={this.handleDrop}
             />
           ))}
