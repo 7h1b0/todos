@@ -2,8 +2,13 @@ import { h, Component } from 'preact';
 import { formatDate, diffByDay, getClassByDiffDay } from 'utils/utils';
 
 export default class Todo extends Component {
+  todoRef = null;
   state = {
     dragging: false,
+  };
+
+  setTodoRef = el => {
+    this.todoRef = el;
   };
 
   shouldComponentUpdate({ title, date }, { dragging }) {
@@ -18,6 +23,8 @@ export default class Todo extends Component {
     const { id } = this.props;
     this.setState({ dragging: true });
     e.dataTransfer.setData('todoId', JSON.stringify({ id }));
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.dropEffect = 'move';
   };
 
   handleDragEnd = () => {
@@ -28,6 +35,7 @@ export default class Todo extends Component {
     const className = dragging ? 'todo dragging' : 'todo';
     return (
       <div
+        ref={this.setTodoRef}
         class={className}
         draggable
         onDragStart={this.handleDrag}

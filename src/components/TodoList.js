@@ -2,8 +2,13 @@ import { h, Component } from 'preact';
 import Todo from './Todo';
 
 export default class TodoList extends Component {
+  section = null;
   state = {
     over: false,
+  };
+
+  setSectionRef = el => {
+    this.section = el;
   };
 
   handleDragOver = e => {
@@ -13,13 +18,15 @@ export default class TodoList extends Component {
     return false;
   };
 
-  handleDragLeave = () => {
-    this.setState({ over: false });
+  handleDragLeave = e => {
+    if (!this.section.contains(e.fromElement)) {
+      this.setState({ over: false });
+    }
   };
 
   handleDragDrop = e => {
     const { onDrop, id } = this.props;
-    this.handleDragLeave();
+    this.setState({ over: false });
     onDrop(e, id);
   };
 
@@ -30,6 +37,7 @@ export default class TodoList extends Component {
   render({ label, todos, onDelete, onDrop }, { over }) {
     return (
       <section
+        ref={this.setSectionRef}
         onDragOver={this.handleDragOver}
         onDragLeave={this.handleDragLeave}
         onDrop={this.handleDragDrop}
