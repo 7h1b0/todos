@@ -1,9 +1,9 @@
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = ({ prod = false } = {}) => {
   const plugins = prod
@@ -20,7 +20,6 @@ module.exports = ({ prod = false } = {}) => {
         new SWPrecacheWebpackPlugin({
           filename: 'service-worker.js',
           dontCacheBustUrlsMatching: /\.\w{8}\./,
-          filename: 'service-worker.js',
           minify: true,
           staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
         }),
@@ -35,7 +34,7 @@ module.exports = ({ prod = false } = {}) => {
       filename: '[name]-[contenthash].js',
       pathinfo: !prod,
     },
-    devtool: prod ? 'none' : 'source-map',
+    devtool: 'source-map',
     module: {
       rules: [
         {
@@ -50,6 +49,24 @@ module.exports = ({ prod = false } = {}) => {
         components: path.join(__dirname, 'src/components/'),
         utils: path.join(__dirname, 'src/utils/'),
       },
+    },
+    optimization: {
+      minimizer: [
+        new TerserPlugin({
+          terserOptions: {
+            compress: {
+              pure_funcs: ['Object.defineProperty'],
+              pure_getters: true,
+              unsafe: true,
+            },
+            mangle: {
+              properties: {
+                regex: /^(_|(clear|toggle|handle)([A-Za-z]+))/,
+              },
+            },
+          },
+        }),
+      ],
     },
     plugins: [
       new HtmlWebpackPlugin({

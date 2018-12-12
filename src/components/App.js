@@ -17,9 +17,7 @@ export default class App extends Component {
       this.db = await getDb();
       const res = await this.db.findAll();
       this.setState({ todos: res.target.result });
-    } catch (error) {
-      console.error(error);
-    }
+    } catch (error) {}
   }
 
   handleSubmit = async ({ title, date, category }) => {
@@ -28,9 +26,7 @@ export default class App extends Component {
       const res = await this.db.add(todo);
       todo.id = res.target.result;
       this.setState(addTodo(todo));
-    } catch (error) {
-      console.error(error);
-    }
+    } catch (error) {}
   };
 
   handleDelete = id => async () => {
