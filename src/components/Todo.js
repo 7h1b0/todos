@@ -45,7 +45,9 @@ export default class Todo extends Component {
           <p class="title">{title}</p>
           <p class="caption">Added on: {formatDate(date)}</p>
         </div>
-        <button class="delete" onClick={onDelete(id)} />
+        <button class="delete" onClick={onDelete(id)}>
+          x
+        </button>
       </div>
     );
   }
