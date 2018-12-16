@@ -4,6 +4,22 @@
   "background_color": "#eeeeee",
   "display": "standalone",
   "theme_color": "#eeeeee",
+  "start_url": "/",
+  "icons": [
+    {
+      "src": "icons-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "icons-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
   "main.js": "main-18c94a3b9909778c0190.js",
+  "favicon.ico": "favicon.ico",
+  "icon-192.png": "icon-192.png",
+  "icon-512.png": "icon-512.png",
   "index.html": "index.html"
 }
