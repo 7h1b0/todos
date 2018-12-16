@@ -4,7 +4,7 @@
   "background_color": "#eeeeee",
   "display": "standalone",
   "theme_color": "#eeeeee",
-  "start_url": "/",
+  "start_url": "/todos/",
   "icons": [
     {
       "src": "icon-192.png",
