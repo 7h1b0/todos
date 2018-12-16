@@ -4,6 +4,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = ({ prod = false } = {}) => {
   const plugins = prod
@@ -15,6 +16,19 @@ module.exports = ({ prod = false } = {}) => {
             background_color: '#eeeeee',
             display: 'standalone',
             theme_color: '#eeeeee',
+            start_url: '/todos/',
+            icons: [
+              {
+                src: 'icon-192.png',
+                type: 'image/png',
+                sizes: '192x192',
+              },
+              {
+                src: 'icon-512.png',
+                type: 'image/png',
+                sizes: '512x512',
+              },
+            ],
           },
         }),
         new SWPrecacheWebpackPlugin({
@@ -23,6 +37,7 @@ module.exports = ({ prod = false } = {}) => {
           minify: true,
           staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
         }),
+        new CopyWebpackPlugin([{ from: 'public/' }]),
       ]
     : [];
 
@@ -90,7 +105,7 @@ module.exports = ({ prod = false } = {}) => {
       ...plugins,
     ],
     devServer: {
-      contentBase: path.join(__dirname, 'src'),
+      contentBase: path.join(__dirname, 'public'),
       compress: true,
       historyApiFallback: true,
       noInfo: true,
