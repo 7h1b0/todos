@@ -10,6 +10,9 @@
     <link rel="manifest" href="manifest.json" />
     <title>Todos</title>
     <style>
+      :root {
+        --space-m: 14px;
+      }
       * {
         margin: 0;
         padding: 0;
@@ -30,6 +33,7 @@
         background: white;
         margin-bottom: 32px;
         box-shadow: 0 1px 7px rgba(0, 0, 0, 0.05);
+        min-height: 50px;
       }
       h2 {
         font-size: 1.15rem;
@@ -37,22 +41,13 @@
       div {
         width: inherit;
       }
-      form {
-        width: 95%;
-        max-width: 250px;
-        border-radius: 25px;
+      input {
+        display: block;
         border: 1px solid #e0e0e0;
-        margin: 0 auto;
-        padding: 0 25px;
-        position: relative;
-        bottom: -25px;
-        height: 50px;
-        background: white;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        padding: var(--space-m);
       }
-      .caption {
+      .caption,
+      .add {
         color: #666666;
         font-size: 0.8rem;
       }
@@ -70,7 +65,7 @@
         text-align: center;
         line-height: 20px;
         font-size: 12px;
-        margin-right: 14px;
+        margin-right: var(--space-m);
       }
       .title {
         color: #191919;
@@ -86,9 +81,8 @@
         background: white;
         justify-content: space-between;
         border: 1px solid #e0e0e0;
-        border-radius: 2px;
-        padding: 20px 14px 14px;
-        margin: 14px 0;
+        padding: 20px var(--space-m) var(--space-m);
+        margin-top: var(--space-m);
       }
       .young:before,
       .old:before,
@@ -122,34 +116,47 @@
       }
       section {
         flex: 1;
-        padding: 35px 14px;
+        padding: 35px var(--space-m);
         min-height: 110px;
-        margin: 0 14px;
+        margin: 0 var(--space-m);
         background: white;
         border-radius: 2px;
         box-shadow: 0 1px 7px rgba(0, 0, 0, 0.05);
       }
-      button,
-      input {
+      button {
         border: none;
         background: none;
         outline: none;
-      }
-      button {
         cursor: pointer;
+      }
+      .add {
+        position: relative;
+        display: block;
+        width: 100%;
+        height: 40px;
+        border: 1px solid #e0e0e0;
+        margin-top: var(--space-m);
       }
       .submit {
         font-weight: 500;
-        font-size: 1.4rem;
+        border: none;
+        background: none;
+        outline: none;
+        background-color: #4680ff;
+        border-radius: 5px;
+        color: white;
+        padding: var(--space-m);
+        font-size: 0.8rem;
       }
       .delete {
         position: relative;
-        opacity: 1;
         width: 50px;
         height: 50px;
         opacity: 0;
         transition: opacity 0.3s ease-in-out;
       }
+      .add:before,
+      .add:after,
       .delete:before,
       .delete:after {
         position: absolute;
@@ -160,13 +167,22 @@
         width: 2px;
         background-color: #000;
       }
+      .add:before,
+      .add:after {
+        left: 50%;
+        top: calc(50% - 7.5px);
+      }
+      .add:before {
+        transform: rotate(90deg);
+      }
       .delete:before {
         transform: rotate(45deg);
       }
       .delete:after {
         transform: rotate(-45deg);
       }
-      .todo:hover .delete {
+      .todo:hover .delete,
+      .popup .delete {
         opacity: 1;
       }
       .app {
@@ -176,8 +192,33 @@
       .dragging {
         opacity: 0.25;
       }
-      .over {
+      .over,
+      .popup {
         box-shadow: 0 1px 7px rgba(0, 0, 0, 0.4);
+      }
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .popup {
+        position: relative;
+        background: white;
+        max-width: 500px;
+        border-radius: 5px;
+        margin: 0 auto;
+        padding: var(--space-m);
+      }
+      .popup-header {
+        display: flex;
+        height: 50px;
+        align-items: center;
       }
     </style>
   </head>

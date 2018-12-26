@@ -34,7 +34,7 @@ export default class TodoList extends Component {
     return over !== this.state.over || todos.length !== this.props.todos.length;
   }
 
-  render({ label, todos, onDelete, onDrop }, { over }) {
+  render({ label, todos, onDelete, onDrop, onAdd, id }, { over }) {
     return (
       <section
         ref={this.setSectionRef}
@@ -50,6 +50,7 @@ export default class TodoList extends Component {
         {todos.map(todo => (
           <Todo key={todo.id} onDelete={onDelete} {...todo} />
         ))}
+        <button onClick={onAdd(id)} class="add" />
       </section>
     );
   }

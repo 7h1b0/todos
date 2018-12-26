@@ -1,5 +1,4 @@
 import { h, Component } from 'preact';
-import { TODO } from 'utils/status';
 
 export default class AddTodos extends Component {
   state = { value: null };
@@ -13,27 +12,27 @@ export default class AddTodos extends Component {
     this.props.onSubmit({
       title: this.state.value,
       date: Date.now(),
-      category: TODO.id,
+      category: this.props.categoryId,
     });
     this.setState({ value: null });
   };
 
-  render({ title, autoFocus = false }, { value }) {
+  render(_, { value }) {
     return (
       <form onSubmit={this.handleSubmit}>
         <label for="add">
+          Label
           <input
             id="add"
             name="add"
             type="text"
             value={value}
             onChange={this.handleChange}
-            autoFocus={autoFocus}
-            placeholder={title}
+            placeholder="Enter todo label"
           />
         </label>
         <button class="submit" type="submit">
-          +
+          Add todo
         </button>
       </form>
     );

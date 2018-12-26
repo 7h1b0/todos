@@ -2,13 +2,16 @@ import { h, Component } from 'preact';
 import getDb from 'utils/database';
 import { removeTodo, addTodo, updateTodo } from 'utils/action';
 import { groupBy } from 'utils/utils';
-import { STATUS } from 'utils/status';
+import { STATUS, TODO } from 'utils/status';
 import AddTodo from './AddTodo';
 import TodoList from './TodoList';
+import Modal from './Modal';
 
 export default class App extends Component {
   state = {
     todos: [],
+    modal: false,
+    categoryId: TODO.id,
   };
   db = null;
 
@@ -21,6 +24,7 @@ export default class App extends Component {
   }
 
   handleSubmit = async ({ title, date, category }) => {
+    this.handleClose();
     const todo = { title, date, category };
     try {
       const res = await this.db.add(todo);
@@ -53,17 +57,19 @@ export default class App extends Component {
     }
   };
 
-  render(_, { todos }) {
+  handleAdd = categoryId => () => {
+    this.setState({ modal: true, categoryId });
+  };
+
+  handleClose = () => {
+    this.setState({ modal: false });
+  };
+
+  render(_, { todos, modal, categoryId }) {
     const groupedTodos = groupBy(todos, 'category');
     return (
       <div class="app">
-        <header>
-          <AddTodo
-            title="Add todo"
-            autoFocus={true}
-            onSubmit={this.handleSubmit}
-          />
-        </header>
+        <header />
         <div class="wrapper">
           {STATUS.map(({ id, label }) => (
             <TodoList
@@ -73,9 +79,13 @@ export default class App extends Component {
               todos={groupedTodos[id] || []}
               onDelete={this.handleDelete}
               onDrop={this.handleDrop}
+              onAdd={this.handleAdd}
             />
           ))}
         </div>
+        <Modal open={modal} title="Add todo" onClose={this.handleClose}>
+          <AddTodo onSubmit={this.handleSubmit} categoryId={categoryId} />
+        </Modal>
       </div>
     );
   }
