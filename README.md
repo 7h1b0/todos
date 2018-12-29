@@ -17,7 +17,7 @@ Todo application built with Preact and IndexedDB
 - Firefox >= 60
 - Chrome >= 70
 
-:warning: Edge is not supported as it not support `getAll` on `objectStore`.
+:warning: Edge is not supported as it doesn't support `getAll` on `objectStore`.
 
 ## Prerequisite
 

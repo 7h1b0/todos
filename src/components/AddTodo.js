@@ -21,7 +21,7 @@ export default class AddTodos extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label for="add">
-          Label
+          Todo Label
           <input
             id="add"
             name="add"
@@ -32,7 +32,7 @@ export default class AddTodos extends Component {
           />
         </label>
         <button class="submit" type="submit">
-          Add todo
+          ADD TODO
         </button>
       </form>
     );

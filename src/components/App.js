@@ -68,8 +68,7 @@ export default class App extends Component {
   render(_, { todos, modal, categoryId }) {
     const groupedTodos = groupBy(todos, 'category');
     return (
-      <div class="app">
-        <header />
+      <div>
         <div class="wrapper">
           {STATUS.map(({ id, label }) => (
             <TodoList
@@ -83,7 +82,7 @@ export default class App extends Component {
             />
           ))}
         </div>
-        <Modal open={modal} title="Add todo" onClose={this.handleClose}>
+        <Modal open={modal} onClose={this.handleClose}>
           <AddTodo onSubmit={this.handleSubmit} categoryId={categoryId} />
         </Modal>
       </div>

@@ -12,6 +12,9 @@
     <style>
       :root {
         --space-m: 14px;
+        --caption: 0.8rem;
+        --text: 1rem;
+        --headline: 1.15rem;
       }
       * {
         margin: 0;
@@ -29,27 +32,29 @@
         background: #f5f7fa;
         font-size: 62.5%;
       }
-      header {
-        background: white;
-        margin-bottom: 32px;
-        box-shadow: 0 1px 7px rgba(0, 0, 0, 0.05);
-        min-height: 50px;
-      }
       h2 {
-        font-size: 1.15rem;
+        font-size: var(--headline);
+      }
+      label {
+        display: block;
+        font-size: var(--caption);
+        padding-top: var(--space-m);
       }
       div {
         width: inherit;
       }
       input {
         display: block;
-        border: 1px solid #e0e0e0;
+        border: none;
         padding: var(--space-m);
+        width: 100%;
+        margin-top: 5px;
+        background: #e0e0e0;
+        border-radius: 5px;
       }
-      .caption,
-      .add {
+      .caption {
         color: #666666;
-        font-size: 0.8rem;
+        font-size: var(--caption);
       }
       .title-header {
         display: flex;
@@ -69,7 +74,7 @@
       }
       .title {
         color: #191919;
-        font-size: 1.05rem;
+        font-size: var(--text);
         text-overflow: ellipsis;
         overflow: hidden;
       }
@@ -110,7 +115,7 @@
       .wrapper {
         max-width: 1400px;
         width: 95%;
-        margin: 0 auto;
+        margin: 2rem auto;
         display: flex;
         align-items: flex-start;
       }
@@ -120,7 +125,6 @@
         min-height: 110px;
         margin: 0 var(--space-m);
         background: white;
-        border-radius: 2px;
         box-shadow: 0 1px 7px rgba(0, 0, 0, 0.05);
       }
       button {
@@ -138,15 +142,12 @@
         margin-top: var(--space-m);
       }
       .submit {
-        font-weight: 500;
-        border: none;
-        background: none;
-        outline: none;
-        background-color: #4680ff;
-        border-radius: 5px;
-        color: white;
+        display: block;
+        margin: var(--space-m) 0 0 auto;
+        font-weight: bold;
+        color: #4680ff;
         padding: var(--space-m);
-        font-size: 0.8rem;
+        font-size: var(--caption);
       }
       .delete {
         position: relative;
@@ -181,13 +182,8 @@
       .delete:after {
         transform: rotate(-45deg);
       }
-      .todo:hover .delete,
-      .popup .delete {
+      .todo:hover .delete {
         opacity: 1;
-      }
-      .app {
-        display: flex;
-        flex-direction: column;
       }
       .dragging {
         opacity: 0.25;
@@ -210,15 +206,10 @@
       .popup {
         position: relative;
         background: white;
-        max-width: 500px;
+        max-width: 450px;
         border-radius: 5px;
         margin: 0 auto;
         padding: var(--space-m);
-      }
-      .popup-header {
-        display: flex;
-        height: 50px;
-        align-items: center;
       }
     </style>
   </head>
