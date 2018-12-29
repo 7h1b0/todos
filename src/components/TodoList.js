@@ -50,7 +50,7 @@ export default class TodoList extends Component {
         {todos.map(todo => (
           <Todo key={todo.id} onDelete={onDelete} {...todo} />
         ))}
-        <button onClick={onAdd(id)} class="add" />
+        <button onClick={onAdd(id)} class="add" aria-label="Add todo" />
       </section>
     );
   }
