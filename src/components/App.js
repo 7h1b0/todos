@@ -1,15 +1,15 @@
 import { h, Component } from 'preact';
 import getDb from 'utils/database';
-import { removeTodo, addTodo, updateTodo } from 'utils/action';
+import { removeTask, addTask, updateTask } from 'utils/action';
 import { groupBy } from 'utils/utils';
 import { STATUS, TODO } from 'utils/status';
-import AddTodo from './AddTodo';
-import TodoList from './TodoList';
+import AddTask from './AddTask';
+import TaskList from './TaskList';
 import Modal from './Modal';
 
 export default class App extends Component {
   state = {
-    todos: [],
+    tasks: [],
     modal: false,
     categoryId: TODO.id,
   };
@@ -19,37 +19,37 @@ export default class App extends Component {
     try {
       this.db = await getDb();
       const res = await this.db.findAll();
-      this.setState({ todos: res.target.result });
+      this.setState({ tasks: res.target.result });
     } catch (error) {}
   }
 
   handleSubmit = async ({ title, date, category }) => {
     this.handleClose();
-    const todo = { title, date, category };
+    const task = { title, date, category };
     try {
-      const res = await this.db.add(todo);
-      todo.id = res.target.result;
-      this.setState(addTodo(todo));
+      const res = await this.db.add(task);
+      task.id = res.target.result;
+      this.setState(addTask(task));
     } catch (error) {}
   };
 
   handleDelete = id => async () => {
     await this.db.remove(id);
-    this.setState(removeTodo(id));
+    this.setState(removeTask(id));
   };
 
   handleDrop = async (e, categoryId) => {
     e.preventDefault();
 
     try {
-      const { id: targetId } = JSON.parse(e.dataTransfer.getData('todoId'));
+      const { id: targetId } = JSON.parse(e.dataTransfer.getData('taskId'));
 
-      const { todos } = this.state;
-      const indedTargetTodo = todos.findIndex(({ id }) => id === targetId);
-      if (~indedTargetTodo) {
-        const targetToto = todos[indedTargetTodo];
+      const { tasks } = this.state;
+      const indedTargetTask = tasks.findIndex(({ id }) => id === targetId);
+      if (~indedTargetTask) {
+        const targetToto = tasks[indedTargetTask];
         const updatedToto = { ...targetToto, category: categoryId };
-        this.setState(updateTodo(updatedToto, indedTargetTodo));
+        this.setState(updateTask(updatedToto, indedTargetTask));
         await this.db.edit(updatedToto);
       }
     } catch (err) {
@@ -65,17 +65,17 @@ export default class App extends Component {
     this.setState({ modal: false });
   };
 
-  render(_, { todos, modal, categoryId }) {
-    const groupedTodos = groupBy(todos, 'category');
+  render(_, { tasks, modal, categoryId }) {
+    const groupedTasks = groupBy(tasks, 'category');
     return (
       <div>
         <div class="wrapper">
           {STATUS.map(({ id, label }) => (
-            <TodoList
+            <TaskList
               label={label}
               key={id}
               id={id}
-              todos={groupedTodos[id] || []}
+              tasks={groupedTasks[id] || []}
               onDelete={this.handleDelete}
               onDrop={this.handleDrop}
               onAdd={this.handleAdd}
@@ -83,7 +83,7 @@ export default class App extends Component {
           ))}
         </div>
         <Modal open={modal} onClose={this.handleClose}>
-          <AddTodo onSubmit={this.handleSubmit} categoryId={categoryId} />
+          <AddTask onSubmit={this.handleSubmit} categoryId={categoryId} />
         </Modal>
       </div>
     );

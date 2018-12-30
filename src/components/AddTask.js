@@ -1,6 +1,6 @@
 import { h, Component } from 'preact';
 
-export default class AddTodos extends Component {
+export default class AddTask extends Component {
   state = { value: null };
 
   handleChange = e => {
@@ -21,18 +21,18 @@ export default class AddTodos extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label for="add">
-          Todo Label
+          Task Label
           <input
             id="add"
             name="add"
             type="text"
             value={value}
             onChange={this.handleChange}
-            placeholder="Enter todo label"
+            placeholder="Enter task label"
           />
         </label>
         <button class="submit" type="submit">
-          ADD TODO
+          ADD TASK
         </button>
       </form>
     );

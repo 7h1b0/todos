@@ -1,57 +1,57 @@
-import { removeTodo, addTodo, updateTodo } from '../action';
+import { removeTask, addTask, updateTask } from '../action';
 
 describe('Action', () => {
-  describe('removeTodo', () => {
-    it('should remove a todo by id', () => {
-      const todos = { todos: [{ id: 1 }, { id: 2 }, { id: 3 }] };
+  describe('removeTask', () => {
+    it('should remove a task by id', () => {
+      const tasks = { tasks: [{ id: 1 }, { id: 2 }, { id: 3 }] };
 
-      const updatedTodo = removeTodo(2)(todos);
-      expect(updatedTodo).toEqual({ todos: [{ id: 1 }, { id: 3 }] });
+      const updatedTasks = removeTask(2)(tasks);
+      expect(updatedTasks).toEqual({ tasks: [{ id: 1 }, { id: 3 }] });
     });
 
     it('should returns a new object', () => {
-      const todos = { todos: [{ id: 1 }] };
+      const tasks = { tasks: [{ id: 1 }] };
 
-      const updatedTodo = removeTodo(1)(todos);
-      expect(updatedTodo).not.toBe(todos);
+      const updatedTasks = removeTask(1)(tasks);
+      expect(updatedTasks).not.toBe(tasks);
     });
   });
 
-  describe('addTodo', () => {
-    it('should add a todo', () => {
-      const todos = { todos: [{ id: 1 }] };
+  describe('addTask', () => {
+    it('should add a task', () => {
+      const tasks = { tasks: [{ id: 1 }] };
 
-      const updatedTodo = addTodo({ id: 3 })(todos);
-      expect(updatedTodo).toEqual({ todos: [{ id: 1 }, { id: 3 }] });
+      const updatedTasks = addTask({ id: 3 })(tasks);
+      expect(updatedTasks).toEqual({ tasks: [{ id: 1 }, { id: 3 }] });
     });
 
-    it('should not mutate todos and return a new object', () => {
-      const todos = { todos: [{ id: 1 }] };
+    it('should not mutate tasks and return a new object', () => {
+      const tasks = { tasks: [{ id: 1 }] };
 
-      const updatedTodo = addTodo({ id: 3 })(todos);
-      expect(updatedTodo).not.toBe(todos);
+      const updatedTasks = addTask({ id: 3 })(tasks);
+      expect(updatedTasks).not.toBe(tasks);
     });
   });
 
-  describe('updateTodo', () => {
-    it('should updateTodo a todo by Id', () => {
-      const todos = {
-        todos: [{ id: 1, name: 'toto' }, { id: 2, name: 'plop' }],
+  describe('updateTask', () => {
+    it('should updateTask a task by Id', () => {
+      const tasks = {
+        tasks: [{ id: 1, name: 'toto' }, { id: 2, name: 'plop' }],
       };
 
-      const updatedTodo = updateTodo({ id: 2, name: 'updated' }, 1)(todos);
-      expect(updatedTodo).toEqual({
-        todos: [{ id: 1, name: 'toto' }, { id: 2, name: 'updated' }],
+      const updatedTasks = updateTask({ id: 2, name: 'updated' }, 1)(tasks);
+      expect(updatedTasks).toEqual({
+        tasks: [{ id: 1, name: 'toto' }, { id: 2, name: 'updated' }],
       });
     });
 
     it('should returns a new object', () => {
-      const todos = {
-        todos: [{ id: 1, name: 'toto' }, { id: 2, name: 'plop' }],
+      const tasks = {
+        tasks: [{ id: 1, name: 'toto' }, { id: 2, name: 'plop' }],
       };
 
-      const updatedTodo = updateTodo({ id: 2, name: 'updated' }, 1)(todos);
-      expect(updatedTodo).not.toBe(todos);
+      const updatedTasks = updateTask({ id: 2, name: 'updated' }, 1)(tasks);
+      expect(updatedTasks).not.toBe(tasks);
     });
   });
 });

@@ -1,17 +1,17 @@
-export function removeTodo(idToRemoved) {
-  return ({ todos }) => ({
-    todos: todos.filter(({ id }) => id !== idToRemoved),
+export function removeTask(idToRemoved) {
+  return ({ tasks }) => ({
+    tasks: tasks.filter(({ id }) => id !== idToRemoved),
   });
 }
 
-export function addTodo(todo) {
-  return ({ todos }) => ({
-    todos: todos.concat([todo]),
+export function addTask(task) {
+  return ({ tasks }) => ({
+    tasks: [...tasks, task],
   });
 }
 
-export function updateTodo(todo, insertAt) {
-  return ({ todos }) => ({
-    todos: [...todos.slice(0, insertAt), todo, ...todos.slice(insertAt + 1)],
+export function updateTask(task, insertAt) {
+  return ({ tasks }) => ({
+    tasks: [...tasks.slice(0, insertAt), task, ...tasks.slice(insertAt + 1)],
   });
 }

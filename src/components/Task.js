@@ -1,14 +1,14 @@
 import { h, Component } from 'preact';
 import { formatDate, diffByDay, getClassByDiffDay } from 'utils/utils';
 
-export default class Todo extends Component {
-  todoRef = null;
+export default class Task extends Component {
+  taskRef = null;
   state = {
     dragging: false,
   };
 
-  setTodoRef = el => {
-    this.todoRef = el;
+  setTaskRef = el => {
+    this.taskRef = el;
   };
 
   shouldComponentUpdate({ title, date }, { dragging }) {
@@ -22,7 +22,7 @@ export default class Todo extends Component {
   handleDrag = e => {
     const { id } = this.props;
     this.setState({ dragging: true });
-    e.dataTransfer.setData('todoId', JSON.stringify({ id }));
+    e.dataTransfer.setData('taskId', JSON.stringify({ id }));
     e.dataTransfer.effectAllowed = 'move';
     e.dataTransfer.dropEffect = 'move';
   };
@@ -32,10 +32,10 @@ export default class Todo extends Component {
   };
 
   render({ id, title, date, onDelete }, { dragging }) {
-    const className = dragging ? 'todo dragging' : 'todo';
+    const className = dragging ? 'task dragging' : 'task';
     return (
       <div
-        ref={this.setTodoRef}
+        ref={this.setTaskRef}
         class={className}
         draggable
         onDragStart={this.handleDrag}
