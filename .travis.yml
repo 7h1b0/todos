@@ -9,11 +9,13 @@ cache:
 install:
   - npm ci
 
+before_script:
+  - npm start &
+
 script:
   - npm run lint
   - npm run coverage
   - npm run build
 
 notifications:
-  email:
-    on_success: never
+  email: false

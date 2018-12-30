@@ -111,6 +111,10 @@ module.exports = {
     },
   },
 
+  globals: {
+    browser: true,
+  },
+
   rules: {
     // http://eslint.org/docs/rules/
     'array-callback-return': 'warn',
