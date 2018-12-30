@@ -113,6 +113,8 @@ module.exports = {
 
   globals: {
     browser: true,
+    visit: true,
+    page: true,
   },
 
   rules: {

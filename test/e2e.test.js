@@ -1,47 +1,36 @@
-import {
-  addTodo,
-  addInProgress,
-  countTasks,
-  visit,
-  truncateIndexedDB,
-} from './helper';
+import { truncateIndexedDB } from 'browser';
+import { addTodo, addInProgress } from 'factories';
 
 describe('e2e', () => {
-  let page;
-
   beforeEach(async () => {
-    page = await visit('http://127.0.0.1:3000');
+    await visit('http://127.0.0.1:3000');
   });
 
   afterEach(async () => {
-    await page.evaluate(truncateIndexedDB);
-    await page.close();
+    if (page) {
+      await page.evaluate(truncateIndexedDB);
+      await page.close();
+    }
   });
 
-  it('should add a task', async () => {
-    await addTodo(page, 'Get more sleep');
-    await addInProgress(page, 'Make e2e test');
+  it('should add tasks', async () => {
+    await addTodo('Get more sleep');
+    await expect(page).toContainText('1Todo');
+    await expect(page).toContainText('Get more sleep');
 
-    const labels = await page.$$eval('.title-header', elements =>
-      elements.map(el => el.textContent),
-    );
-    const tasks = await countTasks(page);
-    const task = await page.$eval('.young .title', el => el.textContent);
+    await expect(page).toContainText('0In Progress');
+    await addInProgress('Make e2e test');
+    await expect(page).toContainText('1In Progress');
+    await expect(page).toContainText('Make e2e test');
 
-    expect(labels).toEqual(['1Todo', '1In Progress', '0Done']);
-    expect(tasks).toBe(2);
-    expect(task).toBe('Get more sleep');
+    await expect(page).toContainText('0Done');
   });
 
   it('should remove a task', async () => {
-    await addTodo(page, 'Get more sleep');
-    let tasks = await countTasks(page);
-    expect(tasks).toBe(1);
+    await addTodo('Get more sleep');
+    await expect(page).toContainText('Get more sleep');
 
     await page.hover('.task');
     await page.click('.delete');
-
-    tasks = await countTasks(page);
-    expect(tasks).toBe(0);
   });
 });
