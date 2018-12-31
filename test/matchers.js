@@ -11,7 +11,10 @@ expect.extend({
           }
           return false;
         },
-        undefined,
+        {
+          polling: 'raf',
+          timeout: 500,
+        },
         text,
       );
       pass = true;
