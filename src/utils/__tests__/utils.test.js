@@ -4,15 +4,15 @@ import { formatDate, groupBy, diffByDay, getClassByDiffDay } from '../utils';
 describe('Utils', () => {
   describe('formatDate', () => {
     it('should format the given timestamp', () => {
-      const timestamp = new Date('2018-01-01').getTime();
+      const timestamp = new Date('2018-11-01').getTime();
 
-      expect(formatDate(timestamp)).toBe('1.1.2018');
+      expect(formatDate(timestamp)).toBe('01.11.2018');
     });
 
     it('should ignore the time', () => {
       const timestamp = new Date('2018-01-01T16:45').getTime();
 
-      expect(formatDate(timestamp)).toBe('1.1.2018');
+      expect(formatDate(timestamp)).toBe('01.01.2018');
     });
   });
 
