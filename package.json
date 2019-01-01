@@ -27,6 +27,7 @@
     "lolex": "^3.0.0",
     "prettier": "^1.15.3",
     "puppeteer": "^1.11.0",
+    "serve": "^10.1.1",
     "sw-precache-webpack-plugin": "^0.11.5",
     "terser-webpack-plugin": "^1.1.0",
     "webpack": "^4.27.1",
@@ -44,6 +45,7 @@
     "test:e2e": "jest --testPathPattern=e2e",
     "lint": "eslint --max-warnings 0 src",
     "coverage": "jest --coverage --ci --runInBand --silent",
-    "deploy": "npm run build && gh-pages -d dist"
+    "deploy": "npm run build && gh-pages -d dist",
+    "serve:prod": "serve -s dist/ -l 3000 -n"
   }
 }

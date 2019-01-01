@@ -11,6 +11,8 @@ Todo application built with Preact and IndexedDB
   - [npm start](#npm-start)
   - [npm run build](#npm-run-build)
   - [npm run deploy](#npm-run-deploy)
+  - [npm test](#npm-test)
+  - [npm run test:e2e](#npm-run-teste2e)
 
 ## Browsers support
 
@@ -43,3 +45,12 @@ Builds the application for production.
 ### `npm run deploy`
 
 Deploy dist folder to gh-pages branch on GitHub
+
+### `npm test`
+
+Runs the test watcher in an interactive mode.
+By default, runs tests related to files changed since the last commit.
+
+### `npm run test:e2e`
+
+Runs end-to-end tests using Puppeteer.
