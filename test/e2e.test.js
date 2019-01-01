@@ -22,17 +22,17 @@ describe('e2e', () => {
     await addInProgress('Make e2e test');
     await expect(page).toContainText('1In Progress');
     await expect(page).toContainText('Make e2e test');
-    
+
     await expect(page).toContainText('0Done');
   });
-  
+
   it('should remove a task', async () => {
     await addTodo('Get more sleep');
     await expect(page).toContainText('Get more sleep');
-    
+
     await page.hover('.task');
     await page.click('.delete');
-    
-    await expect(page).not.toContainText('Get more sleep');
+
+    await expect(page).notToContainText('Get more sleep');
   });
 });

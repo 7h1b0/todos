@@ -1,6 +1,6 @@
 module.exports = {
   testEnvironment: './test/puppeteer-environment',
-  setupTestFrameworkScriptFile: '<rootDir>/test/matchers.js',
+  setupTestFrameworkScriptFile: '<rootDir>/test/setupTest.js',
   moduleDirectories: ['node_modules', 'test'],
   automock: false,
   clearMocks: true,
