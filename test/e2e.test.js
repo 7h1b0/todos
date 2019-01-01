@@ -1,5 +1,5 @@
-import { truncateIndexedDB } from 'browser';
-import { addTodo, addInProgress } from 'factories';
+import { truncateIndexedDB } from 'helpers/browser';
+import { addTodo, addInProgress } from 'helpers/factories';
 
 describe('e2e', () => {
   beforeEach(async () => {

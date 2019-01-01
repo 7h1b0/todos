@@ -11,8 +11,8 @@ class PuppeteerEnvironment extends NodeEnvironment {
 
     this.global.visit = async url => {
       const page = await browser.newPage();
-      await page.goto(url);
       this.global.page = page;
+      await page.goto(url);
 
       return page;
     };
