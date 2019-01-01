@@ -1,15 +1,16 @@
 import { printExpected } from 'jest-matcher-utils';
 import predicate from './predicate';
 
-const passMessage = text => () => `Expected ${printExpected(text)} to be found`;
+const passMessage = expected => () =>
+  `Expected ${printExpected(expected)} to be found`;
 
-const failMessage = text => () =>
-  `Expected ${printExpected(text)} not to be found`;
+const failMessage = expected => () =>
+  `Expected ${printExpected(expected)} not to be found`;
 
-export default async function notToContainText(receiver, text) {
-  const pass = await predicate(receiver, text);
+export default async function notToContainText(receiver, expected) {
+  const pass = await predicate(receiver, expected);
   return {
-    message: pass ? passMessage(text) : failMessage(text),
+    message: pass ? passMessage(expected) : failMessage(expected),
     pass,
   };
 }

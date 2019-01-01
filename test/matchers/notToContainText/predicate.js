@@ -1,10 +1,12 @@
-export default async function notToContainText(receiver, text) {
+export default async function notToContainText(receiver, expected) {
   let pass = false;
   try {
     await receiver.waitForFunction(
-      text => {
-        if (text != null) {
-          return !document.body.textContent.replace(/\s+/g, ' ').includes(text);
+      expected => {
+        if (expected != null) {
+          return !document.body.textContent
+            .replace(/\s+/g, ' ')
+            .includes(expected);
         }
         return false;
       },
@@ -12,7 +14,7 @@ export default async function notToContainText(receiver, text) {
         polling: 'raf',
         timeout: 500,
       },
-      text,
+      expected,
     );
     pass = true;
   } catch (error) {
