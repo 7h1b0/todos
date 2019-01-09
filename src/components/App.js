@@ -18,7 +18,7 @@ export default class App extends Component {
   async componentDidMount() {
     try {
       this.db = await getDb();
-      const res = await this.db.findAll();
+      const res = await this.db('todo').findAll();
       this.setState({ tasks: res.target.result });
     } catch (error) {}
   }
@@ -27,14 +27,14 @@ export default class App extends Component {
     this.handleClose();
     const task = { title, date, category };
     try {
-      const res = await this.db.add(task);
+      const res = await this.db('todo').add(task);
       task.id = res.target.result;
       this.setState(addTask(task));
     } catch (error) {}
   };
 
   handleDelete = id => async () => {
-    await this.db.remove(id);
+    await this.db('todo').remove(id);
     this.setState(removeTask(id));
   };
 
@@ -50,7 +50,7 @@ export default class App extends Component {
         const targetToto = tasks[indedTargetTask];
         const updatedToto = { ...targetToto, category: categoryId };
         this.setState(updateTask(updatedToto, indedTargetTask));
-        await this.db.edit(updatedToto);
+        await this.db('todo').edit(updatedToto);
       }
     } catch (err) {
       console.log(err);
