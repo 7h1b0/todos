@@ -1,20 +1,16 @@
-import { h, Component } from 'preact';
+import { h } from 'preact';
 
-export default class Modal extends Component {
-  handleClick = e => {
-    e.stopPropagation();
-  };
-
-  render({ open, children, onClose }) {
-    if (open) {
-      return (
-        <div class="overlay" onClick={onClose}>
-          <div class="popup" onClick={this.handleClick}>
-            {children}
-          </div>
+const Modal = ({ open, children, onClose }) => {
+  if (open) {
+    return (
+      <div class="overlay" onClick={onClose}>
+        <div class="popup" onClick={e => e.stopPropagation()}>
+          {children}
         </div>
-      );
-    }
-    return null;
+      </div>
+    );
   }
-}
+  return null;
+};
+
+export default Modal;
