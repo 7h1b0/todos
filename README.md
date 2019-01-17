@@ -1,4 +1,4 @@
-# Todos [![Build Status](https://travis-ci.org/7h1b0/todos.svg?branch=master)](https://travis-ci.org/7h1b0/todos)
+# Todos &middot; [![Build Status](https://travis-ci.org/7h1b0/todos.svg?branch=master)](https://travis-ci.org/7h1b0/todos) ![Firefox Support](https://img.shields.io/badge/firefox-%3E%3D%2060-orange.svg) ![Chrome Support](https://img.shields.io/badge/chrome-%3E%3D%2070-yellow.svg)
 
 Todo application built with Preact and IndexedDB
 
