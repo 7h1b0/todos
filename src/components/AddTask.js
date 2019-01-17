@@ -1,7 +1,18 @@
 import { h, Component } from 'preact';
 
 export default class AddTask extends Component {
+  input = null;
   state = { value: null };
+
+  setInputRef = ref => {
+    this.input = ref;
+  };
+
+  componentDidMount() {
+    if (this.input != null) {
+      this.input.focus();
+    }
+  }
 
   handleChange = e => {
     this.setState({ value: e.target.value });
@@ -23,6 +34,7 @@ export default class AddTask extends Component {
         <label for="add">
           Task Label
           <input
+            ref={this.setInputRef}
             id="add"
             name="add"
             type="text"
