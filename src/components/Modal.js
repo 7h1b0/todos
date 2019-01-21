@@ -1,9 +1,11 @@
 import { h } from 'preact';
+import { connect } from 'unistore/preact';
+import { closeModal } from 'utils/actions';
 
-const Modal = ({ open, children, onClose }) => {
-  if (open) {
+const Modal = ({ children, modal, closeModal }) => {
+  if (modal) {
     return (
-      <div class="overlay" onClick={onClose}>
+      <div class="overlay" onClick={closeModal}>
         <div class="popup" onClick={e => e.stopPropagation()}>
           {children}
         </div>
@@ -13,4 +15,7 @@ const Modal = ({ open, children, onClose }) => {
   return null;
 };
 
-export default Modal;
+export default connect(
+  'modal',
+  { closeModal },
+)(Modal);

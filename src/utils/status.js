@@ -1,13 +1,13 @@
 export const TODO = {
-  label: 'Todo',
+  title: 'Todo',
   id: 0,
 };
 export const IN_PROGRESS = {
-  label: 'In Progress',
+  title: 'In Progress',
   id: 1,
 };
 export const DONE = {
-  label: 'Done',
+  title: 'Done',
   id: 2,
 };
-export const STATUS = [TODO, IN_PROGRESS, DONE];
+export const STATUSES = [TODO, IN_PROGRESS, DONE];

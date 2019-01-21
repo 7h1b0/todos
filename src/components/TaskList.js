@@ -1,7 +1,9 @@
 import { h, Component } from 'preact';
+import { connect } from 'unistore/preact';
 import Task from './Task';
+import { updateTask, openModal, setStatusId } from 'utils/actions';
 
-export default class TaskList extends Component {
+class TaskList extends Component {
   section = null;
   state = {
     over: false,
@@ -25,16 +27,24 @@ export default class TaskList extends Component {
   };
 
   handleDragDrop = e => {
-    const { onDrop, id } = this.props;
+    e.preventDefault();
+
+    const { id: targetId } = JSON.parse(e.dataTransfer.getData('taskId'));
     this.setState({ over: false });
-    onDrop(e, id);
+    this.props.updateTask(targetId, this.props.id);
+  };
+
+  handleAdd = () => {
+    const { openModal, id, setStatusId } = this.props;
+    setStatusId(id);
+    openModal();
   };
 
   shouldComponentUpdate({ tasks }, { over }) {
     return over !== this.state.over || tasks.length !== this.props.tasks.length;
   }
 
-  render({ label, tasks, onDelete, onDrop, onAdd, id }, { over }) {
+  render({ label, tasks }, { over }) {
     return (
       <section
         ref={this.setSectionRef}
@@ -48,10 +58,19 @@ export default class TaskList extends Component {
           <h2>{label}</h2>
         </div>
         {tasks.map(task => (
-          <Task key={task.id} onDelete={onDelete} {...task} />
+          <Task key={task.id} {...task} />
         ))}
-        <button onClick={onAdd(id)} class="add" aria-label="Add task" />
+        <button onClick={this.handleAdd} class="add" aria-label="Add task" />
       </section>
     );
   }
 }
+
+export default connect(
+  undefined,
+  {
+    openModal,
+    updateTask,
+    setStatusId,
+  },
+)(TaskList);

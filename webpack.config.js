@@ -5,6 +5,7 @@ const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const SizePlugin = require('size-plugin');
 
 module.exports = ({ prod = false } = {}) => {
   const plugins = prod
@@ -38,6 +39,7 @@ module.exports = ({ prod = false } = {}) => {
           staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
         }),
         new CopyWebpackPlugin([{ from: 'public/' }]),
+        new SizePlugin(),
       ]
     : [];
 

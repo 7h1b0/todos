@@ -1,7 +1,9 @@
 import { h, Component } from 'preact';
+import { connect } from 'unistore/preact';
+import { removeTask } from 'utils/actions';
 import { formatDate, diffByDay, getClassByDiffDay } from 'utils/utils';
 
-export default class Task extends Component {
+class Task extends Component {
   taskRef = null;
   state = {
     dragging: false,
@@ -31,7 +33,11 @@ export default class Task extends Component {
     this.setState({ dragging: false });
   };
 
-  render({ id, title, date, onDelete }, { dragging }) {
+  handleRemove = () => {
+    this.props.removeTask(this.props.id);
+  };
+
+  render({ title, date }, { dragging }) {
     const className = dragging ? 'task dragging' : 'task';
     return (
       <div
@@ -45,8 +51,13 @@ export default class Task extends Component {
           <p class="title">{title}</p>
           <p class="caption">Added on: {formatDate(date)}</p>
         </div>
-        <button class="delete" onClick={onDelete(id)} />
+        <button class="delete" onClick={this.handleRemove} />
       </div>
     );
   }
 }
+
+export default connect(
+  undefined,
+  { removeTask },
+)(Task);

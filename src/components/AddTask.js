@@ -1,6 +1,8 @@
 import { h, Component } from 'preact';
+import { connect } from 'unistore/preact';
+import { addTask, closeModal } from 'utils/actions';
 
-export default class AddTask extends Component {
+class AddTask extends Component {
   input = null;
   state = { value: null };
 
@@ -20,10 +22,12 @@ export default class AddTask extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.onSubmit({
+    const { addTask, closeModal, statusId } = this.props;
+    closeModal();
+    addTask({
       title: this.state.value,
       date: Date.now(),
-      category: this.props.categoryId,
+      statusId,
     });
     this.setState({ value: null });
   };
@@ -50,3 +54,8 @@ export default class AddTask extends Component {
     );
   }
 }
+
+export default connect(
+  'statusId',
+  { addTask, closeModal },
+)(AddTask);
