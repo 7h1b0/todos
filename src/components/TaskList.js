@@ -1,7 +1,7 @@
 import { h, Component } from 'preact';
 import { connect } from 'unistore/preact';
 import Task from './Task';
-import { updateTask, openModal, setStatusId } from 'utils/actions';
+import { updateTask, openModal, setStatusId } from 'reducers';
 
 class TaskList extends Component {
   section = null;

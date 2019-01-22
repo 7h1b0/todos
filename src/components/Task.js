@@ -1,6 +1,6 @@
 import { h, Component } from 'preact';
 import { connect } from 'unistore/preact';
-import { removeTask } from 'utils/actions';
+import { removeTask } from 'reducers';
 import { formatDate, diffByDay, getClassByDiffDay } from 'utils/utils';
 
 class Task extends Component {

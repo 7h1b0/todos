@@ -1,6 +1,6 @@
 import { h, Component } from 'preact';
 import { connect } from 'unistore/preact';
-import { addTask, closeModal } from 'utils/actions';
+import { addTask, closeModal } from 'reducers';
 
 class AddTask extends Component {
   input = null;

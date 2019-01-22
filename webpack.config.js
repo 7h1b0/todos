@@ -65,6 +65,7 @@ module.exports = ({ prod = false } = {}) => {
       alias: {
         components: path.join(__dirname, 'src/components/'),
         utils: path.join(__dirname, 'src/utils/'),
+        reducers: path.join(__dirname, 'src/reducers/'),
       },
     },
     optimization: {

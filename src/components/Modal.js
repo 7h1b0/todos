@@ -1,6 +1,6 @@
 import { h } from 'preact';
 import { connect } from 'unistore/preact';
-import { closeModal } from 'utils/actions';
+import { closeModal } from 'reducers';
 
 const Modal = ({ children, modal, closeModal }) => {
   if (modal) {
