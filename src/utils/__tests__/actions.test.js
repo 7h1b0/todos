@@ -1,57 +1,74 @@
-import { removeTask, addTask, updateTask } from '../actions';
+import {
+  removeTask,
+  addTask,
+  updateTask,
+  closeModal,
+  openModal,
+  setStatusId,
+} from '../actions';
 
-describe('Action', () => {
-  xdescribe('removeTask', () => {
-    it('should remove a task by id', () => {
-      const tasks = { tasks: [{ id: 1 }, { id: 2 }, { id: 3 }] };
+const remove = jest.fn();
+const add = jest.fn(() => ({ target: { result: 4 } }));
+const edit = jest.fn();
+const db = () => ({ remove, add, edit });
 
-      const updatedTasks = removeTask(2)(tasks);
+describe('Actions', () => {
+  afterEach(() => {
+    remove.mockClear();
+    add.mockClear();
+    edit.mockClear();
+  });
+
+  describe('#removeTask', () => {
+    it('should remove a task by id', async () => {
+      const state = { db, tasks: [{ id: 1 }, { id: 2 }, { id: 3 }] };
+
+      const updatedTasks = await removeTask(state, 2);
+      expect(remove).toHaveBeenCalledTimes(1);
       expect(updatedTasks).toEqual({ tasks: [{ id: 1 }, { id: 3 }] });
-    });
-
-    it('should returns a new object', () => {
-      const tasks = { tasks: [{ id: 1 }] };
-
-      const updatedTasks = removeTask(1)(tasks);
-      expect(updatedTasks).not.toBe(tasks);
     });
   });
 
-  xdescribe('addTask', () => {
-    it('should add a task', () => {
-      const tasks = { tasks: [{ id: 1 }] };
+  describe('#addTask', () => {
+    it('should add a task', async () => {
+      const state = { db, tasks: [{ id: 1, title: 'One' }] };
 
-      const updatedTasks = addTask({ tasks }, { id: 3 });
-      expect(updatedTasks).toEqual({ tasks: [{ id: 1 }, { id: 3 }] });
-    });
-
-    it('should not mutate tasks and return a new object', () => {
-      const tasks = { tasks: [{ id: 1 }] };
-
-      const updatedTasks = addTask({ id: 3 })(tasks);
-      expect(updatedTasks).not.toBe(tasks);
-    });
-  });
-
-  xdescribe('updateTask', () => {
-    it('should updateTask a task by Id', () => {
-      const tasks = {
-        tasks: [{ id: 1, name: 'toto' }, { id: 2, name: 'plop' }],
-      };
-
-      const updatedTasks = updateTask({ id: 2, name: 'updated' }, 1)(tasks);
+      const updatedTasks = await addTask(state, { title: 'Two' });
       expect(updatedTasks).toEqual({
-        tasks: [{ id: 1, name: 'toto' }, { id: 2, name: 'updated' }],
+        tasks: [{ id: 1, title: 'One' }, { id: 4, title: 'Two' }],
       });
     });
+  });
 
-    it('should returns a new object', () => {
-      const tasks = {
-        tasks: [{ id: 1, name: 'toto' }, { id: 2, name: 'plop' }],
+  describe('#updateTask', async () => {
+    it('should updateTask a task by Id', async () => {
+      const state = {
+        db,
+        tasks: [{ id: 1, statusId: 'Todo' }, { id: 2, statusId: 'Todo' }],
       };
 
-      const updatedTasks = updateTask({ id: 2, name: 'updated' }, 1)(tasks);
-      expect(updatedTasks).not.toBe(tasks);
+      const updatedTasks = await updateTask(state, 2, 'Done');
+      expect(updatedTasks).toEqual({
+        tasks: [{ id: 1, statusId: 'Todo' }, { id: 2, statusId: 'Done' }],
+      });
+    });
+  });
+
+  describe('#openModal', () => {
+    it('should return a correct object', () => {
+      expect(openModal()).toEqual({ modal: true });
+    });
+  });
+
+  describe('#closeModal', () => {
+    it('should return a correct object', () => {
+      expect(closeModal()).toEqual({ modal: false });
+    });
+  });
+
+  describe('#setStatusId', () => {
+    it('should return a correct object', () => {
+      expect(setStatusId(undefined, 1)).toEqual({ statusId: 1 });
     });
   });
 });
