@@ -72,7 +72,6 @@ module.exports = ({ prod = false } = {}) => {
         new TerserPlugin({
           terserOptions: {
             compress: {
-              pure_funcs: ['Object.defineProperty'],
               pure_getters: true,
               unsafe: true,
             },
