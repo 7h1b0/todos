@@ -46,6 +46,7 @@
     "test": "jest --watch",
     "test:unit": "jest --projects src --runInBand",
     "test:e2e": "jest --projects test --runInBand",
+    "prettier:check": "prettier --list-different \"src/**/*.js\"",
     "lint": "eslint --max-warnings 0 src",
     "coverage": "jest --coverage --ci --runInBand --silent",
     "deploy": "npm run build && gh-pages -d dist",
