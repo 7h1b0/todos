@@ -1,15 +1,5 @@
 module.exports = {
-  presets: [
-    [
-      '@babel/preset-env',
-      {
-        targets: {
-          chrome: 70,
-          firefox: 60,
-        },
-      },
-    ],
-  ],
+  presets: ['@babel/preset-env'],
   plugins: [
     [
       '@babel/plugin-transform-react-jsx',
