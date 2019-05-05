@@ -103,7 +103,7 @@ module.exports = ({ prod = false } = {}) => {
             }
           : undefined,
       }),
-      new CleanWebpackPlugin('dist', { verbose: false }),
+      new CleanWebpackPlugin({ verbose: false }),
       ...plugins,
     ],
     devServer: {
