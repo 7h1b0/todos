@@ -1,16 +1,11 @@
 import { h, Component } from 'preact';
-import { connect } from 'unistore/preact';
-import { removeTask } from 'reducers';
-import { formatDate, diffByDay, getClassByDiffDay } from 'utils/utils';
+
+import { TaskContext } from 'contexts';
+import { formatDate } from 'utils/utils';
 
 class Task extends Component {
-  taskRef = null;
   state = {
     dragging: false,
-  };
-
-  setTaskRef = el => {
-    this.taskRef = el;
   };
 
   shouldComponentUpdate({ title, date }, { dragging }) {
@@ -33,31 +28,31 @@ class Task extends Component {
     this.setState({ dragging: false });
   };
 
-  handleRemove = () => {
-    this.props.removeTask(this.props.id);
+  handleRemove = dispatch => () => {
+    dispatch({ type: 'REMOVE', data: this.props.id });
   };
 
   render({ title, date }, { dragging }) {
     const className = dragging ? 'task dragging' : 'task';
     return (
       <div
-        ref={this.setTaskRef}
         class={className}
         draggable
         onDragStart={this.handleDrag}
         onDragEnd={this.handleDragEnd}
       >
-        <div class={getClassByDiffDay(diffByDay(date))}>
+        <div class="content">
           <p class="title">{title}</p>
           <p class="caption">Added on: {formatDate(date)}</p>
         </div>
-        <button class="delete" onClick={this.handleRemove} />
+        <TaskContext.Consumer>
+          {dispatch => (
+            <button class="delete" onClick={this.handleRemove(dispatch)} />
+          )}
+        </TaskContext.Consumer>
       </div>
     );
   }
 }
 
-export default connect(
-  undefined,
-  { removeTask },
-)(Task);
+export default Task;

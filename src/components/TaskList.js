@@ -1,7 +1,7 @@
 import { h, Component } from 'preact';
-import { connect } from 'unistore/preact';
+
+import { ModalContext, TaskContext } from 'contexts';
 import Task from './Task';
-import { updateTask, openModal, setStatusId } from 'reducers';
 
 class TaskList extends Component {
   section = null;
@@ -26,16 +26,19 @@ class TaskList extends Component {
     }
   };
 
-  handleDragDrop = e => {
+  handleDragDrop = dispatch => e => {
     e.preventDefault();
 
     const { id: targetId } = JSON.parse(e.dataTransfer.getData('taskId'));
     this.setState({ over: false });
-    this.props.updateTask(targetId, this.props.id);
+    dispatch({
+      type: 'UPDATE',
+      data: { targetId, targetStatusId: this.props.id },
+    });
   };
 
-  handleAdd = () => {
-    const { openModal, id, setStatusId } = this.props;
+  handleAdd = (openModal, setStatusId) => () => {
+    const { id } = this.props;
     setStatusId(id);
     openModal();
   };
@@ -46,31 +49,36 @@ class TaskList extends Component {
 
   render({ label, tasks }, { over }) {
     return (
-      <section
-        ref={this.setSectionRef}
-        onDragOver={this.handleDragOver}
-        onDragLeave={this.handleDragLeave}
-        onDrop={this.handleDragDrop}
-        class={over && 'over'}
-      >
-        <div class="title-header">
-          <div class="counter">{tasks.length}</div>
-          <h2>{label}</h2>
-        </div>
-        {tasks.map(task => (
-          <Task key={task.id} {...task} />
-        ))}
-        <button onClick={this.handleAdd} class="add" aria-label="Add task" />
-      </section>
+      <TaskContext.Consumer>
+        {dispatch => (
+          <section
+            ref={this.setSectionRef}
+            onDragOver={this.handleDragOver}
+            onDragLeave={this.handleDragLeave}
+            onDrop={this.handleDragDrop(dispatch)}
+            class={over && 'over'}
+          >
+            <div class="title-header">
+              <div class="counter">{tasks.length}</div>
+              <h2>{label}</h2>
+            </div>
+            {tasks.map(task => (
+              <Task key={task.id} {...task} />
+            ))}
+            <ModalContext.Consumer>
+              {({ toggleModal, setStatusId }) => (
+                <button
+                  onClick={this.handleAdd(toggleModal, setStatusId)}
+                  class="add"
+                  aria-label="Add task"
+                />
+              )}
+            </ModalContext.Consumer>
+          </section>
+        )}
+      </TaskContext.Consumer>
     );
   }
 }
 
-export default connect(
-  undefined,
-  {
-    openModal,
-    updateTask,
-    setStatusId,
-  },
-)(TaskList);
+export default TaskList;

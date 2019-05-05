@@ -36,8 +36,7 @@
     "webpack-manifest-plugin": "^2.0.4"
   },
   "dependencies": {
-    "preact": "^8.4.2",
-    "unistore": "^3.4.1"
+    "preact": "^10.0.0-beta.1"
   },
   "scripts": {
     "start": "webpack-dev-server --open",

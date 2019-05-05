@@ -16,38 +16,6 @@ describe('Utils', () => {
     });
   });
 
-  describe('diffByDay', () => {
-    it('should return the number of days between a given date and now', () => {
-      const clock = lolex.install({ now: new Date('2018-08-03T16:00') });
-      const timestamp = new Date('2018-08-01T16:00');
-      expect(diffByDay(timestamp)).toBe(2);
-      clock.uninstall();
-    });
-
-    it('should return floor the number of days', () => {
-      const clock = lolex.install({ now: new Date('2018-08-03T15:59') });
-      const timestamp = new Date('2018-08-01T16:00');
-      expect(diffByDay(timestamp)).toBe(1);
-      clock.uninstall();
-    });
-  });
-
-  describe('getClassByDiffDay', () => {
-    it('should return young if date is younger than 7 days', () => {
-      expect(getClassByDiffDay(0)).toBe('young');
-      expect(getClassByDiffDay(7)).toBe('young');
-    });
-
-    it('should return old if date is older than 7 days but younger than 14 days', () => {
-      expect(getClassByDiffDay(8)).toBe('old');
-      expect(getClassByDiffDay(14)).toBe('old');
-    });
-
-    it('should return old if date is older than 14 days', () => {
-      expect(getClassByDiffDay(31)).toBe('very-old');
-    });
-  });
-
   describe('groupBy', () => {
     it('should group entries by a given key', () => {
       const tasks = [
