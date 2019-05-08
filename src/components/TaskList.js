@@ -1,7 +1,8 @@
 import { h, Component } from 'preact';
-import { connect } from 'unistore/preact';
+
+import { ModalContext, TaskContext } from 'contexts';
 import Task from './Task';
-import { updateTask, openModal, setStatusId } from 'reducers';
+import { updateTask } from 'utils/actions';
 
 class TaskList extends Component {
   section = null;
@@ -26,17 +27,17 @@ class TaskList extends Component {
     }
   };
 
-  handleDragDrop = e => {
+  handleDragDrop = dispatch => e => {
     e.preventDefault();
 
-    const { id: targetId } = JSON.parse(e.dataTransfer.getData('taskId'));
+    const task = JSON.parse(e.dataTransfer.getData('task'));
     this.setState({ over: false });
-    this.props.updateTask(targetId, this.props.id);
+    dispatch(updateTask({ ...task, categoryId: this.props.categoryId }));
   };
 
-  handleAdd = () => {
-    const { openModal, id, setStatusId } = this.props;
-    setStatusId(id);
+  handleAdd = (openModal, setCategoryId) => () => {
+    const { categoryId } = this.props;
+    setCategoryId(categoryId);
     openModal();
   };
 
@@ -46,31 +47,36 @@ class TaskList extends Component {
 
   render({ label, tasks }, { over }) {
     return (
-      <section
-        ref={this.setSectionRef}
-        onDragOver={this.handleDragOver}
-        onDragLeave={this.handleDragLeave}
-        onDrop={this.handleDragDrop}
-        class={over && 'over'}
-      >
-        <div class="title-header">
-          <div class="counter">{tasks.length}</div>
-          <h2>{label}</h2>
-        </div>
-        {tasks.map(task => (
-          <Task key={task.id} {...task} />
-        ))}
-        <button onClick={this.handleAdd} class="add" aria-label="Add task" />
-      </section>
+      <TaskContext.Consumer>
+        {dispatch => (
+          <section
+            ref={this.setSectionRef}
+            onDragOver={this.handleDragOver}
+            onDragLeave={this.handleDragLeave}
+            onDrop={this.handleDragDrop(dispatch)}
+            class={over && 'over'}
+          >
+            <div class="title-header">
+              <div class="counter">{tasks.length}</div>
+              <h2>{label}</h2>
+            </div>
+            {tasks.map(task => (
+              <Task key={task.id} {...task} />
+            ))}
+            <ModalContext.Consumer>
+              {({ toggleModal, setCategoryId }) => (
+                <button
+                  onClick={this.handleAdd(toggleModal, setCategoryId)}
+                  class="add"
+                  aria-label="Add task"
+                />
+              )}
+            </ModalContext.Consumer>
+          </section>
+        )}
+      </TaskContext.Consumer>
     );
   }
 }
 
-export default connect(
-  undefined,
-  {
-    openModal,
-    updateTask,
-    setStatusId,
-  },
-)(TaskList);
+export default TaskList;

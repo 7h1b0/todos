@@ -1,61 +1,47 @@
-import { h, Component } from 'preact';
-import { connect } from 'unistore/preact';
-import { addTask, closeModal } from 'reducers';
+import { h } from 'preact';
+import { useEffect, useState, useRef, useContext } from 'preact/hooks';
 
-class AddTask extends Component {
-  input = null;
-  state = { value: null };
+import { ModalContext, TaskContext } from 'contexts';
+import { addTask } from 'utils/actions';
 
-  setInputRef = ref => {
-    this.input = ref;
-  };
+const AddTask = () => {
+  const { toggleModal, categoryId } = useContext(ModalContext);
+  const dispatch = useContext(TaskContext);
+  const [value, setValue] = useState(null);
 
-  componentDidMount() {
-    if (this.input != null) {
-      this.input.focus();
+  const inputEl = useRef(null);
+  useEffect(() => {
+    if (inputEl.current != null) {
+      inputEl.current.focus();
     }
-  }
+  });
 
-  handleChange = e => {
-    this.setState({ value: e.target.value });
-  };
-
-  handleSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    const { addTask, closeModal, statusId } = this.props;
-    closeModal();
-    addTask({
-      title: this.state.value,
-      date: Date.now(),
-      statusId,
-    });
-    this.setState({ value: null });
+    toggleModal();
+    setValue(null);
+    dispatch(addTask(value, categoryId));
   };
 
-  render(_, { value }) {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label for="add">
-          Task Label
-          <input
-            ref={this.setInputRef}
-            id="add"
-            name="add"
-            type="text"
-            value={value}
-            onChange={this.handleChange}
-            placeholder="Enter task label"
-          />
-        </label>
-        <button class="submit" type="submit">
-          ADD TASK
-        </button>
-      </form>
-    );
-  }
-}
+  return (
+    <form onSubmit={handleSubmit}>
+      <label for="add">
+        Task Label
+        <input
+          ref={inputEl}
+          id="add"
+          name="add"
+          type="text"
+          value={value}
+          onChange={e => setValue(e.target.value)}
+          placeholder="Enter task label"
+        />
+      </label>
+      <button class="submit" type="submit">
+        ADD TASK
+      </button>
+    </form>
+  );
+};
 
-export default connect(
-  'statusId',
-  { addTask, closeModal },
-)(AddTask);
+export default AddTask;

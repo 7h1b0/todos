@@ -1,11 +1,12 @@
 import { h } from 'preact';
-import { connect } from 'unistore/preact';
-import { closeModal } from 'reducers';
+import { useContext } from 'preact/hooks';
+import { ModalContext } from 'contexts';
 
-const Modal = ({ children, modal, closeModal }) => {
-  if (modal) {
+const Modal = ({ children }) => {
+  const { open, toggleModal } = useContext(ModalContext);
+  if (open) {
     return (
-      <div class="overlay" onClick={closeModal}>
+      <div class="overlay" onClick={toggleModal}>
         <div class="popup" onClick={e => e.stopPropagation()}>
           {children}
         </div>
@@ -15,7 +16,4 @@ const Modal = ({ children, modal, closeModal }) => {
   return null;
 };
 
-export default connect(
-  'modal',
-  { closeModal },
-)(Modal);
+export default Modal;

@@ -20,16 +20,3 @@ export function groupBy(items, key) {
     return result;
   }, {});
 }
-
-export function diffByDay(date) {
-  return Math.floor((Date.now() - date) / 86400000);
-}
-
-export function getClassByDiffDay(days) {
-  if (days <= 7) {
-    return 'young';
-  } else if (days > 7 && days <= 14) {
-    return 'old';
-  }
-  return 'very-old';
-}

@@ -1,27 +1,45 @@
-import { h, Component } from 'preact';
+import { h } from 'preact';
+import { useEffect, useState, useCallback, useReducer } from 'preact/hooks';
+
 import getDb from 'utils/database';
-import { connect } from 'unistore/preact';
-import { STATUSES } from 'utils/status';
+import { CATEGORIES } from 'utils/categories';
 import { groupBy } from 'utils/utils';
+import { REPLACE } from 'utils/actions';
+import dispatchMiddleware from 'utils/dispatchMiddleware';
+import { reduceTasks } from 'utils/reducers';
+
+import { ModalContext, TaskContext } from 'contexts';
+
 import AddTask from './AddTask';
 import TaskList from './TaskList';
 import Modal from './Modal';
 
-class App extends Component {
-  componentDidMount() {
-    this.props.fetchTasks();
-  }
+async function fetchTasks(dispatch) {
+  const db = await getDb();
+  const event = await db('tasks').findAll();
+  dispatch({ type: REPLACE, data: event.target.result });
+}
 
-  render({ tasks }, { statusId, statuses }) {
-    const groupedTasks = groupBy(tasks, 'statusId');
-    return (
-      <div>
+const App = () => {
+  const [modal, setModal] = useState(false);
+  const [categoryId, setCategoryId] = useState(CATEGORIES.TODO);
+  const [tasks, dispatch] = useReducer(reduceTasks, []);
+
+  const toggleModal = useCallback(() => setModal(open => !open));
+  useEffect(() => fetchTasks(dispatch), []);
+
+  const groupedTasks = groupBy(tasks, 'categoryId');
+  return (
+    <ModalContext.Provider
+      value={{ open: modal, toggleModal, categoryId, setCategoryId }}
+    >
+      <TaskContext.Provider value={dispatchMiddleware(dispatch)}>
         <div class="wrapper">
-          {STATUSES.map(({ id, title }) => (
+          {CATEGORIES.map(({ id, title }) => (
             <TaskList
               label={title}
               key={id}
-              id={id}
+              categoryId={id}
               tasks={groupedTasks[id] || []}
             />
           ))}
@@ -29,20 +47,9 @@ class App extends Component {
         <Modal>
           <AddTask />
         </Modal>
-      </div>
-    );
-  }
-}
-
-const actions = {
-  fetchTasks: async () => {
-    const db = await getDb();
-    const event = await db('tasks').findAll();
-    return { db, tasks: event.target.result };
-  },
+      </TaskContext.Provider>
+    </ModalContext.Provider>
+  );
 };
 
-export default connect(
-  'tasks',
-  actions,
-)(App);
+export default App;

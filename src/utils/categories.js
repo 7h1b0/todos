@@ -10,4 +10,4 @@ export const DONE = {
   title: 'Done',
   id: 2,
 };
-export const STATUSES = [TODO, IN_PROGRESS, DONE];
+export const CATEGORIES = [TODO, IN_PROGRESS, DONE];
