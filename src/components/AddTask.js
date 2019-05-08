@@ -2,9 +2,10 @@ import { h } from 'preact';
 import { useEffect, useState, useRef, useContext } from 'preact/hooks';
 
 import { ModalContext, TaskContext } from 'contexts';
+import { addTask } from 'utils/actions';
 
 const AddTask = () => {
-  const { toggleModal, statusId } = useContext(ModalContext);
+  const { toggleModal, categoryId } = useContext(ModalContext);
   const dispatch = useContext(TaskContext);
   const [value, setValue] = useState(null);
 
@@ -19,10 +20,7 @@ const AddTask = () => {
     e.preventDefault();
     toggleModal();
     setValue(null);
-    dispatch({
-      type: 'ADD',
-      data: { title: value, date: Date.now(), statusId },
-    });
+    dispatch(addTask(value, categoryId));
   };
 
   return (

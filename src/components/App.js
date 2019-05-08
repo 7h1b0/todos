@@ -2,8 +2,11 @@ import { h } from 'preact';
 import { useEffect, useState, useCallback, useReducer } from 'preact/hooks';
 
 import getDb from 'utils/database';
-import { STATUSES } from 'utils/status';
+import { CATEGORIES } from 'utils/categories';
 import { groupBy } from 'utils/utils';
+import { REPLACE } from 'utils/actions';
+import dispatchMiddleware from 'utils/dispatchMiddleware';
+import { reduceTasks } from 'utils/reducers';
 
 import { ModalContext, TaskContext } from 'contexts';
 
@@ -14,61 +17,29 @@ import Modal from './Modal';
 async function fetchTasks(dispatch) {
   const db = await getDb();
   const event = await db('tasks').findAll();
-  dispatch({ type: 'FETCH', data: event.target.result });
-}
-
-function reducer(state, action) {
-  console.log(action);
-  switch (action.type) {
-    case 'FETCH':
-      return action.data;
-    case 'ADD':
-      return [...state, action.data];
-    case 'REMOVE':
-      return state.filter(({ id }) => id !== action.data);
-    case 'UPDATE':
-      const indedTargetTask = state.findIndex(
-        ({ id }) => id === action.data.targetId,
-      );
-      if (~indedTargetTask) {
-        const targetTask = state[indedTargetTask];
-        const updatedTask = {
-          ...targetTask,
-          statusId: action.data.targetStatusId,
-        };
-
-        return [
-          ...state.slice(0, indedTargetTask),
-          updatedTask,
-          ...state.slice(indedTargetTask + 1),
-        ];
-      }
-      break;
-    default:
-      return state;
-  }
+  dispatch({ type: REPLACE, data: event.target.result });
 }
 
 const App = () => {
   const [modal, setModal] = useState(false);
-  const [statusId, setStatusId] = useState(STATUSES.TODO);
-  const [tasks, dispatch] = useReducer(reducer, []);
+  const [categoryId, setCategoryId] = useState(CATEGORIES.TODO);
+  const [tasks, dispatch] = useReducer(reduceTasks, []);
 
   const toggleModal = useCallback(() => setModal(open => !open));
   useEffect(() => fetchTasks(dispatch), []);
 
-  const groupedTasks = groupBy(tasks, 'statusId');
+  const groupedTasks = groupBy(tasks, 'categoryId');
   return (
     <ModalContext.Provider
-      value={{ open: modal, toggleModal, statusId, setStatusId }}
+      value={{ open: modal, toggleModal, categoryId, setCategoryId }}
     >
-      <TaskContext.Provider value={dispatch}>
+      <TaskContext.Provider value={dispatchMiddleware(dispatch)}>
         <div class="wrapper">
-          {STATUSES.map(({ id, title }) => (
+          {CATEGORIES.map(({ id, title }) => (
             <TaskList
               label={title}
               key={id}
-              id={id}
+              categoryId={id}
               tasks={groupedTasks[id] || []}
             />
           ))}

@@ -2,6 +2,7 @@ import { h, Component } from 'preact';
 
 import { TaskContext } from 'contexts';
 import { formatDate } from 'utils/utils';
+import { removeTask } from 'utils/actions';
 
 class Task extends Component {
   state = {
@@ -17,9 +18,8 @@ class Task extends Component {
   }
 
   handleDrag = e => {
-    const { id } = this.props;
     this.setState({ dragging: true });
-    e.dataTransfer.setData('taskId', JSON.stringify({ id }));
+    e.dataTransfer.setData('task', JSON.stringify(this.props));
     e.dataTransfer.effectAllowed = 'move';
     e.dataTransfer.dropEffect = 'move';
   };
@@ -29,7 +29,7 @@ class Task extends Component {
   };
 
   handleRemove = dispatch => () => {
-    dispatch({ type: 'REMOVE', data: this.props.id });
+    dispatch(removeTask(this.props.id));
   };
 
   render({ title, date }, { dragging }) {

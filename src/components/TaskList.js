@@ -2,6 +2,7 @@ import { h, Component } from 'preact';
 
 import { ModalContext, TaskContext } from 'contexts';
 import Task from './Task';
+import { updateTask } from 'utils/actions';
 
 class TaskList extends Component {
   section = null;
@@ -29,17 +30,14 @@ class TaskList extends Component {
   handleDragDrop = dispatch => e => {
     e.preventDefault();
 
-    const { id: targetId } = JSON.parse(e.dataTransfer.getData('taskId'));
+    const task = JSON.parse(e.dataTransfer.getData('task'));
     this.setState({ over: false });
-    dispatch({
-      type: 'UPDATE',
-      data: { targetId, targetStatusId: this.props.id },
-    });
+    dispatch(updateTask({ ...task, categoryId: this.props.categoryId }));
   };
 
-  handleAdd = (openModal, setStatusId) => () => {
-    const { id } = this.props;
-    setStatusId(id);
+  handleAdd = (openModal, setCategoryId) => () => {
+    const { categoryId } = this.props;
+    setCategoryId(categoryId);
     openModal();
   };
 
@@ -66,9 +64,9 @@ class TaskList extends Component {
               <Task key={task.id} {...task} />
             ))}
             <ModalContext.Consumer>
-              {({ toggleModal, setStatusId }) => (
+              {({ toggleModal, setCategoryId }) => (
                 <button
-                  onClick={this.handleAdd(toggleModal, setStatusId)}
+                  onClick={this.handleAdd(toggleModal, setCategoryId)}
                   class="add"
                   aria-label="Add task"
                 />

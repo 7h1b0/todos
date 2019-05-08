@@ -2,7 +2,7 @@ import { createContext } from 'preact';
 
 export default createContext({
   open: true,
-  statusId: null,
+  categoryId: null,
   toggleModal: () => {},
-  setStatusId: () => {},
+  setCategoryId: () => {},
 });
