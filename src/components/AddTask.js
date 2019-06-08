@@ -42,10 +42,10 @@ const AddTask = () => {
         <input
           id="due"
           name="due"
-          type="date"
+          type="text"
           value={dueDate}
           onChange={e => setDueDate(e.target.value)}
-          placeholder="Enter task due date"
+          placeholder="YYYY-MM-DD"
         />
       </label>
       <button class="submit" type="submit">

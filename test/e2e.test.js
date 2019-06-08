@@ -37,7 +37,7 @@ describe('e2e', () => {
   });
 
   it('should display a due date', async () => {
-    await addTodo('Get more sleep', '11111');
+    await addTodo('Get more sleep', '2012-12-21');
     await expect(page).toContainText('Due date');
     await expect(page).toContainSelector('.outdated');
   });
