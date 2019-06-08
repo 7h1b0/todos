@@ -5,7 +5,7 @@ class PuppeteerEnvironment extends NodeEnvironment {
   async setup() {
     const browser = await puppeteer.launch({
       headless: process.env.CI != null,
-      slowMo: process.env.CI ? 0 : 30,
+      slowMo: process.env.CI ? 5 : 30,
     });
     this.global.browser = browser;
 

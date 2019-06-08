@@ -12,7 +12,7 @@ export default async function toContainText(receiver, expected) {
       },
       {
         polling: 'raf',
-        timeout: 500,
+        timeout: 1000,
       },
       expected,
     );
