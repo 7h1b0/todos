@@ -91,6 +91,9 @@
         padding: 20px var(--space-m) var(--space-m);
         margin-top: var(--space-m);
       }
+      .task.outdated {
+        border: 1px solid red;
+      }
       .content:before {
         content: '';
         display: block;
@@ -100,6 +103,9 @@
         position: relative;
         top: -5px;
         background: #4680ff;
+      }
+      .outdated .content:before {
+        background: red;
       }
       .task div {
         flex: 1;

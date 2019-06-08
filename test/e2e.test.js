@@ -35,4 +35,10 @@ describe('e2e', () => {
 
     await expect(page).notToContainText('Get more sleep');
   });
+
+  it('should display a due date', async () => {
+    await addTodo('Get more sleep', '11111');
+    await expect(page).toContainText('Due date');
+    await expect(page).toContainSelector('.outdated');
+  });
 });

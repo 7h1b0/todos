@@ -1,20 +1,17 @@
 import { h, Component } from 'preact';
 
 import { TaskContext } from 'contexts';
-import { formatDate } from 'utils/utils';
+import { formatDate, classNames } from 'utils/utils';
 import { removeTask } from 'utils/actions';
+import { DONE } from 'utils/categories';
 
 class Task extends Component {
   state = {
     dragging: false,
   };
 
-  shouldComponentUpdate({ title, date }, { dragging }) {
-    return (
-      title !== this.props.title ||
-      date !== this.props.date ||
-      dragging !== this.state.dragging
-    );
+  shouldComponentUpdate({ title }, { dragging }) {
+    return title !== this.props.title || dragging !== this.state.dragging;
   }
 
   handleDrag = e => {
@@ -32,11 +29,15 @@ class Task extends Component {
     dispatch(removeTask(this.props.id));
   };
 
-  render({ title, date }, { dragging }) {
-    const className = dragging ? 'task dragging' : 'task';
+  render({ title, date, dueDate, categoryId }, { dragging }) {
+    const isDueDatePast = categoryId !== DONE.id && dueDate && dueDate < date;
     return (
       <div
-        class={className}
+        class={classNames(
+          'task',
+          dragging && 'dragging',
+          isDueDatePast && 'outdated',
+        )}
         draggable
         onDragStart={this.handleDrag}
         onDragEnd={this.handleDragEnd}
@@ -44,6 +45,9 @@ class Task extends Component {
         <div class="content">
           <p class="title">{title}</p>
           <p class="caption">Added on: {formatDate(date)}</p>
+          {dueDate ? (
+            <p class="caption">Due date: {formatDate(dueDate)}</p>
+          ) : null}
         </div>
         <TaskContext.Consumer>
           {dispatch => (

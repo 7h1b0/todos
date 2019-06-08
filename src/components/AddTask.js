@@ -7,7 +7,8 @@ import { addTask } from 'utils/actions';
 const AddTask = () => {
   const { toggleModal, categoryId } = useContext(ModalContext);
   const dispatch = useContext(TaskContext);
-  const [value, setValue] = useState(null);
+  const [title, setTitle] = useState(null);
+  const [dueDate, setDueDate] = useState(null);
 
   const inputEl = useRef(null);
   useEffect(() => {
@@ -19,8 +20,7 @@ const AddTask = () => {
   const handleSubmit = e => {
     e.preventDefault();
     toggleModal();
-    setValue(null);
-    dispatch(addTask(value, categoryId));
+    dispatch(addTask(title, categoryId, new Date(dueDate).getTime()));
   };
 
   return (
@@ -32,9 +32,20 @@ const AddTask = () => {
           id="add"
           name="add"
           type="text"
-          value={value}
-          onChange={e => setValue(e.target.value)}
+          value={title}
+          onChange={e => setTitle(e.target.value)}
           placeholder="Enter task label"
+        />
+      </label>
+      <label for="due">
+        Due Date
+        <input
+          id="due"
+          name="due"
+          type="date"
+          value={dueDate}
+          onChange={e => setDueDate(e.target.value)}
+          placeholder="Enter task due date"
         />
       </label>
       <button class="submit" type="submit">
