@@ -1,4 +1,4 @@
-# Todos &middot; [![Build Status](https://travis-ci.org/7h1b0/todos.svg?branch=master)](https://travis-ci.org/7h1b0/todos) ![Firefox Support](https://img.shields.io/badge/firefox-%3E%3D%2060-orange.svg) ![Chrome Support](https://img.shields.io/badge/chrome-%3E%3D%2070-yellow.svg)
+# Todos &middot; ![Build Status](https://travis-ci.org/7h1b0/todos.svg?branch=master)
 
 Todo application built with Preact and IndexedDB
 
@@ -15,9 +15,9 @@ Todo application built with Preact and IndexedDB
   - [npm run test:e2e](#npm-run-teste2e)
 
 ## Browsers support
-
-- Firefox >= 60
-- Chrome >= 70
+| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Opera |
+| --------- | --------- | --------- | --------- |
+| last 3 versions| last 3 versions| last 1 versions| last 3 versions
 
 :warning: Edge is not supported as it doesn't support `getAll` on `objectStore`.
 
