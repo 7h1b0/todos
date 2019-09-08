@@ -1,6 +1,6 @@
 import { h, Component } from 'preact';
 
-import { TaskContext } from 'contexts';
+import TaskContext from 'contexts/TaskContext';
 import { formatDate, classNames } from 'utils/utils';
 import { removeTask } from 'utils/actions';
 import { DONE } from 'utils/categories';

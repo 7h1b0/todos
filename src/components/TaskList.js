@@ -1,6 +1,7 @@
 import { h, Component } from 'preact';
 
-import { ModalContext, TaskContext } from 'contexts';
+import ModalContext from 'contexts/ModalContext';
+import TaskContext from 'contexts/TaskContext';
 import Task from './Task';
 import { updateTask } from 'utils/actions';
 

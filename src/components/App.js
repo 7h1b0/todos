@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import { useEffect, useState, useCallback, useReducer } from 'preact/hooks';
+import { useEffect, useReducer } from 'preact/hooks';
 
 import getDb from 'utils/database';
 import { CATEGORIES } from 'utils/categories';
@@ -8,7 +8,8 @@ import { REPLACE } from 'utils/actions';
 import dispatchMiddleware from 'utils/dispatchMiddleware';
 import { reduceTasks } from 'utils/reducers';
 
-import { ModalContext, TaskContext } from 'contexts';
+import TaskContext from 'contexts/TaskContext';
+import { ModalProvider } from 'contexts/ModalContext';
 
 import AddTask from './AddTask';
 import TaskList from './TaskList';
@@ -21,18 +22,12 @@ async function fetchTasks(dispatch) {
 }
 
 const App = () => {
-  const [modal, setModal] = useState(false);
-  const [categoryId, setCategoryId] = useState(CATEGORIES.TODO);
   const [tasks, dispatch] = useReducer(reduceTasks, []);
-
-  const toggleModal = useCallback(() => setModal(open => !open));
   useEffect(() => fetchTasks(dispatch), []);
 
   const groupedTasks = groupBy(tasks, 'categoryId');
   return (
-    <ModalContext.Provider
-      value={{ open: modal, toggleModal, categoryId, setCategoryId }}
-    >
+    <ModalProvider>
       <TaskContext.Provider value={dispatchMiddleware(dispatch)}>
         <div class="wrapper">
           {CATEGORIES.map(({ id, title }) => (
@@ -48,7 +43,7 @@ const App = () => {
           <AddTask />
         </Modal>
       </TaskContext.Provider>
-    </ModalContext.Provider>
+    </ModalProvider>
   );
 };
 

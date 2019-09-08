@@ -1,9 +1,8 @@
 import { h } from 'preact';
-import { useContext } from 'preact/hooks';
-import { ModalContext } from 'contexts';
+import { useModal } from 'contexts/ModalContext';
 
 const Modal = ({ children }) => {
-  const { open, toggleModal } = useContext(ModalContext);
+  const { open, toggleModal } = useModal();
   if (open) {
     return (
       <div class="overlay" onClick={toggleModal}>

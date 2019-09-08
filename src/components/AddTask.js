@@ -1,12 +1,13 @@
 import { h } from 'preact';
-import { useEffect, useState, useRef, useContext } from 'preact/hooks';
+import { useEffect, useState, useRef } from 'preact/hooks';
 
-import { ModalContext, TaskContext } from 'contexts';
+import { useTask } from 'contexts/TaskContext';
+import { useModal } from 'contexts/ModalContext';
 import { addTask } from 'utils/actions';
 
 const AddTask = () => {
-  const { toggleModal, categoryId } = useContext(ModalContext);
-  const dispatch = useContext(TaskContext);
+  const { toggleModal, categoryId } = useModal();
+  const dispatch = useTask();
   const [title, setTitle] = useState(null);
   const [dueDate, setDueDate] = useState(null);
 
