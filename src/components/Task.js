@@ -3,7 +3,6 @@ import { h, Component } from 'preact';
 import TaskContext from 'contexts/TaskContext';
 import { formatDate, classNames } from 'utils/utils';
 import { removeTask } from 'utils/actions';
-import { DONE } from 'utils/categories';
 
 class Task extends Component {
   state = {
@@ -29,15 +28,10 @@ class Task extends Component {
     dispatch(removeTask(this.props.id));
   };
 
-  render({ title, date, dueDate, categoryId }, { dragging }) {
-    const isDueDatePast = categoryId !== DONE.id && dueDate && dueDate < date;
+  render({ title, date }, { dragging }) {
     return (
       <div
-        class={classNames(
-          'task',
-          dragging && 'dragging',
-          isDueDatePast && 'outdated',
-        )}
+        class={classNames('task', dragging && 'dragging')}
         draggable
         onDragStart={this.handleDrag}
         onDragEnd={this.handleDragEnd}
@@ -45,9 +39,6 @@ class Task extends Component {
         <div class="content">
           <p class="title">{title}</p>
           <p class="caption">Added on: {formatDate(date)}</p>
-          {dueDate ? (
-            <p class="caption">Due date: {formatDate(dueDate)}</p>
-          ) : null}
         </div>
         <TaskContext.Consumer>
           {dispatch => (

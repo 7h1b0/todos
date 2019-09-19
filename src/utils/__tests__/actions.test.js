@@ -20,14 +20,13 @@ describe('addTask', () => {
 
   it('should create a ADD action with a due date', () => {
     const clock = lolex.install({ now: new Date('2018-08-01T16:00') });
-    const action = addTask('test', 2, new Date('2018-10-10'));
+    const action = addTask('test', 2);
 
     expect(action).toEqual({
       type: ADD,
       data: {
         title: 'test',
         categoryId: 2,
-        dueDate: new Date('2018-10-10'),
         date: new Date('2018-08-01T16:00').getTime(),
       },
     });

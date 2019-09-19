@@ -1,10 +1,6 @@
-export async function addTodo(label, dueDate) {
+export async function addTodo(label) {
   await page.click('.add');
   await page.type('input[name="add"]', label);
-  if (dueDate) {
-    await page.click('#due');
-    await page.type('input[name="due"]', dueDate);
-  }
 
   await page.click('.submit');
 }

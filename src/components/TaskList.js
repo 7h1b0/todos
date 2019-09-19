@@ -65,9 +65,9 @@ class TaskList extends Component {
               <Task key={task.id} {...task} />
             ))}
             <ModalContext.Consumer>
-              {({ toggleModal, setCategoryId }) => (
+              {({ openModal, setCategoryId }) => (
                 <button
-                  onClick={this.handleAdd(toggleModal, setCategoryId)}
+                  onClick={this.handleAdd(openModal, setCategoryId)}
                   class="add"
                   aria-label="Add task"
                 />
