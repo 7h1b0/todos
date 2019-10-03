@@ -86,3 +86,4 @@ $RECYCLE.BIN/
 
 dist/*
 .vscode/*
+size-plugin.json
