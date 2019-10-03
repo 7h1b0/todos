@@ -49,6 +49,6 @@
     "coverage": "jest --coverage --ci --silent",
     "format": "prettier --write \"src/**/*.js\"",
     "deploy": "npm run build && gh-pages -d dist",
-    "serve:prod": "serve -s dist/ -l 3000 -n"
+    "serve": "serve -s dist/ -l 3000 -n"
   }
 }
