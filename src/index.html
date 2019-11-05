@@ -27,7 +27,7 @@
           --color-placeholder: #38424b;
           --color-section: #2c343a;
           --color-title: #fff;
-          --color-caption: #606976;
+          --color-caption: #afb4ba;
           --color-action: #fff;
         }
       }
@@ -48,11 +48,6 @@
       h2 {
         font-size: 1.05rem;
       }
-      label {
-        display: block;
-        font-size: var(--caption);
-        padding-top: var(--space-m);
-      }
       input {
         display: block;
         border: none;
@@ -63,10 +58,16 @@
         color: var(--color-title);
         border-radius: 5px;
       }
-      .caption {
+      label,
+      .caption,
+      .export {
         color: var(--color-caption);
         font-size: var(--caption);
       }
+      header {
+        justify-content: center;
+      }
+      header,
       .title-header {
         display: flex;
         align-items: center;
@@ -101,7 +102,7 @@
       .wrapper {
         max-width: 1400px;
         width: 95%;
-        margin: 2rem auto;
+        margin: 0 auto 2rem;
         display: flex;
         align-items: flex-start;
       }
@@ -195,7 +196,14 @@
         max-width: 450px;
         border-radius: 5px;
         margin: 0 auto;
-        padding: var(--space-m);
+        padding: 28px var(--space-m) var(--space-m);
+      }
+      .hidden {
+        display: none;
+      }
+      .export {
+        cursor: pointer;
+        margin: var(--space-m);
       }
     </style>
   </head>

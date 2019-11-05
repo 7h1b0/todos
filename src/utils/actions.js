@@ -1,12 +1,12 @@
 export const REMOVE = 'REMOVE';
 export const ADD = 'ADD';
 export const UPDATE = 'UPDATE';
-export const REPLACE = 'REPLACE';
+export const ADD_ALL = 'ADD_ALL';
 
 export function addTask(title, categoryId, date = Date.now()) {
   return {
     type: ADD,
-    data: { title, categoryId, date, updatedAt: date },
+    data: { id: date, title, categoryId, date, updatedAt: date },
   };
 }
 
@@ -21,5 +21,12 @@ export function updateTask(task) {
   return {
     type: UPDATE,
     data: task,
+  };
+}
+
+export function addAll(tasks) {
+  return {
+    type: ADD_ALL,
+    data: tasks,
   };
 }

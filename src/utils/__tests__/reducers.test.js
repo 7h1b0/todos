@@ -1,14 +1,14 @@
 import { reduceTasks } from '../reducers';
-import { ADD, REMOVE, UPDATE, REPLACE } from '../actions';
+import { ADD, REMOVE, UPDATE, ADD_ALL } from '../actions';
 
 describe('reduceTasks', () => {
-  describe('REPLACE action', () => {
-    it('should replace the state', () => {
+  describe('ALL_ALL action', () => {
+    it('should add everything to the state', () => {
       const state = [1];
-      const action = { type: REPLACE, data: [2, 3] };
+      const action = { type: ADD_ALL, data: [2, 3] };
       const newState = reduceTasks(state, action);
 
-      expect(newState).toEqual([2, 3]);
+      expect(newState).toEqual([1, 2, 3]);
     });
   });
 

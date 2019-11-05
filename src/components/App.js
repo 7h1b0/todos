@@ -4,7 +4,7 @@ import { useEffect, useReducer } from 'preact/hooks';
 import getDb from 'utils/database';
 import { CATEGORIES } from 'utils/categories';
 import { groupBy } from 'utils/utils';
-import { REPLACE } from 'utils/actions';
+import { ADD_ALL } from 'utils/actions';
 import dispatchMiddleware from 'utils/dispatchMiddleware';
 import { reduceTasks } from 'utils/reducers';
 
@@ -14,11 +14,12 @@ import { ModalProvider } from 'contexts/ModalContext';
 import AddTask from './AddTask';
 import TaskList from './TaskList';
 import Modal from './Modal';
+import Export from './Export';
 
 async function fetchTasks(dispatch) {
   const db = await getDb();
   const event = await db('tasks').findAll();
-  dispatch({ type: REPLACE, data: event.target.result });
+  dispatch({ type: ADD_ALL, data: event.target.result });
 }
 
 const App = () => {
@@ -29,6 +30,7 @@ const App = () => {
   return (
     <ModalProvider>
       <TaskContext.Provider value={dispatchMiddleware(dispatch)}>
+        <Export tasks={tasks} />
         <div class="wrapper">
           {CATEGORIES.map(({ id, title }) => (
             <TaskList

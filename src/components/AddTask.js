@@ -1,13 +1,13 @@
 import { h } from 'preact';
 import { useEffect, useState, useRef } from 'preact/hooks';
 
-import { useTask } from 'contexts/TaskContext';
+import { useTaskDispatch } from 'contexts/TaskContext';
 import { useModal } from 'contexts/ModalContext';
 import { addTask } from 'utils/actions';
 
 const AddTask = () => {
   const { closeModal, categoryId } = useModal();
-  const dispatch = useTask();
+  const dispatch = useTaskDispatch();
   const [title, setTitle] = useState(null);
 
   const inputEl = useRef(null);
