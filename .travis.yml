@@ -3,8 +3,9 @@ node_js:
   - 'node'
 
 cache:
+  npm: true
   directories:
-    - '$HOME/.npm'
+    - ~/.cache
 
 install:
   - npm ci
@@ -15,8 +16,9 @@ before_script:
 
 script:
   - npm run lint
-  - npm run prettier:check
+  - npm run format:check
   - npm run coverage
+  - npm run test:e2e
 
 notifications:
   email: false

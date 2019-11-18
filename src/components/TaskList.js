@@ -69,7 +69,7 @@ class TaskList extends Component {
                 <button
                   onClick={this.handleAdd(openModal, setCategoryId)}
                   class="add"
-                  aria-label="Add task"
+                  aria-label={`Add ${label} todo`}
                 />
               )}
             </ModalContext.Consumer>

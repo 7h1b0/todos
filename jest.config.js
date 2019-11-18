@@ -1,6 +1,7 @@
 module.exports = {
-  projects: ['<rootDir>/src', '<rootDir>/test'],
   automock: false,
   clearMocks: true,
   errorOnDeprecated: true,
+  testPathIgnorePatterns: ['<rootDir>/cypress/'],
+  testEnvironment: 'jest-environment-node',
 };

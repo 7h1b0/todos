@@ -86,3 +86,6 @@ $RECYCLE.BIN/
 
 dist/*
 .vscode/*
+cypress/screenshots/*
+cypress/fixtures/*
+cypress/videos/*

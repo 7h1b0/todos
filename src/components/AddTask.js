@@ -33,7 +33,7 @@ const AddTask = () => {
           name="add"
           type="text"
           value={title}
-          onChange={e => setTitle(e.target.value)}
+          onInput={e => setTitle(e.target.value)}
           placeholder="Enter task label"
         />
       </label>
