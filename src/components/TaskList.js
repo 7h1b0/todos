@@ -4,6 +4,7 @@ import ModalContext from 'contexts/ModalContext';
 import TaskContext from 'contexts/TaskContext';
 import Task from './Task';
 import { updateTask } from 'utils/actions';
+import { sortByUpdated } from 'utils/utils';
 
 class TaskList extends Component {
   section = null;
@@ -33,7 +34,13 @@ class TaskList extends Component {
 
     const task = JSON.parse(e.dataTransfer.getData('task'));
     this.setState({ over: false });
-    dispatch(updateTask({ ...task, categoryId: this.props.categoryId }));
+    dispatch(
+      updateTask({
+        ...task,
+        categoryId: this.props.categoryId,
+        updatedAt: Date.now(),
+      }),
+    );
   };
 
   handleAdd = (openModal, setCategoryId) => () => {
@@ -61,7 +68,7 @@ class TaskList extends Component {
               <div class="counter">{tasks.length}</div>
               <h2>{label}</h2>
             </div>
-            {tasks.map(task => (
+            {tasks.sort(sortByUpdated).map(task => (
               <Task key={task.id} {...task} />
             ))}
             <ModalContext.Consumer>

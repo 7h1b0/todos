@@ -24,3 +24,7 @@ export function groupBy(items, key) {
 export function classNames(...arg) {
   return arg.filter(Boolean).join(' ');
 }
+
+export function sortByUpdated(taskA, taskB) {
+  return taskA.updatedAt - taskB.updatedAt;
+}

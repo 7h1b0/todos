@@ -6,7 +6,7 @@ export const REPLACE = 'REPLACE';
 export function addTask(title, categoryId, date = Date.now()) {
   return {
     type: ADD,
-    data: { title, categoryId, date },
+    data: { title, categoryId, date, updatedAt: date },
   };
 }
 
