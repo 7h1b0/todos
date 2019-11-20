@@ -13,6 +13,7 @@ describe('addTask', () => {
         title: 'test',
         categoryId: 2,
         date: new Date('2018-08-01T16:00').getTime(),
+        updatedAt: new Date('2018-08-01T16:00').getTime(),
       },
     });
     clock.uninstall();
@@ -28,6 +29,7 @@ describe('addTask', () => {
         title: 'test',
         categoryId: 2,
         date: new Date('2018-08-01T16:00').getTime(),
+        updatedAt: new Date('2018-08-01T16:00').getTime(),
       },
     });
     clock.uninstall();
