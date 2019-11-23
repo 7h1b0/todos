@@ -6,7 +6,7 @@ import { useModal } from 'contexts/ModalContext';
 import { addTask } from 'utils/actions';
 
 const AddTask = () => {
-  const { closeModal, categoryId } = useModal();
+  const { closeModal, payload } = useModal();
   const dispatch = useTaskDispatch();
   const [title, setTitle] = useState(null);
 
@@ -20,7 +20,7 @@ const AddTask = () => {
   const handleSubmit = e => {
     e.preventDefault();
     closeModal();
-    dispatch(addTask(title, categoryId));
+    dispatch(addTask(title, payload));
   };
 
   return (

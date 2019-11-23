@@ -43,10 +43,9 @@ class TaskList extends Component {
     );
   };
 
-  handleAdd = (openModal, setCategoryId) => () => {
+  handleAdd = openModal => () => {
     const { categoryId } = this.props;
-    setCategoryId(categoryId);
-    openModal();
+    openModal(categoryId);
   };
 
   shouldComponentUpdate({ tasks }, { over }) {
@@ -72,9 +71,9 @@ class TaskList extends Component {
               <Task key={task.id} {...task} />
             ))}
             <ModalContext.Consumer>
-              {({ openModal, setCategoryId }) => (
+              {({ openModal }) => (
                 <button
-                  onClick={this.handleAdd(openModal, setCategoryId)}
+                  onClick={this.handleAdd(openModal)}
                   class="add"
                   aria-label={`Add ${label} todo`}
                 />
