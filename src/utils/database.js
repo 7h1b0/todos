@@ -15,13 +15,22 @@ export default function getDb() {
           .objectStore(table)
           .getAll(),
       ),
-    add: obj =>
+    add: task =>
       promisifyRequest(
         db
           .transaction([table], 'readwrite')
           .objectStore(table)
-          .add(obj),
+          .add(task),
       ),
+    addAll: tasks => {
+      return new Promise((resolve, reject) => {
+        const tx = db.transaction([table], 'readwrite');
+
+        tasks.forEach(task => tx.objectStore(table).add(task));
+        tx.oncomplete = resolve;
+        tx.onerror = reject;
+      });
+    },
     remove: id =>
       promisifyRequest(
         db
@@ -39,7 +48,7 @@ export default function getDb() {
   });
 
   return new Promise((resolve, reject) => {
-    const request = window.indexedDB.open('Todos', 4);
+    const request = window.indexedDB.open('Todos', 5);
     request.onerror = reject;
     request.onsuccess = event => {
       db = event.target.result;
@@ -50,7 +59,6 @@ export default function getDb() {
       const db = event.target.result;
       db.createObjectStore('tasks', {
         keyPath: 'id',
-        autoIncrement: true,
       });
     };
   });

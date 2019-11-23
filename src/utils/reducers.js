@@ -1,11 +1,10 @@
-import { ADD, REMOVE, UPDATE, REPLACE } from './actions';
+import { ADD, REMOVE, UPDATE, ADD_ALL } from './actions';
 
 export function reduceTasks(state, action) {
   switch (action.type) {
-    case REPLACE:
-      return action.data;
+    case ADD_ALL:
     case ADD:
-      return [...state, action.data];
+      return state.concat(action.data);
     case REMOVE:
       return state.filter(({ id }) => id !== action.data);
     case UPDATE:
