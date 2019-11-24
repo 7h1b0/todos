@@ -1,6 +1,14 @@
 import lolex from 'lolex';
-import { addTask, removeTask, updateTask, addAll } from '../actions';
-import { ADD, REMOVE, UPDATE, ADD_ALL } from '../actions';
+import {
+  addTask,
+  removeTask,
+  updateTask,
+  addAll,
+  ADD,
+  REMOVE,
+  UPDATE,
+  ADD_ALL,
+} from './actions';
 
 describe('addTask', () => {
   it('should create a ADD action', () => {
@@ -64,11 +72,17 @@ describe('updateTask', () => {
 
 describe('addAll', () => {
   it('should create a ADD_ALL action', () => {
-    const action = addAll([{ id: 1, title: 'test' }, { id: 2, title: 'unit' }]);
+    const action = addAll([
+      { id: 1, title: 'test' },
+      { id: 2, title: 'unit' },
+    ]);
 
     expect(action).toEqual({
       type: ADD_ALL,
-      data: [{ id: 1, title: 'test' }, { id: 2, title: 'unit' }],
+      data: [
+        { id: 1, title: 'test' },
+        { id: 2, title: 'unit' },
+      ],
     });
   });
 });

@@ -1,13 +1,13 @@
-export default function getDb() {
-  const promisifyRequest = request =>
-    new Promise((resolve, reject) => {
-      request.onsuccess = resolve;
-      request.onerror = reject;
-    });
+const promisifyRequest = request =>
+  new Promise((resolve, reject) => {
+    request.onsuccess = resolve;
+    request.onerror = reject;
+  });
 
+export default function getDb(table = 'tasks') {
   let db = undefined;
 
-  const scope = table => ({
+  const scope = {
     findAll: () =>
       promisifyRequest(
         db
@@ -45,7 +45,7 @@ export default function getDb() {
           .objectStore(table)
           .put(obj),
       ),
-  });
+  };
 
   return new Promise((resolve, reject) => {
     const request = window.indexedDB.open('Todos', 5);

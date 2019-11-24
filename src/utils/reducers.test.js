@@ -1,5 +1,5 @@
-import { reduceTasks } from '../reducers';
-import { ADD, REMOVE, UPDATE, ADD_ALL } from '../actions';
+import { reduceTasks } from './reducers';
+import { ADD, REMOVE, UPDATE, ADD_ALL } from './actions';
 
 describe('reduceTasks', () => {
   describe('ALL_ALL action', () => {

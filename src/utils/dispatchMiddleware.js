@@ -1,21 +1,21 @@
-import getDb from 'utils/database';
-import { ADD, REMOVE, UPDATE, ADD_ALL } from 'utils/actions';
+import getDb from './database';
+import { ADD, REMOVE, UPDATE, ADD_ALL } from './actions';
 
 export default function dispatchMiddleware(dispatch) {
   return async action => {
     const db = await getDb();
     switch (action.type) {
       case ADD_ALL:
-        await db('tasks').addAll(action.data);
+        await db.addAll(action.data);
         break;
       case ADD:
-        await db('tasks').add(action.data);
+        await db.add(action.data);
         break;
       case REMOVE:
-        await db('tasks').remove(action.data);
+        await db.remove(action.data);
         break;
       case UPDATE:
-        await db('tasks').edit(action.data);
+        await db.edit(action.data);
         break;
     }
     dispatch(action);

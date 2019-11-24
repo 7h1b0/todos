@@ -1,4 +1,4 @@
-import { formatDate, groupBy, classNames } from '../utils';
+import { formatDate, groupBy, classNames } from './utils';
 
 describe('formatDate', () => {
   it('should format the given timestamp', () => {
@@ -23,7 +23,10 @@ describe('groupBy', () => {
     ];
 
     expect(groupBy(tasks, 'group')).toEqual({
-      1: [{ id: 2, group: 1 }, { id: 1, group: 1 }],
+      1: [
+        { id: 2, group: 1 },
+        { id: 1, group: 1 },
+      ],
       2: [{ id: 3, group: 2 }],
     });
   });
@@ -37,7 +40,10 @@ describe('groupBy', () => {
     ];
 
     expect(groupBy(tasks, 'group')).toEqual({
-      0: [{ id: 2, group: 0 }, { id: 1, group: 0 }],
+      0: [
+        { id: 2, group: 0 },
+        { id: 1, group: 0 },
+      ],
       2: [{ id: 3, group: 2 }],
     });
   });

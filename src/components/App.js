@@ -18,7 +18,7 @@ import Export from './Export';
 
 async function fetchTasks(dispatch) {
   const db = await getDb();
-  const event = await db('tasks').findAll();
+  const event = await db.findAll();
   dispatch({ type: ADD_ALL, data: event.target.result });
 }
 
