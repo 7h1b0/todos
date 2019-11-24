@@ -63,22 +63,25 @@ class TaskList extends Component {
             onDrop={this.handleDragDrop(dispatch)}
             class={over && 'over'}
           >
-            <div class="title-header">
-              <div class="counter">{tasks.length}</div>
+            <div class="tasks-header">
               <h2>{label}</h2>
+              <ModalContext.Consumer>
+                {({ openModal }) => (
+                  <button
+                    class="add"
+                    onClick={this.handleAdd(openModal)}
+                    aria-label={`Add ${label} todo`}
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                      <path d="M11 9V5H9v4H5v2h4v4h2v-4h4V9h-4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20z" />
+                    </svg>
+                  </button>
+                )}
+              </ModalContext.Consumer>
             </div>
             {tasks.sort(sortByUpdated).map(task => (
               <Task key={task.id} {...task} />
             ))}
-            <ModalContext.Consumer>
-              {({ openModal }) => (
-                <button
-                  onClick={this.handleAdd(openModal)}
-                  class="add"
-                  aria-label={`Add ${label} todo`}
-                />
-              )}
-            </ModalContext.Consumer>
           </section>
         )}
       </TaskContext.Consumer>

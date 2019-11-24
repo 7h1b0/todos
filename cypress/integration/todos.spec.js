@@ -5,12 +5,9 @@ beforeEach(() => {
 
 it('should add tasks', () => {
   cy.addTodo('Todo', 'Get more sleep');
-  cy.contains('1Todo');
   cy.contains('Get more sleep');
-  cy.contains('0In Progress');
 
   cy.addTodo('In Progress', 'Make e2e tests');
-  cy.contains('1In Progress');
   cy.contains('Make e2e tests');
 });
 
