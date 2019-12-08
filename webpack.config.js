@@ -70,6 +70,7 @@ module.exports = ({ prod = false } = {}) => {
       minimizer: [
         new TerserPlugin({
           terserOptions: {
+            ecma: 8,
             compress: {
               pure_getters: true,
               unsafe: true,
