@@ -46,6 +46,7 @@ class Task extends Component {
               class="delete"
               onClick={this.handleRemove(dispatch)}
               aria-label="Remove task"
+              type="button"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

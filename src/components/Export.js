@@ -32,7 +32,7 @@ const Export = ({ tasks }) => {
 
   return (
     <header>
-      <button class="export" onClick={handleExport}>
+      <button class="export" onClick={handleExport} type="button">
         Export
       </button>
       <label class="export" for="file">
