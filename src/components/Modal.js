@@ -4,19 +4,17 @@ import { useEffect } from 'preact/hooks';
 import { useModal } from 'contexts/ModalContext';
 
 const Modal = ({ children }) => {
-  const { open, closeModal } = useModal();
+  const { isOpen, closeModal } = useModal();
 
   useEffect(() => {
-    window.addEventListener('keyup', event => {
-      if (event.code === 'Escape') {
+    window.addEventListener('keyup', e => {
+      if (e.code === 'Escape') {
         closeModal();
       }
     });
-
-    return () => window.removeEventListener('keyup');
   }, []);
 
-  if (open) {
+  if (isOpen) {
     return (
       <div class="overlay" onClick={closeModal}>
         <div class="popup" onClick={e => e.stopPropagation()}>

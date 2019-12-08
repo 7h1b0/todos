@@ -25,14 +25,12 @@ const AddTask = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label for="add">
+      <label>
         Task Label
         <input
           ref={inputEl}
-          id="add"
           name="add"
           type="text"
-          value={title}
           onInput={e => setTitle(e.target.value)}
           placeholder="Enter task label"
         />

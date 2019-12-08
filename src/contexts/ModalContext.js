@@ -18,9 +18,7 @@ export const ModalProvider = ({ children }) => {
   const closeModal = () => setStatus(false);
 
   return (
-    <ModalContext.Provider
-      value={{ open: isOpen, openModal, closeModal, payload }}
-    >
+    <ModalContext.Provider value={{ isOpen, openModal, closeModal, payload }}>
       {children}
     </ModalContext.Provider>
   );

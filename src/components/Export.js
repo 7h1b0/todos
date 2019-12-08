@@ -35,10 +35,10 @@ const Export = ({ tasks }) => {
       <button class="export" onClick={handleExport} type="button">
         Export
       </button>
-      <label class="export" for="file">
+      <label class="export">
         Import
+        <input class="hidden" onInput={handleImport} type="file" />
       </label>
-      <input class="hidden" onInput={handleImport} id="file" type="file" />
     </header>
   );
 };
