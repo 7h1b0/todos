@@ -85,6 +85,8 @@ $RECYCLE.BIN/
 *.lnk
 
 dist/*
+!dist/favicon.ico
+!dist/icon-*
 .vscode/*
 cypress/screenshots/*
 cypress/videos/*

@@ -4,7 +4,6 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = ({ prod = false } = {}) => {
   const plugins = prod
@@ -37,7 +36,6 @@ module.exports = ({ prod = false } = {}) => {
           minify: true,
           staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
         }),
-        new CopyWebpackPlugin([{ from: 'public/' }]),
       ]
     : [];
 
@@ -102,7 +100,10 @@ module.exports = ({ prod = false } = {}) => {
             }
           : undefined,
       }),
-      new CleanWebpackPlugin({ verbose: false }),
+      new CleanWebpackPlugin({
+        verbose: false,
+        cleanOnceBeforeBuildPatterns: ['main-*'],
+      }),
       ...plugins,
     ],
     devServer: {
