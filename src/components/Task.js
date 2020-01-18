@@ -28,7 +28,9 @@ class Task extends Component {
     dispatch(removeTask(this.props.id));
   };
 
-  render({ title, date }, { dragging }) {
+  render({ title, date, updatedAt }, { dragging }) {
+    const updatedLabel =
+      updatedAt !== date ? ` / Updated on ${formatDate(updatedAt)}` : '';
     return (
       <div
         class={classNames('task', dragging && 'dragging')}
@@ -38,7 +40,10 @@ class Task extends Component {
       >
         <div class="content">
           <p class="title">{title}</p>
-          <p class="caption">Added on: {formatDate(date)}</p>
+          <p class="caption">
+            Created on: {formatDate(date)}
+            {updatedLabel}
+          </p>
         </div>
         <TaskContext.Consumer>
           {dispatch => (
