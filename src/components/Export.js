@@ -33,9 +33,15 @@ const Export = ({ tasks }) => {
   return (
     <header>
       <button class="export" onClick={handleExport} type="button">
+        <svg class="add" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+          <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z" />
+        </svg>
         Export
       </button>
       <label class="export">
+        <svg class="add" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+          <path d="M13 10v6H7v-6H2l8-8 8 8h-5zM0 18h20v2H0v-2z" />
+        </svg>
         Import
         <input class="hidden" onInput={handleImport} type="file" />
       </label>
