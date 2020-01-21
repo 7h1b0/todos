@@ -33,6 +33,7 @@ const AddTask = () => {
           type="text"
           onInput={e => setTitle(e.target.value)}
           placeholder="Enter task label"
+          value={title}
         />
       </label>
       <button class="submit" type="submit">
