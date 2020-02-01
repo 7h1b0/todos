@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+const WorkboxPlugin = require('workbox-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
@@ -30,11 +30,9 @@ module.exports = ({ prod = false } = {}) => {
             ],
           },
         }),
-        new SWPrecacheWebpackPlugin({
-          filename: 'service-worker.js',
-          dontCacheBustUrlsMatching: /\.\w{8}\./,
-          minify: true,
-          staticFileGlobsIgnorePatterns: [/\.map$/, /asset-manifest\.json$/],
+        new WorkboxPlugin.GenerateSW({
+          clientsClaim: true,
+          skipWaiting: true,
         }),
       ]
     : [];
