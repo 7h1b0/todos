@@ -1,4 +1,4 @@
-import lolex from 'lolex';
+import FakeTimers from '@sinonjs/fake-timers';
 import {
   addTask,
   removeTask,
@@ -12,7 +12,7 @@ import {
 
 describe('addTask', () => {
   it('should create a ADD action', () => {
-    const clock = lolex.install({ now: new Date('2018-08-01T16:00') });
+    const clock = FakeTimers.install({ now: new Date('2018-08-01T16:00') });
     const action = addTask('test', 2);
 
     const date = new Date('2018-08-01T16:00').getTime();
@@ -30,7 +30,7 @@ describe('addTask', () => {
   });
 
   it('should create a ADD action with a due date', () => {
-    const clock = lolex.install({ now: new Date('2018-08-01T16:00') });
+    const clock = FakeTimers.install({ now: new Date('2018-08-01T16:00') });
     const action = addTask('test', 2);
 
     const date = new Date('2018-08-01T16:00').getTime();
