@@ -17,7 +17,11 @@
       "sizes": "512x512"
     }
   ],
-  "main.js": "main-4e53c9346534b5949cbb.js",
-  "main.js.map": "main-4e53c9346534b5949cbb.js.map",
-  "index.html": "index.html"
+  "main.js": "main-324ac78cae3d57e3e414.js",
+  "main.js.map": "main-324ac78cae3d57e3e414.js.map",
+  "index.html": "index.html",
+  "service-worker.js": "service-worker.js",
+  "service-worker.js.map": "service-worker.js.map",
+  "workbox-5d3caa67.js": "workbox-5d3caa67.js",
+  "workbox-5d3caa67.js.map": "workbox-5d3caa67.js.map"
 }
