@@ -1,5 +1,27 @@
+import '@testing-library/cypress/add-commands';
+
 Cypress.Commands.add('addTodo', (category, label) => {
-  cy.get(`[aria-label="Add ${category} todo"]`).click();
-  cy.get('input[name="add"]').type(label);
-  cy.contains('ADD TASK').click();
+  cy.findByLabelText(`Add ${category} todo`).click();
+  cy.findByLabelText('Task Label').type(label);
+  cy.findByText('ADD TASK').click();
 });
+
+Cypress.Commands.add(
+  'attachFile',
+  {
+    prevSubject: 'element',
+  },
+  ($input, fileName, type) => {
+    cy.fixture(fileName)
+      .then(JSON.stringify)
+      .then(jsonStr => new Blob([jsonStr], { type }))
+      .then(blob => {
+        const file = new File([blob], fileName, { type });
+        const dt = new DataTransfer();
+        dt.items.add(file);
+        $input[0].files = dt.files;
+
+        cy.wrap($input).trigger('input', { force: true });
+      });
+  },
+);
