@@ -14,8 +14,8 @@ Cypress.Commands.add(
   ($input, fileName, type) => {
     cy.fixture(fileName)
       .then(JSON.stringify)
-      .then(jsonStr => new Blob([jsonStr], { type }))
-      .then(blob => {
+      .then((jsonStr) => new Blob([jsonStr], { type }))
+      .then((blob) => {
         const file = new File([blob], fileName, { type });
         const dt = new DataTransfer();
         dt.items.add(file);

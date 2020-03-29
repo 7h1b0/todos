@@ -17,7 +17,7 @@ const AddTask = () => {
     }
   });
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     closeModal();
     dispatch(addTask(title, payload));
@@ -31,7 +31,7 @@ const AddTask = () => {
           ref={inputEl}
           name="add"
           type="text"
-          onInput={e => setTitle(e.target.value)}
+          onInput={(e) => setTitle(e.target.value)}
           placeholder="Enter task label"
           value={title}
         />

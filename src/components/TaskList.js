@@ -12,24 +12,24 @@ class TaskList extends Component {
     over: false,
   };
 
-  setSectionRef = el => {
+  setSectionRef = (el) => {
     this.section = el;
   };
 
-  handleDragOver = e => {
+  handleDragOver = (e) => {
     e.preventDefault();
     e.stopPropagation();
     this.setState({ over: true });
     return false;
   };
 
-  handleDragLeave = e => {
+  handleDragLeave = (e) => {
     if (!this.section.contains(e.fromElement)) {
       this.setState({ over: false });
     }
   };
 
-  handleDragDrop = dispatch => e => {
+  handleDragDrop = (dispatch) => (e) => {
     e.preventDefault();
 
     const task = JSON.parse(e.dataTransfer.getData('task'));
@@ -43,7 +43,7 @@ class TaskList extends Component {
     );
   };
 
-  handleAdd = openModal => () => {
+  handleAdd = (openModal) => () => {
     const { categoryId } = this.props;
     openModal(categoryId);
   };
@@ -55,7 +55,7 @@ class TaskList extends Component {
   render({ label, tasks }, { over }) {
     return (
       <TaskContext.Consumer>
-        {dispatch => (
+        {(dispatch) => (
           <section
             ref={this.setSectionRef}
             onDragOver={this.handleDragOver}
@@ -80,7 +80,7 @@ class TaskList extends Component {
                 )}
               </ModalContext.Consumer>
             </div>
-            {tasks.sort(sortByUpdated).map(task => (
+            {tasks.sort(sortByUpdated).map((task) => (
               <Task key={task.id} {...task} />
             ))}
           </section>

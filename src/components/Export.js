@@ -17,9 +17,9 @@ const Export = ({ tasks }) => {
     a.remove();
   };
 
-  const handleImport = event => {
+  const handleImport = (event) => {
     const reader = new FileReader();
-    reader.onload = event => {
+    reader.onload = (event) => {
       try {
         const data = JSON.parse(event.target.result);
         dispatch({ type: ADD_ALL, data });

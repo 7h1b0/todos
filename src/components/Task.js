@@ -13,7 +13,7 @@ class Task extends Component {
     return title !== this.props.title || dragging !== this.state.dragging;
   }
 
-  handleDrag = e => {
+  handleDrag = (e) => {
     this.setState({ dragging: true });
     e.dataTransfer.setData('task', JSON.stringify(this.props));
     e.dataTransfer.effectAllowed = 'move';
@@ -24,7 +24,7 @@ class Task extends Component {
     this.setState({ dragging: false });
   };
 
-  handleRemove = dispatch => () => {
+  handleRemove = (dispatch) => () => {
     dispatch(removeTask(this.props.id));
   };
 
@@ -46,7 +46,7 @@ class Task extends Component {
           </p>
         </div>
         <TaskContext.Consumer>
-          {dispatch => (
+          {(dispatch) => (
             <button
               class="delete"
               onClick={this.handleRemove(dispatch)}

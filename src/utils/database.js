@@ -1,4 +1,4 @@
-const promisifyRequest = request =>
+const promisifyRequest = (request) =>
   new Promise((resolve, reject) => {
     request.onsuccess = resolve;
     request.onerror = reject;
@@ -9,53 +9,39 @@ export default function getDb(table = 'tasks') {
 
   const scope = {
     findAll: () =>
+      promisifyRequest(db.transaction([table]).objectStore(table).getAll()),
+    add: (task) =>
       promisifyRequest(
-        db
-          .transaction([table])
-          .objectStore(table)
-          .getAll(),
+        db.transaction([table], 'readwrite').objectStore(table).add(task),
       ),
-    add: task =>
-      promisifyRequest(
-        db
-          .transaction([table], 'readwrite')
-          .objectStore(table)
-          .add(task),
-      ),
-    addAll: tasks => {
+    addAll: (tasks) => {
       return new Promise((resolve, reject) => {
         const tx = db.transaction([table], 'readwrite');
 
-        tasks.forEach(task => tx.objectStore(table).add(task));
+        tasks.forEach((task) => tx.objectStore(table).add(task));
         tx.oncomplete = resolve;
         tx.onerror = reject;
       });
     },
-    remove: id =>
+    remove: (id) =>
       promisifyRequest(
-        db
-          .transaction([table], 'readwrite')
-          .objectStore(table)
-          .delete(id),
+        db.transaction([table], 'readwrite').objectStore(table).delete(id),
       ),
-    edit: obj =>
+    edit: (obj) =>
       promisifyRequest(
-        db
-          .transaction([table], 'readwrite')
-          .objectStore(table)
-          .put(obj),
+        db.transaction([table], 'readwrite').objectStore(table).put(obj),
       ),
   };
 
   return new Promise((resolve, reject) => {
     const request = window.indexedDB.open('Todos', 5);
     request.onerror = reject;
-    request.onsuccess = event => {
+    request.onsuccess = (event) => {
       db = event.target.result;
       resolve(scope);
     };
 
-    request.onupgradeneeded = event => {
+    request.onupgradeneeded = (event) => {
       const db = event.target.result;
       db.createObjectStore('tasks', {
         keyPath: 'id',

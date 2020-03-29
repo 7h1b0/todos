@@ -11,7 +11,7 @@ export const useModal = () => useContext(ModalContext);
 export const ModalProvider = ({ children }) => {
   const [isOpen, setStatus] = useState(false);
   const [payload, setPayload] = useState();
-  const openModal = categoryId => {
+  const openModal = (categoryId) => {
     setStatus(true);
     setPayload(categoryId);
   };

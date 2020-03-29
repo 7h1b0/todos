@@ -7,7 +7,7 @@ const Modal = ({ children }) => {
   const { isOpen, closeModal } = useModal();
 
   useEffect(() => {
-    window.addEventListener('keyup', e => {
+    window.addEventListener('keyup', (e) => {
       if (e.code === 'Escape') {
         closeModal();
       }
@@ -17,7 +17,7 @@ const Modal = ({ children }) => {
   if (isOpen) {
     return (
       <div class="overlay" onClick={closeModal}>
-        <div class="popup" onClick={e => e.stopPropagation()}>
+        <div class="popup" onClick={(e) => e.stopPropagation()}>
           {children}
         </div>
       </div>
