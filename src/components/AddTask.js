@@ -5,7 +5,7 @@ import { useTaskDispatch } from 'contexts/TaskContext';
 import { useModal } from 'contexts/ModalContext';
 import { addTask } from 'utils/actions';
 
-const AddTask = () => {
+function AddTask() {
   const { closeModal, payload } = useModal();
   const dispatch = useTaskDispatch();
   const [title, setTitle] = useState(null);
@@ -15,7 +15,7 @@ const AddTask = () => {
     if (inputEl.current != null) {
       inputEl.current.focus();
     }
-  });
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,6 +41,6 @@ const AddTask = () => {
       </button>
     </form>
   );
-};
+}
 
 export default AddTask;

@@ -22,7 +22,7 @@ async function fetchTasks(dispatch) {
   dispatch({ type: ADD_ALL, data: event.target.result });
 }
 
-const App = () => {
+function App() {
   const [tasks, dispatch] = useReducer(reduceTasks, []);
   useEffect(() => fetchTasks(dispatch), []);
 
@@ -47,6 +47,6 @@ const App = () => {
       </TaskContext.Provider>
     </ModalProvider>
   );
-};
+}
 
 export default App;

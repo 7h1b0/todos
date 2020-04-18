@@ -3,7 +3,7 @@ import { useEffect } from 'preact/hooks';
 
 import { useModal } from 'contexts/ModalContext';
 
-const Modal = ({ children }) => {
+function Modal({ children }) {
   const { isOpen, closeModal } = useModal();
 
   useEffect(() => {
@@ -24,6 +24,6 @@ const Modal = ({ children }) => {
     );
   }
   return null;
-};
+}
 
 export default Modal;

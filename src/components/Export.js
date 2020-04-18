@@ -2,7 +2,7 @@ import { h } from 'preact';
 import { ADD_ALL } from 'utils/actions';
 import { useTaskDispatch } from '../contexts/TaskContext';
 
-const Export = ({ tasks }) => {
+function Export({ tasks }) {
   const dispatch = useTaskDispatch();
 
   const handleExport = () => {
@@ -47,6 +47,6 @@ const Export = ({ tasks }) => {
       </label>
     </header>
   );
-};
+}
 
 export default Export;

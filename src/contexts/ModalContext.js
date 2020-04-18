@@ -8,7 +8,7 @@ export default ModalContext;
 
 export const useModal = () => useContext(ModalContext);
 
-export const ModalProvider = ({ children }) => {
+export function ModalProvider({ children }) {
   const [isOpen, setStatus] = useState(false);
   const [payload, setPayload] = useState();
   const openModal = (categoryId) => {
@@ -22,4 +22,4 @@ export const ModalProvider = ({ children }) => {
       {children}
     </ModalContext.Provider>
   );
-};
+}
