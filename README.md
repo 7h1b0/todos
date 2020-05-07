@@ -1,4 +1,4 @@
-# Todos &middot; [![Build Status](https://travis-ci.com/7h1b0/todos.svg?branch=master)](https://travis-ci.com/7h1b0/todos)
+# Todos &middot; ![Node.js CI](https://github.com/7h1b0/todos/workflows/Node.js%20CI/badge.svg)
 
 Dead simple kanban board built with Preact and IndexedDB
 
