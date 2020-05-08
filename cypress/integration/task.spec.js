@@ -4,15 +4,15 @@ beforeEach(() => {
 });
 
 it('adds tasks', () => {
-  cy.addTodo('Todo', 'Get more sleep');
+  cy.addTask('Todo', 'Get more sleep');
   cy.findByText('Get more sleep').should('be.visible');
 
-  cy.addTodo('In Progress', 'Make e2e tests');
+  cy.addTask('In Progress', 'Make e2e tests');
   cy.findByText('Make e2e tests').should('be.visible');
 });
 
 it('removes a task', () => {
-  cy.addTodo('Todo', 'Get more sleep');
+  cy.addTask('Todo', 'Get more sleep');
 
   cy.findByText('Get more sleep').trigger('mouseover');
   cy.findByLabelText('Remove task').click();
@@ -21,8 +21,8 @@ it('removes a task', () => {
 });
 
 it('saves tasks', () => {
-  cy.addTodo('Todo', 'Get more sleep');
-  cy.addTodo('Done', 'Add e2e tests');
+  cy.addTask('Todo', 'Get more sleep');
+  cy.addTask('Done', 'Add e2e tests');
 
   cy.reload();
 

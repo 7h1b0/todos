@@ -31,7 +31,7 @@ function App() {
     <ModalProvider>
       <TaskContext.Provider value={dispatchMiddleware(dispatch)}>
         <Export tasks={tasks} />
-        <div class="wrapper">
+        <main>
           {CATEGORIES.map(({ id, title }) => (
             <TaskList
               label={title}
@@ -40,7 +40,7 @@ function App() {
               tasks={groupedTasks[id] || []}
             />
           ))}
-        </div>
+        </main>
         <Modal>
           <AddTask />
         </Modal>

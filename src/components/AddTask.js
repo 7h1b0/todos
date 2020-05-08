@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import { useRef, useEffect, useState } from 'preact/hooks';
+import { useState } from 'preact/hooks';
 
 import { useTaskDispatch } from 'contexts/TaskContext';
 import { useModal } from 'contexts/ModalContext';
@@ -8,19 +8,12 @@ import { addTask } from 'utils/actions';
 function AddTask() {
   const { closeModal, payload } = useModal();
   const dispatch = useTaskDispatch();
-  const [title, setTitle] = useState(null);
-
-  const inputEl = useRef(null);
-  useEffect(() => {
-    if (inputEl.current != null && document.activeElement !== inputEl.current) {
-      inputEl.current.focus();
-    }
-  }, []);
+  const [label, setLabel] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     closeModal();
-    dispatch(addTask(title, payload));
+    dispatch(addTask(label, payload));
   };
 
   return (
@@ -28,17 +21,13 @@ function AddTask() {
       <label>
         Task Label
         <input
-          ref={inputEl}
-          name="add"
           type="text"
-          onInput={(e) => setTitle(e.target.value)}
+          onInput={(e) => setLabel(e.target.value)}
           placeholder="Enter task label"
-          value={title}
+          value={label}
         />
       </label>
-      <button class="submit" type="submit">
-        ADD TASK
-      </button>
+      <button class="submit">ADD TASK</button>
     </form>
   );
 }

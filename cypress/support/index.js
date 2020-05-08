@@ -1,7 +1,7 @@
 import '@testing-library/cypress/add-commands';
 
-Cypress.Commands.add('addTodo', (category, label) => {
-  cy.findByLabelText(`Add ${category} todo`).click();
+Cypress.Commands.add('addTask', (category, label) => {
+  cy.findByLabelText(`Add ${category} task`).click();
   cy.findByLabelText('Task Label').type(label);
   cy.findByText('ADD TASK').click();
 });

@@ -12,10 +12,7 @@ export function leadingZero(receive) {
 export function groupBy(items, key) {
   return items.reduce((result, item) => {
     if (item.hasOwnProperty(key)) {
-      return {
-        ...result,
-        [item[key]]: [...(result[item[key]] || []), item],
-      };
+      result[item[key]] = [...(result[item[key]] || []), item];
     }
     return result;
   }, {});

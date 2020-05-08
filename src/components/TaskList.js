@@ -70,7 +70,7 @@ class TaskList extends Component {
                   <button
                     class="add"
                     onClick={this.handleAdd(openModal)}
-                    aria-label={`Add ${label} todo`}
+                    aria-label={`Add ${label} task`}
                     type="button"
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">

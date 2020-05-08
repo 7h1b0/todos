@@ -6,18 +6,28 @@ import { useModal } from 'contexts/ModalContext';
 function Modal({ children }) {
   const { isOpen, closeModal } = useModal();
 
+  function handleKeyUp(e) {
+    if (e.code === 'Escape') {
+      closeModal();
+    }
+  }
+
   useEffect(() => {
-    window.addEventListener('keyup', (e) => {
-      if (e.code === 'Escape') {
-        closeModal();
-      }
-    });
-  }, []);
+    if (isOpen) {
+      window.addEventListener('keyup', handleKeyUp);
+    }
+    return () => window.removeEventListener('keyup', handleKeyUp);
+  }, [isOpen]);
 
   if (isOpen) {
     return (
       <div class="overlay" onClick={closeModal}>
-        <div class="popup" onClick={(e) => e.stopPropagation()}>
+        <div
+          aria-modal="true"
+          role="dialog"
+          class="popup"
+          onClick={(e) => e.stopPropagation()}
+        >
           {children}
         </div>
       </div>
