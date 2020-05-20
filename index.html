@@ -1,6 +1,7 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width"/><meta name="Description" content="Todos application"/><meta name="theme-color" content="#eeeeee"/><link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/><link rel="icon" href="favicon.ico" type="image/x-icon"/><link rel="manifest" href="manifest.json"/><title>Todos</title><style>:root {
+<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width"/><meta name="Description" content="Todos application"/><meta name="theme-color" content="#eeeeee"/><link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/><link rel="icon" href="favicon.ico" type="image/x-icon"/><link rel="manifest" href="manifest.json"/><link rel="apple-touch-icon" href="icon-192.png"/><title>Todos</title><style>:root {
         --space-m: 14px;
         --caption: 0.8rem;
+        --border-radius: 5px;
         --color-accent: #4680ff;
         --color-accent-light: #6a99ff;
         --color-background: #f5f7fa;
@@ -46,7 +47,7 @@
         background: var(--color-placeholder);
         color: var(--color-title);
         border: 2px solid var(--color-placeholder);
-        border-radius: 5px;
+        border-radius: var(--border-radius);
       }
       input:focus {
         border: 2px solid var(--color-accent);
@@ -79,7 +80,7 @@
         background: var(--color-section);
         justify-content: space-between;
         border: 1px solid var(--color-placeholder);
-        border-radius: 5px;
+        border-radius: var(--border-radius);
         padding: var(--space-m);
         margin-top: var(--space-m);
       }
@@ -94,6 +95,8 @@
         padding: 35px var(--space-m);
         margin: 0 var(--space-m);
         background: var(--color-section);
+        border-radius: var(--border-radius);
+        border: 2px solid var(--color-section);
         box-shadow: 0 1px 7px rgba(0, 0, 0, 0.05);
       }
       button {
@@ -105,7 +108,7 @@
         width: 100%;
         padding: 8px 0;
         color: var(--color-caption);
-        border-radius: 5px;
+        border-radius: var(--border-radius);
         background: var(--color-background);
       }
       .add svg {
@@ -115,24 +118,23 @@
       }
       .buttons {
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-end;
         align-items: center;
         padding: var(--space-m) 0;
       }
-      .submit {
+      .flat {
         display: block;
-        font-weight: bold;
         color: var(--color-accent);
         font-size: var(--caption);
+        margin-right: var(--space-m);
       }
       .raise {
         display: block;
-        font-weight: bold;
         color: white;
         background: var(--color-accent);
         padding: 12px var(--space-m);
         font-size: var(--caption);
-        border-radius: 5px;
+        border-radius: var(--border-radius);
       }
       .delete {
         position: relative;
@@ -150,11 +152,8 @@
       .task:hover .delete {
         opacity: 1;
       }
-      .dragging {
-        opacity: 0.25;
-      }
       .over {
-        box-shadow: 0 1px 7px rgba(0, 0, 0, 0.4);
+        border: 2px solid var(--color-title);
       }
       .hidden {
         display: none;
@@ -162,11 +161,4 @@
       .export {
         cursor: pointer;
         margin: var(--space-m);
-        display: flex;
-        align-items: baseline;
-      }
-      .export svg {
-        fill: var(--color-caption);
-        height: 14px;
-        margin-right: 4px;
-      }</style></head><body><noscript><p>Please enable javascript in your brower</p></noscript><script src="main-40e43accd57720b484a3.js"></script></body></html>
+      }</style></head><body><noscript><p>Please enable javascript in your brower</p></noscript><script src="main-5bb5ecb2d2a855e1cc9e.js"></script></body></html>
