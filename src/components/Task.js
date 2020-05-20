@@ -1,39 +1,30 @@
 import { h, Component } from 'preact';
 
 import TaskContext from 'contexts/TaskContext';
-import { formatDate, classNames } from 'utils/utils';
+import { formatDate } from 'utils/utils';
 import { removeTask } from 'utils/actions';
 
 class Task extends Component {
-  state = {
-    dragging: false,
-  };
-
-  shouldComponentUpdate({ title }, { dragging }) {
-    return title !== this.props.title || dragging !== this.state.dragging;
+  shouldComponentUpdate({ title }) {
+    return title !== this.props.title;
   }
 
   handleDrag = (e) => {
-    this.setState({ dragging: true });
     e.dataTransfer.setData('task', JSON.stringify(this.props));
     e.dataTransfer.effectAllowed = 'move';
     e.dataTransfer.dropEffect = 'move';
-  };
-
-  handleDragEnd = () => {
-    this.setState({ dragging: false });
   };
 
   handleRemove = (dispatch) => () => {
     dispatch(removeTask(this.props.id));
   };
 
-  render({ title, date, updatedAt }, { dragging }) {
+  render({ title, date, updatedAt }) {
     const updatedLabel =
       updatedAt !== date ? ` / Updated on ${formatDate(updatedAt)}` : '';
     return (
       <div
-        class={classNames('task', dragging && 'dragging')}
+        class="task"
         draggable
         onDragStart={this.handleDrag}
         onDragEnd={this.handleDragEnd}

@@ -23,7 +23,7 @@ function AddTask({ categoryId, onClose }) {
         value={label}
       />
       <div class="buttons">
-        <button class="submit" type="button" onClick={onClose}>
+        <button class="flat" type="button" onClick={onClose}>
           Cancel
         </button>
         <button class="raise">Add task</button>
