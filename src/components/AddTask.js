@@ -2,32 +2,32 @@ import { h } from 'preact';
 import { useState } from 'preact/hooks';
 
 import { useTaskDispatch } from 'contexts/TaskContext';
-import { useModal } from 'contexts/ModalContext';
 import { addTask } from 'utils/actions';
 
-function AddTask() {
-  const { closeModal, payload } = useModal();
+function AddTask({ categoryId, onClose }) {
   const dispatch = useTaskDispatch();
   const [label, setLabel] = useState(null);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    closeModal();
-    dispatch(addTask(label, payload));
+    dispatch(addTask(label, categoryId));
+    onClose();
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>
-        Task Label
-        <input
-          type="text"
-          onInput={(e) => setLabel(e.target.value)}
-          placeholder="Enter task label"
-          value={label}
-        />
-      </label>
-      <button class="submit">ADD TASK</button>
+      <input
+        type="text"
+        onInput={(e) => setLabel(e.target.value)}
+        placeholder="Enter task label"
+        value={label}
+      />
+      <div class="buttons">
+        <button class="submit" type="button" onClick={onClose}>
+          Cancel
+        </button>
+        <button class="raise">Add task</button>
+      </div>
     </form>
   );
 }

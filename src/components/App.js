@@ -9,11 +9,8 @@ import dispatchMiddleware from 'utils/dispatchMiddleware';
 import { reduceTasks } from 'utils/reducers';
 
 import TaskContext from 'contexts/TaskContext';
-import { ModalProvider } from 'contexts/ModalContext';
 
-import AddTask from './AddTask';
 import TaskList from './TaskList';
-import Modal from './Modal';
 import Export from './Export';
 
 async function fetchTasks(dispatch) {
@@ -28,24 +25,19 @@ function App() {
 
   const groupedTasks = groupBy(tasks, 'categoryId');
   return (
-    <ModalProvider>
-      <TaskContext.Provider value={dispatchMiddleware(dispatch)}>
-        <Export tasks={tasks} />
-        <main>
-          {CATEGORIES.map(({ id, title }) => (
-            <TaskList
-              label={title}
-              key={id}
-              categoryId={id}
-              tasks={groupedTasks[id] || []}
-            />
-          ))}
-        </main>
-        <Modal>
-          <AddTask />
-        </Modal>
-      </TaskContext.Provider>
-    </ModalProvider>
+    <TaskContext.Provider value={dispatchMiddleware(dispatch)}>
+      <Export tasks={tasks} />
+      <main>
+        {CATEGORIES.map(({ id, title }) => (
+          <TaskList
+            label={title}
+            key={id}
+            categoryId={id}
+            tasks={groupedTasks[id] || []}
+          />
+        ))}
+      </main>
+    </TaskContext.Provider>
   );
 }
 

@@ -57,7 +57,11 @@
         margin-top: 5px;
         background: var(--color-placeholder);
         color: var(--color-title);
+        border: 2px solid var(--color-placeholder);
         border-radius: 5px;
+      }
+      input:focus {
+        border: 2px solid var(--color-accent);
       }
       label,
       .caption,
@@ -65,16 +69,14 @@
         color: var(--color-caption);
         font-size: var(--caption);
       }
-      header {
-        justify-content: center;
-      }
       header,
-      .tasks-header {
+      .add {
         display: flex;
+        justify-content: center;
         align-items: center;
       }
       .tasks-header {
-        justify-content: space-between;
+        padding: 0 0 var(--space-m);
       }
       .title {
         font-size: 1rem;
@@ -89,6 +91,7 @@
         background: var(--color-section);
         justify-content: space-between;
         border: 1px solid var(--color-placeholder);
+        border-radius: 5px;
         padding: var(--space-m);
         margin-top: var(--space-m);
       }
@@ -110,21 +113,38 @@
         background: none;
         cursor: pointer;
       }
-      .add,
-      .add svg {
-        height: 20px;
-        fill: var(--color-accent);
+      .add {
+        width: 100%;
+        padding: 8px 0;
+        color: var(--color-caption);
+        border-radius: 5px;
+        background: var(--color-background);
       }
-      .add:focus svg {
-        fill: var(--color-accent-light);
+      .add svg {
+        padding-right: 10px;
+        height: 20px;
+        fill: var(--color-caption);
+      }
+      .buttons {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--space-m) 0;
       }
       .submit {
         display: block;
-        margin: var(--space-m) 0 0 auto;
         font-weight: bold;
         color: var(--color-accent);
-        padding: var(--space-m);
         font-size: var(--caption);
+      }
+      .raise {
+        display: block;
+        font-weight: bold;
+        color: white;
+        background: var(--color-accent);
+        padding: 12px var(--space-m);
+        font-size: var(--caption);
+        border-radius: 5px;
       }
       .delete {
         position: relative;
@@ -145,29 +165,8 @@
       .dragging {
         opacity: 0.25;
       }
-      .over,
-      .popup {
+      .over {
         box-shadow: 0 1px 7px rgba(0, 0, 0, 0.4);
-      }
-      .overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.6);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      .popup {
-        position: relative;
-        background: var(--color-section);
-        width: 40%;
-        max-width: 450px;
-        border-radius: 5px;
-        margin: 0 auto;
-        padding: 28px var(--space-m) var(--space-m);
       }
       .hidden {
         display: none;
