@@ -7,7 +7,7 @@ export function reduceTasks(state, action) {
       return state.concat(action.data);
     case REMOVE:
       return state.filter(({ id }) => id !== action.data);
-    case UPDATE:
+    case UPDATE: {
       const indexTargetTask = state.findIndex(
         ({ id }) => id === action.data.id,
       );
@@ -19,6 +19,7 @@ export function reduceTasks(state, action) {
         ];
       }
       return state;
+    }
     default:
       return state;
   }
