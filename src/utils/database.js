@@ -9,14 +9,14 @@ export default function getDb(table = 'tasks') {
 
   const scope = {
     findAll: () =>
-      promisifyRequest(db.transaction([table]).objectStore(table).getAll()),
+      promisifyRequest(db.transaction(table).objectStore(table).getAll()),
     add: (task) =>
       promisifyRequest(
-        db.transaction([table], 'readwrite').objectStore(table).add(task),
+        db.transaction(table, 'readwrite').objectStore(table).add(task),
       ),
     addAll: (tasks) => {
       return new Promise((resolve, reject) => {
-        const tx = db.transaction([table], 'readwrite');
+        const tx = db.transaction(table, 'readwrite');
 
         tasks.forEach((task) => tx.objectStore(table).add(task));
         tx.oncomplete = resolve;
@@ -25,11 +25,11 @@ export default function getDb(table = 'tasks') {
     },
     remove: (id) =>
       promisifyRequest(
-        db.transaction([table], 'readwrite').objectStore(table).delete(id),
+        db.transaction(table, 'readwrite').objectStore(table).delete(id),
       ),
     edit: (obj) =>
       promisifyRequest(
-        db.transaction([table], 'readwrite').objectStore(table).put(obj),
+        db.transaction(table, 'readwrite').objectStore(table).put(obj),
       ),
   };
 
