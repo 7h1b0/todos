@@ -8,11 +8,11 @@ function AddTask({ categoryId, onClose }) {
   const dispatch = useTaskDispatch();
   const [label, setLabel] = useState(null);
 
-  const handleSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
     dispatch(addTask(label, categoryId));
     onClose();
-  };
+  }
 
   return (
     <form onSubmit={handleSubmit}>

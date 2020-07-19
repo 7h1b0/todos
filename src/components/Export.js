@@ -5,7 +5,7 @@ import { useTaskDispatch } from '../contexts/TaskContext';
 function Export({ tasks }) {
   const dispatch = useTaskDispatch();
 
-  const handleExport = () => {
+  function handleExport() {
     const dataStr =
       'data:text/json;charset=utf-8,' +
       encodeURIComponent(JSON.stringify(tasks));
@@ -15,9 +15,9 @@ function Export({ tasks }) {
     document.body.appendChild(a);
     a.click();
     a.remove();
-  };
+  }
 
-  const handleImport = (event) => {
+  function handleImport(event) {
     const reader = new FileReader();
     reader.onload = (event) => {
       try {
@@ -28,7 +28,7 @@ function Export({ tasks }) {
       }
     };
     reader.readAsText(event.target.files[0]);
-  };
+  }
 
   return (
     <header>
