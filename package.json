@@ -43,7 +43,7 @@
     "deploy": "npm run build && gh-pages -d dist",
     "serve": "serve -s dist/ -l 3000 -n",
     "test": "jest --watch",
-    "test:e2e": "cypress run",
+    "test:e2e": "cypress run --quiet",
     "coverage": "jest --coverage --ci --silent",
     "cypress": "cypress",
     "format": "prettier --write \"src/**/*.js\"",
