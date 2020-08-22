@@ -1,27 +1,22 @@
 import { h } from 'preact';
-import { useState } from 'preact/hooks';
+import { useRef } from 'preact/hooks';
 
 import { useTaskDispatch } from 'contexts/TaskContext';
 import { addTask } from 'utils/actions';
 
 function AddTask({ categoryId, onClose }) {
   const dispatch = useTaskDispatch();
-  const [label, setLabel] = useState(null);
+  const input = useRef(null);
 
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(addTask(label, categoryId));
+    dispatch(addTask(input.current.value, categoryId));
     onClose();
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        onInput={(e) => setLabel(e.target.value)}
-        placeholder="Enter task label"
-        value={label}
-      />
+      <input ref={input} type="text" placeholder="Enter task label" />
       <div class="buttons">
         <button class="flat" type="button" onClick={onClose}>
           Cancel
