@@ -30,8 +30,8 @@ function App() {
       <main>
         {CATEGORIES.map(({ id, title }) => (
           <TaskList
-            label={title}
             key={id}
+            label={title}
             categoryId={id}
             tasks={groupedTasks[id] || []}
           />

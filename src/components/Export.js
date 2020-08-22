@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import { ADD_ALL } from 'utils/actions';
+import { addAll } from 'utils/actions';
 import { useTaskDispatch } from '../contexts/TaskContext';
 
 function Export({ tasks }) {
@@ -22,7 +22,7 @@ function Export({ tasks }) {
     reader.onload = (event) => {
       try {
         const data = JSON.parse(event.target.result);
-        dispatch({ type: ADD_ALL, data });
+        dispatch(addAll(data));
       } catch (e) {
         console.error(e);
       }
