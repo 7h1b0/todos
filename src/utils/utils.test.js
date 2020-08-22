@@ -1,4 +1,4 @@
-import { formatDate, groupBy, classNames } from './utils';
+import { formatDate, groupBy } from './utils';
 
 describe('formatDate', () => {
   it('should format the given timestamp', () => {
@@ -46,21 +46,5 @@ describe('groupBy', () => {
       ],
       2: [{ id: 3, group: 2 }],
     });
-  });
-});
-
-describe('classNames', () => {
-  it('should return an empty string if no args', () => {
-    expect(classNames()).toEqual('');
-  });
-
-  it('should return given argument', () => {
-    expect(classNames('test')).toEqual('test');
-  });
-
-  it('should return filter arguments', () => {
-    expect(classNames('test', false && 'ignored', true && 'added')).toEqual(
-      'test added',
-    );
   });
 });
