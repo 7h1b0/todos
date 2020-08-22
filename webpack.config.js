@@ -66,14 +66,17 @@ module.exports = ({ prod = false } = {}) => {
       minimizer: [
         new TerserPlugin({
           terserOptions: {
-            ecma: 8,
+            ecma: 2018,
             compress: {
               pure_getters: true,
               unsafe: true,
+              booleans_as_integers: true,
+              drop_console: true,
+              passes: 3,
             },
             mangle: {
               properties: {
-                regex: /^(_|(clear|toggle|handle)([A-Za-z]+))/,
+                regex: /^(_|(handle)([A-Za-z]+))/,
               },
             },
           },
