@@ -1,19 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const WorkboxPlugin = require('workbox-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = ({ prod = false } = {}) => {
-  const plugins = prod
-    ? [
-        new WorkboxPlugin.GenerateSW({
-          clientsClaim: true,
-          skipWaiting: true,
-        }),
-      ]
-    : [];
-
   return {
     mode: prod ? 'production' : 'development',
     entry: './src',
@@ -66,9 +56,8 @@ module.exports = ({ prod = false } = {}) => {
       }),
       new CleanWebpackPlugin({
         verbose: false,
-        cleanOnceBeforeBuildPatterns: ['main-*'],
+        cleanOnceBeforeBuildPatterns: ['main*'],
       }),
-      ...plugins,
     ],
     devServer: {
       contentBase: path.join(__dirname, 'public'),
