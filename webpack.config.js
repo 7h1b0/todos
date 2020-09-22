@@ -2,34 +2,11 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = ({ prod = false } = {}) => {
   const plugins = prod
     ? [
-        new ManifestPlugin({
-          seed: {
-            short_name: 'Todos',
-            name: 'Todos',
-            background_color: '#eeeeee',
-            display: 'standalone',
-            theme_color: '#eeeeee',
-            start_url: '/todos/',
-            icons: [
-              {
-                src: 'icon-192.png',
-                type: 'image/png',
-                sizes: '192x192',
-              },
-              {
-                src: 'icon-512.png',
-                type: 'image/png',
-                sizes: '512x512',
-              },
-            ],
-          },
-        }),
         new WorkboxPlugin.GenerateSW({
           clientsClaim: true,
           skipWaiting: true,
@@ -109,8 +86,8 @@ module.exports = ({ prod = false } = {}) => {
       children: false,
       modules: false,
       hash: false,
-      version: true,
-      timings: true,
+      version: false,
+      timings: false,
       warnings: true,
       errors: true,
       errorDetails: true,
