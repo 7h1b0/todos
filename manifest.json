@@ -16,12 +16,5 @@
       "type": "image/png",
       "sizes": "512x512"
     }
-  ],
-  "main.js": "main-fa8599f88b4346735fbe.js",
-  "main.js.map": "main-fa8599f88b4346735fbe.js.map",
-  "index.html": "index.html",
-  "service-worker.js": "service-worker.js",
-  "service-worker.js.map": "service-worker.js.map",
-  "workbox-468c4d03.js": "workbox-468c4d03.js",
-  "workbox-468c4d03.js.map": "workbox-468c4d03.js.map"
+  ]
 }
