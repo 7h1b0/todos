@@ -15,7 +15,6 @@ function TaskList({ label, categoryId, tasks }) {
 
   function handleDragOver(e) {
     e.preventDefault();
-    e.stopPropagation();
     setOver(true);
     return false;
   }
@@ -34,7 +33,7 @@ function TaskList({ label, categoryId, tasks }) {
     dispatch(
       updateTask({
         ...task,
-        categoryId: categoryId,
+        categoryId,
         updatedAt: Date.now(),
       }),
     );
