@@ -11,7 +11,7 @@
     "@babel/plugin-transform-react-jsx": "^7.10.4",
     "@babel/preset-env": "^7.11.5",
     "@sinonjs/fake-timers": "^6.0.1",
-    "@testing-library/cypress": "^7.0.0",
+    "@testing-library/cypress": "^7.0.1",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
@@ -19,7 +19,7 @@
     "eslint": "^7.9.0",
     "eslint-plugin-cypress": "^2.11.1",
     "eslint-plugin-jsx-a11y": "^6.3.1",
-    "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-react": "^7.21.2",
     "gh-pages": "^3.1.0",
     "html-webpack-plugin": "^4.5.0",
     "husky": "^4.3.0",
@@ -33,7 +33,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "preact": "^10.4.8"
+    "preact": "^10.5.2"
   },
   "scripts": {
     "start": "webpack-dev-server --open",

@@ -4,7 +4,8 @@ module.exports = {
     [
       '@babel/plugin-transform-react-jsx',
       {
-        pragma: 'h',
+        runtime: 'automatic',
+        importSource: 'preact',
       },
     ],
     ['@babel/plugin-proposal-class-properties', { loose: true }],
