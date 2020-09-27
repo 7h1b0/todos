@@ -37,7 +37,7 @@ module.exports = ({ prod = false } = {}) => {
             compress: {
               pure_getters: true,
               unsafe: true,
-              booleans_as_integers: true,
+              booleans_as_integers: false,
               drop_console: true,
               passes: 3,
             },
