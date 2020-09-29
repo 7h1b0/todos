@@ -76,7 +76,7 @@ module.exports = ({ prod = false } = {}) => {
       modules: false,
       hash: false,
       version: false,
-      timings: false,
+      timings: true,
       warnings: true,
       errors: true,
       errorDetails: true,
