@@ -21,6 +21,8 @@ Dead simple kanban board built with Preact and IndexedDB
 To start an ephemeral development server run:
 
 ```sh
+git clone https://github.com/7h1b0/todos.git
+cd todos
 npm install
 npm start
 ```
