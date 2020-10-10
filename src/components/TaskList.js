@@ -1,5 +1,5 @@
 import { h } from 'preact';
-import { useState, useRef } from 'preact/hooks';
+import { useState } from 'preact/hooks';
 
 import { useTaskDispatch } from 'contexts/TaskContext';
 import Task from './Task';
@@ -9,20 +9,16 @@ import { sortByUpdated } from 'utils/utils';
 
 function TaskList({ label, categoryId, tasks }) {
   const dispatch = useTaskDispatch();
-  const section = useRef(null);
   const [over, setOver] = useState(false);
   const [showForm, setFormVisibility] = useState(false);
 
   function handleDragOver(e) {
     e.preventDefault();
     setOver(true);
-    return false;
   }
 
-  function handleDragLeave(e) {
-    if (!section.current.contains(e.fromElement)) {
-      setOver(false);
-    }
+  function handleDragLeave() {
+    setOver(false);
   }
 
   function handleDragDrop(e) {
@@ -41,7 +37,6 @@ function TaskList({ label, categoryId, tasks }) {
 
   return (
     <section
-      ref={section}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDragDrop}
