@@ -7,6 +7,7 @@ module.exports = ({ prod = false } = {}) => {
   return {
     mode: prod ? 'production' : 'development',
     entry: './src',
+    target: 'web',
     output: {
       path: path.join(__dirname, 'dist'),
       filename: '[name]-[contenthash].js',
@@ -60,15 +61,16 @@ module.exports = ({ prod = false } = {}) => {
       }),
     ],
     devServer: {
+      open: true,
       contentBase: path.join(__dirname, 'public'),
-      compress: true,
       historyApiFallback: true,
-      noInfo: true,
       port: 3000,
+      stats: 'errors-only',
     },
     bail: true,
     node: false,
     stats: {
+      colors: true,
       assets: true,
       cached: false,
       chunks: false,
