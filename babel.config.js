@@ -8,6 +8,5 @@ module.exports = {
         pragma: 'h',
       },
     ],
-    ['@babel/plugin-proposal-class-properties', { loose: true }],
   ],
 };
