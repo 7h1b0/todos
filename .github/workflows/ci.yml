@@ -20,7 +20,7 @@ jobs:
       - name: unit tests
         run: npm run coverage
       - name: E2E tests
-        uses: cypress-io/github-action@v1
+        uses: cypress-io/github-action@v2
         with:
           start: npx serve -s dist/ -l 3000 -n
           wait-on: 'http://localhost:3000'
