@@ -1,6 +1,7 @@
 import { h } from 'preact';
+
+import { useTaskDispatch } from 'contexts/TaskContext';
 import { addAll } from 'utils/actions';
-import { useTaskDispatch } from '../contexts/TaskContext';
 
 function Export({ tasks }) {
   const dispatch = useTaskDispatch();

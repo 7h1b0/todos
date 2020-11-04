@@ -2,10 +2,11 @@ import { h } from 'preact';
 import { useState } from 'preact/hooks';
 
 import { useTaskDispatch } from 'contexts/TaskContext';
-import Task from './Task';
-import AddTask from './AddTask';
 import { updateTask } from 'utils/actions';
 import { sortByUpdated } from 'utils/utils';
+
+import Task from './Task';
+import AddTask from './AddTask';
 
 function TaskList({ label, categoryId, tasks }) {
   const dispatch = useTaskDispatch();

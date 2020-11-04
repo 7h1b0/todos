@@ -1,14 +1,13 @@
 import { h } from 'preact';
 import { useEffect, useReducer } from 'preact/hooks';
 
+import TaskContext from 'contexts/TaskContext';
 import getDb from 'utils/database';
 import { CATEGORIES } from 'utils/categories';
 import { groupBy } from 'utils/utils';
 import { ADD_ALL } from 'utils/actions';
 import dispatchMiddleware from 'utils/dispatchMiddleware';
 import { reduceTasks } from 'utils/reducers';
-
-import TaskContext from 'contexts/TaskContext';
 
 import TaskList from './TaskList';
 import Export from './Export';
