@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
 
   plugins: ['react', 'jsx-a11y', 'cypress'],
   extends: [
