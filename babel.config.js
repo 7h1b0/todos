@@ -8,5 +8,6 @@ module.exports = {
         pragma: 'h',
       },
     ],
+    'istanbul',
   ],
 };
