@@ -1,4 +1,4 @@
-# Todos &middot; ![Node.js CI](https://github.com/7h1b0/todos/workflows/Node.js%20CI/badge.svg)
+# Todos &middot; ![Node.js CI](https://github.com/7h1b0/todos/workflows/Node.js%20CI/badge.svg)[![codecov](https://codecov.io/gh/7h1b0/todos/branch/master/graph/badge.svg?token=57PNU1ERS8)](https://codecov.io/gh/7h1b0/todos)
 
 Dead simple kanban board built with Preact and IndexedDB
 
