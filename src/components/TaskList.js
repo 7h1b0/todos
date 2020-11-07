@@ -38,13 +38,14 @@ function TaskList({ label, categoryId, tasks }) {
 
   return (
     <section
+      aria-labelledby={categoryId}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDragDrop}
       class={over && 'over'}
     >
       <div class="tasks-header">
-        <h2>{label}</h2>
+        <h2 id={categoryId}>{label}</h2>
       </div>
       {showForm ? (
         <AddTask

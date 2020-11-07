@@ -10,8 +10,8 @@ function AddTask({ categoryId, onClose }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(addTask(input.current.value, categoryId));
     onClose();
+    dispatch(addTask(input.current.value, categoryId));
   }
 
   return (
