@@ -39,6 +39,7 @@
   "scripts": {
     "start": "webpack serve",
     "build": "webpack --env prod",
+    "build:coverage": "NODE_ENV=coverage webpack --env prod",
     "deploy": "npm run build && gh-pages -d dist",
     "serve": "serve -s dist/ -l 3000 -n",
     "test": "jest --watch",

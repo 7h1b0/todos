@@ -14,7 +14,7 @@ jobs:
         with:
           node-version: '12.x'
       - run: npm ci
-      - run: npm run build
+      - run: npm run build:coverage
       - run: npm run lint:check
       - run: npm run format:check
       - name: unit tests
@@ -24,3 +24,7 @@ jobs:
         with:
           start: npx serve -s dist/ -l 3000 -n
           wait-on: 'http://localhost:3000'
+      - name: upload coverage
+        uses: codecov/codecov-action@v1
+        with:
+          file: ./coverage/clover.xml # optional
