@@ -17,7 +17,7 @@
     "cypress": "^5.5.0",
     "eslint": "^7.12.0",
     "eslint-plugin-cypress": "^2.11.2",
-    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.21.5",
     "gh-pages": "^3.1.0",
     "html-webpack-plugin": "^4.5.0",
