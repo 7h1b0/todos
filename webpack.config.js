@@ -54,6 +54,15 @@ module.exports = ({ prod = false } = {}) => {
     plugins: [
       new HtmlWebpackPlugin({
         template: 'src/index.html',
+        minify: prod
+          ? {
+              collapseWhitespace: true,
+              removeComments: true,
+              removeRedundantAttributes: true,
+              removeScriptTypeAttributes: true,
+              minifyCSS: true,
+            }
+          : false,
       }),
       new CleanWebpackPlugin({
         verbose: false,
