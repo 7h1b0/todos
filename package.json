@@ -34,7 +34,7 @@
     "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
-    "preact": "^10.5.5"
+    "preact": "^10.5.7"
   },
   "scripts": {
     "start": "webpack serve",
