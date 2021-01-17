@@ -10,7 +10,7 @@
     "@babel/eslint-parser": "^7.12.1",
     "@babel/plugin-transform-react-jsx": "^7.12.12",
     "@babel/preset-env": "^7.12.11",
-    "@cypress/code-coverage": "^3.8.8",
+    "@cypress/code-coverage": "^3.9.2",
     "@sinonjs/fake-timers": "^6.0.1",
     "@testing-library/cypress": "^7.0.3",
     "babel-loader": "^8.2.2",
