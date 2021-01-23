@@ -32,7 +32,7 @@ function Task(props) {
       <button
         class="delete"
         onClick={handleRemove}
-        aria-label="Remove task"
+        aria-label={`Remove ${props.title}`}
         type="button"
       >
         <svg

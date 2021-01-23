@@ -1,5 +1,9 @@
 {
   "baseUrl": "http://127.0.0.1:3000",
   "video": true,
-  "chromeWebSecurity": false
+  "chromeWebSecurity": false,
+  "retries": {
+    "runMode": 2,
+    "openMode": 0
+  }
 }

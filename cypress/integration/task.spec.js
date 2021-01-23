@@ -5,7 +5,7 @@ beforeEach(() => {
   cy.visit('/');
 });
 
-it('adds tasks', () => {
+it('allows to add, remove and drag and drop tasks', () => {
   cy.addTask('Todo', 'Get more sleep');
   cy.addTask('Todo', 'increase coverage');
 
@@ -20,15 +20,25 @@ it('adds tasks', () => {
     cy.findByText('Get more sleep').should('not.exist');
     cy.findByText('increase coverage').should('not.exist');
   });
-});
 
-it('removes a task', () => {
-  cy.addTask('Todo', 'Get more sleep');
+  // Button only appears on :hover events, force: true is necessary
+  cy.findByLabelText('Remove Get more sleep').click({ force: true });
+  cy.findByText('Get more sleep').should('not.exist');
 
-  cy.findByText('Get more sleep').trigger('mouseover');
-  cy.findByLabelText('Remove task').click();
+  cy.findByLabelText('Todo')
+    .findByText('increase coverage')
+    .should('be.visible');
 
-  cy.findByLabelText('Get more sleep').should('not.exist');
+  const dataTransfer = new DataTransfer();
+  cy.findByText('increase coverage').trigger('dragstart', { dataTransfer });
+  cy.findByText('In Progress').trigger('drop', { dataTransfer });
+
+  cy.findByLabelText('Todo')
+    .findByText('increase coverage')
+    .should('not.exist');
+  cy.findByLabelText('In Progress')
+    .findByText('increase coverage')
+    .should('be.visible');
 });
 
 it('saves tasks', () => {
@@ -60,19 +70,4 @@ it('imports tasks from a file', () => {
   cy.findByText('import feature').should('not.exist');
   cy.findByLabelText('Import').attachFile('tasks.json', 'application/json');
   cy.findByText('import feature').should('be.visible');
-});
-
-it('allows drag and drop', () => {
-  const dataTransfer = new DataTransfer();
-  const task = 'Move to progress';
-
-  cy.addTask('Todo', task);
-
-  cy.findByLabelText('Todo').findByText(task).should('be.visible');
-
-  cy.findByText(task).trigger('dragstart', { dataTransfer });
-  cy.findByText('In Progress').trigger('drop', { dataTransfer });
-
-  cy.findByLabelText('Todo').findByText(task).should('not.exist');
-  cy.findByLabelText('In Progress').findByText(task).should('be.visible');
 });
