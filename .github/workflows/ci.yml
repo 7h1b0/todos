@@ -12,7 +12,7 @@ jobs:
           fetch-depth: 1
       - uses: actions/setup-node@v1
         with:
-          node-version: '12.x'
+          node-version: '14.x'
       - run: npm ci
       - run: npm run build:coverage
       - run: npm run lint:check
@@ -27,4 +27,4 @@ jobs:
       - name: upload coverage
         uses: codecov/codecov-action@v1
         with:
-          file: ./coverage/clover.xml # optional
+          file: ./coverage/clover.xml
