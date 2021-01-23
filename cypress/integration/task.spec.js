@@ -1,3 +1,5 @@
+const path = require('path');
+
 beforeEach(() => {
   indexedDB.deleteDatabase('Todos');
   cy.visit('/');
@@ -37,6 +39,21 @@ it('saves tasks', () => {
 
   cy.findByText('Get more sleep').should('be.visible');
   cy.findByText('Add e2e tests').should('be.visible');
+});
+
+it('exports tasks to a file', () => {
+  cy.addTask('Todo', 'Should be exported');
+  cy.findByText('Export').click();
+
+  const downloadedFilename = path.join('cypress/downloads', 'tasks.json');
+
+  cy.readFile(downloadedFilename, { timeout: 15000 }).should((tasks) => {
+    expect(tasks.length).to.equals(1);
+
+    const [task] = tasks;
+    expect(task.title).to.equals('Should be exported');
+    expect(task.categoryId).to.equals(0);
+  });
 });
 
 it('imports tasks from a file', () => {
