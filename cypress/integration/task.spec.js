@@ -51,7 +51,8 @@ it('saves tasks', () => {
   cy.findByText('Add e2e tests').should('be.visible');
 });
 
-it('exports tasks to a file', () => {
+// Headless firefox doesn't support downloading a file
+it('exports tasks to a file', { browser: '!firefox' }, () => {
   cy.addTask('Todo', 'Should be exported');
   cy.findByText('Export').click();
 
