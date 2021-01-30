@@ -12,7 +12,7 @@ Dead simple kanban board built with Preact and IndexedDB
 
 ## Requirements
 
-- [Node.js 10.x](https://nodejs.org/)
+- [Node.js 14.x](https://nodejs.org/)
 
 ---
 
@@ -20,7 +20,7 @@ Dead simple kanban board built with Preact and IndexedDB
 
 To start an ephemeral development server run:
 
-```sh
+```
 git clone https://github.com/7h1b0/todos.git
 cd todos
 npm install
