@@ -3,9 +3,32 @@ name: Node.js CI
 on: [push]
 
 jobs:
-  build:
+  validate:
     runs-on: ubuntu-latest
-
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      - run: npm ci
+      - run: npm run build
+      - run: npm run lint:check
+      - run: npm run format:check
+      - name: unit tests
+        run: npm run test:coverage
+      - name: upload coverage
+        uses: codecov/codecov-action@v1
+        with:
+          flags: unittests
+          file: ./coverage/clover.xml
+  test:
+    name: Cypress run
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        browser: ['chrome', 'firefox']
     steps:
       - uses: actions/checkout@v2
         with:
@@ -15,16 +38,14 @@ jobs:
           node-version: '14.x'
       - run: npm ci
       - run: npm run build:coverage
-      - run: npm run lint:check
-      - run: npm run format:check
-      - name: unit tests
-        run: npm run coverage
-      - name: E2E tests
+      - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          start: npx serve -s dist/ -l 3000 -n
+          browser: ${{ matrix.browser }}
+          start: npm run serve
           wait-on: 'http://localhost:3000'
       - name: upload coverage
         uses: codecov/codecov-action@v1
         with:
+          flags: ${{ matrix.browser }}
           file: ./coverage/clover.xml
