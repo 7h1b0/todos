@@ -7,8 +7,8 @@
   "devDependencies": {
     "@babel/cli": "^7.12.16",
     "@babel/core": "^7.12.16",
-    "@babel/eslint-parser": "^7.12.13",
-    "@babel/plugin-transform-react-jsx": "^7.12.12",
+    "@babel/eslint-parser": "^7.12.16",
+    "@babel/plugin-transform-react-jsx": "^7.12.16",
     "@babel/preset-env": "^7.12.11",
     "@cypress/code-coverage": "^3.9.2",
     "@sinonjs/fake-timers": "^7.0.2",
@@ -22,8 +22,8 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.22.0",
     "gh-pages": "^3.1.0",
-    "html-webpack-plugin": "^4.5.1",
-    "husky": "^4.3.8",
+    "html-webpack-plugin": "^5.1.0",
+    "husky": "^5.0.9",
     "jest": "^26.6.3",
     "prettier": "^2.2.1",
     "pretty-quick": "^3.1.0",
@@ -48,6 +48,7 @@
     "cypress": "cypress",
     "format": "prettier --write \"src/**/*.js\"",
     "lint:check": "eslint --max-warnings 0 src",
-    "format:check": "prettier --list-different \"src/**/*.js\""
+    "format:check": "prettier --list-different \"src/**/*.js\"",
+    "pre-commit": "pretty-quick --staged"
   }
 }
