@@ -9,7 +9,7 @@
     "@babel/core": "^7.12.16",
     "@babel/eslint-parser": "^7.12.16",
     "@babel/plugin-transform-react-jsx": "^7.12.16",
-    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-env": "^7.12.17",
     "@cypress/code-coverage": "^3.9.2",
     "@sinonjs/fake-timers": "^7.0.2",
     "@testing-library/cypress": "^7.0.3",
