@@ -12,7 +12,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '14.x'
-      - run: npm ci
+      - run: npm ci --prefer-offline --no-audit
       - run: npm run build
       - run: npm run lint:check
       - run: npm run format:check
@@ -36,7 +36,7 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: '14.x'
-      - run: npm ci
+      - run: npm ci --prefer-offline --no-audit
       - run: npm run build:coverage
       - name: Cypress run
         uses: cypress-io/github-action@v2
