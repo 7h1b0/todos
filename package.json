@@ -11,7 +11,6 @@
     "@babel/plugin-transform-react-jsx": "^7.12.17",
     "@babel/preset-env": "^7.13.8",
     "@cypress/code-coverage": "^3.9.2",
-    "@sinonjs/fake-timers": "^7.0.2",
     "@testing-library/cypress": "^7.0.4",
     "babel-loader": "^8.2.2",
     "babel-plugin-istanbul": "^6.0.0",
