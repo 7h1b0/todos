@@ -3,15 +3,17 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
-module.exports = ({ prod = false } = {}) => {
+module.exports = () => {
+  const isProd = process.env.NODE_ENV === 'production';
+
   return {
-    mode: prod ? 'production' : 'development',
+    mode: isProd ? 'production' : 'development',
     entry: './src',
     target: 'web',
     output: {
       path: path.join(__dirname, 'dist'),
       filename: '[name]-[contenthash].js',
-      pathinfo: !prod,
+      pathinfo: !isProd,
     },
     devtool: 'source-map',
     module: {
@@ -54,13 +56,14 @@ module.exports = ({ prod = false } = {}) => {
     plugins: [
       new HtmlWebpackPlugin({
         template: 'src/index.html',
-        minify: prod
+        minify: isProd
           ? {
               collapseWhitespace: true,
               removeComments: true,
               removeRedundantAttributes: true,
               removeScriptTypeAttributes: true,
               minifyCSS: true,
+              useShortDoctype: true,
             }
           : false,
       }),
