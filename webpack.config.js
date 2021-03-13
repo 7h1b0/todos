@@ -4,7 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = () => {
-  const isProd = process.env.NODE_ENV === 'production';
+  const isProd = ['production', 'coverage'].includes(process.env.NODE_ENV);
 
   return {
     mode: isProd ? 'production' : 'development',
