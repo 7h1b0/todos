@@ -12,9 +12,10 @@
     <title>Todos</title>
     <style>
       :root {
-        --space-m: 14px;
+        --space-m: 16px;
+        --space-s: 8px;
         --caption: 0.8rem;
-        --border-radius: 5px;
+        --border-radius: 4px;
         --color-accent: #88c0d0;
         --color-bg: #2e3440;
         --color-input: #434c5e;
@@ -44,7 +45,7 @@
         display: block;
         width: 100%;
         padding: var(--space-m);
-        margin-top: 5px;
+        margin-top: var(--space-s);
         background: var(--color-input);
         color: var(--color-text);
         border: 2px solid var(--color-input);
@@ -109,13 +110,13 @@
       }
       .add {
         width: 100%;
-        padding: 8px 0;
+        padding: var(--space-s) 0;
         color: var(--color-caption);
         border-radius: var(--border-radius);
         background: var(--color-bg);
       }
       .add svg {
-        padding-right: 10px;
+        padding-right: var(--space-s);
         height: 20px;
         fill: var(--color-caption);
       }
@@ -139,21 +140,16 @@
       .raise {
         color: white;
         background: var(--color-accent);
-        padding: 12px var(--space-m);
+        padding: var(--space-s) var(--space-m);
         font-size: var(--caption);
         border-radius: var(--border-radius);
       }
       .delete {
-        position: relative;
-        width: 50px;
-        height: 50px;
-        text-align: right;
         opacity: 0;
         transition: opacity 0.3s ease-in-out;
-      }
-      .delete svg {
-        width: 15px;
-        fill: var(--color-accent);
+        color: var(--color-accent);
+        width: 24px;
+        height: 24px;
       }
       .delete:focus,
       .task:hover .delete {
