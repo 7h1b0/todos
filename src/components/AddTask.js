@@ -8,7 +8,8 @@ function AddTask({ categoryId, onClose }) {
   const dispatch = useTaskDispatch();
   const input = useRef(null);
 
-  function handleSubmit() {
+  function handleSubmit(e) {
+    e.preventDefault();
     onClose();
     dispatch(addTask(input.current.value, categoryId));
   }
