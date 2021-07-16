@@ -1,12 +1,5 @@
 export function formatDate(timestamp) {
-  const dt = new Date(timestamp);
-  return `${leadingZero(dt.getDate())}.${leadingZero(
-    dt.getMonth() + 1,
-  )}.${dt.getFullYear()}`;
-}
-
-export function leadingZero(receive) {
-  return `${receive}`.padStart(2, 0);
+  return new Intl.DateTimeFormat().format(new Date(timestamp));
 }
 
 export function groupBy(items, key) {

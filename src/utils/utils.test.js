@@ -1,18 +1,4 @@
-import { formatDate, groupBy } from './utils';
-
-describe('formatDate', () => {
-  it('should format the given timestamp', () => {
-    const timestamp = new Date('2018-11-01').getTime();
-
-    expect(formatDate(timestamp)).toBe('01.11.2018');
-  });
-
-  it('should ignore the time', () => {
-    const timestamp = new Date('2018-01-01T16:45').getTime();
-
-    expect(formatDate(timestamp)).toBe('01.01.2018');
-  });
-});
+import { groupBy } from './utils';
 
 describe('groupBy', () => {
   it('should group entries by a given key', () => {
