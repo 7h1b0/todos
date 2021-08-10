@@ -13,7 +13,7 @@ describe('addTask', () => {
   it('should create a ADD action', () => {
     const date = new Date('2018-08-01T16:00').getTime();
     jest.useFakeTimers('modern').setSystemTime(date);
-    const action = addTask('test', 2);
+    const action = addTask('test', 2, ['tests', 'important']);
 
     expect(action).toEqual({
       type: ADD,
@@ -21,6 +21,7 @@ describe('addTask', () => {
         id: date,
         title: 'test',
         categoryId: 2,
+        tags: ['tests', 'important'],
         date: date,
         updatedAt: date,
       },

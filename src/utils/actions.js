@@ -3,10 +3,10 @@ export const ADD = 'ADD';
 export const UPDATE = 'UPDATE';
 export const ADD_ALL = 'ADD_ALL';
 
-export function addTask(title, categoryId, date = Date.now()) {
+export function addTask(title, categoryId, tags, date = Date.now()) {
   return {
     type: ADD,
-    data: { id: date, title, categoryId, date, updatedAt: date },
+    data: { id: date, title, categoryId, date, updatedAt: date, tags },
   };
 }
 

@@ -1,14 +1,12 @@
 import { h } from 'preact';
 
 import { useTaskDispatch } from 'contexts/TaskContext';
-import { formatDate } from 'utils/utils';
+import { formatDate, getColorFromString } from 'utils/utils';
 import { removeTask } from 'utils/actions';
 
 function Task(props) {
-  const { date, updatedAt } = props;
+  const { tags = [], updatedAt } = props;
   const dispatch = useTaskDispatch();
-  const updatedLabel =
-    updatedAt !== date ? ` / Updated on ${formatDate(updatedAt)}` : '';
 
   function handleDrag(e) {
     e.dataTransfer.setData('task', JSON.stringify(props));
@@ -24,10 +22,17 @@ function Task(props) {
     <div class="task" draggable onDragStart={handleDrag}>
       <div class="content">
         <p class="title">{props.title}</p>
-        <p class="caption">
-          Created on: {formatDate(date)}
-          {updatedLabel}
-        </p>
+        <ul class="tags">
+          {tags.map((tag) => {
+            const color = getColorFromString(tag);
+            return (
+              <li class="tag" style={{ backgroundColor: color }} key={tag}>
+                {tag}
+              </li>
+            );
+          })}
+        </ul>
+        <p class="caption">Last update: {formatDate(updatedAt)}</p>
       </div>
       <button
         class="delete"

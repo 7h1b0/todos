@@ -1,9 +1,10 @@
 import '@testing-library/cypress/add-commands';
 import '@cypress/code-coverage/support';
 
-Cypress.Commands.add('addTask', (category, label) => {
+Cypress.Commands.add('addTask', (category, label, tags = '') => {
   cy.findByText(`Add ${category} task`).click();
   cy.findByPlaceholderText(/Enter task label/i).type(label);
+  cy.findByPlaceholderText(/Enter tags separated by comma/i).type(tags);
   cy.findByText(/Add task/i).click();
 });
 

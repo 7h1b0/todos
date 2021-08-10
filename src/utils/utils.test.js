@@ -1,4 +1,4 @@
-import { groupBy } from './utils';
+import { groupBy, getColorFromString, stringToArray } from './utils';
 
 describe('groupBy', () => {
   it('should group entries by a given key', () => {
@@ -32,5 +32,32 @@ describe('groupBy', () => {
       ],
       2: [{ id: 3, group: 2 }],
     });
+  });
+});
+
+describe('getColorFromString', () => {
+  it('should return the same color for a same String', () => {
+    expect(getColorFromString('DrPlop')).toBe(getColorFromString('DrPlop'));
+  });
+
+  it('should return ', () => {
+    expect(getColorFromString('important')).toBe('#bf616a');
+    expect(getColorFromString('DrPlop')).toBe('#a3be8c');
+    expect(getColorFromString('Preact')).toBe('#ebcb8b');
+    expect(getColorFromString('Jest')).toBe('#d08770');
+  });
+});
+
+describe('stringToArray', () => {
+  it.each([
+    ['test', ['test']],
+    [' jest', ['jest']],
+    ['test, jest', ['test', 'jest']],
+    [', jest  ', ['jest']],
+    ['', []],
+    ['', []],
+    [undefined, []],
+  ])('should return the right array', (input, expected) => {
+    expect(stringToArray(input)).toEqual(expected);
   });
 });

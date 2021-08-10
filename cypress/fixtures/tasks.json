@@ -3,12 +3,14 @@
     "id": 1574516662380,
     "title": "import feature",
     "categoryId": 0,
+    "tags": ["exported"],
     "date": 1574516662380,
     "updatedAt": 1574516662380
   },
   {
     "id": 1574516675978,
     "title": "dark theme",
+    "tags": ["feature", "dark"],
     "categoryId": 2,
     "date": 1574516675978,
     "updatedAt": 1574516675978
