@@ -19,9 +19,16 @@ function Task(props) {
   }
 
   return (
-    <div class="task" draggable onDragStart={handleDrag}>
+    <article
+      class="task"
+      draggable
+      onDragStart={handleDrag}
+      aria-labelledby={props.id}
+    >
       <div class="content">
-        <p class="title">{props.title}</p>
+        <h2 id={props.id} class="title">
+          {props.title}
+        </h2>
         <ul class="tags">
           {tags.map((tag) => {
             const color = getColorFromString(tag);
@@ -49,7 +56,7 @@ function Task(props) {
           <path stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
-    </div>
+    </article>
   );
 }
 
