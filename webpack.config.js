@@ -74,10 +74,11 @@ module.exports = () => {
     ],
     devServer: {
       open: true,
-      contentBase: path.join(__dirname, 'public'),
-      historyApiFallback: true,
       port: 3000,
-      stats: 'errors-only',
+      historyApiFallback: true,
+      devMiddleware: {
+        stats: 'errors-only',
+      },
     },
     bail: true,
     node: false,
