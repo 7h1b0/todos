@@ -19,11 +19,17 @@ function AddTask({ categoryId, onClose }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input ref={titleRef} type="text" placeholder="Enter task label" />
+      <input
+        ref={titleRef}
+        type="text"
+        placeholder="Enter task title"
+        aria-label="task title"
+      />
       <input
         ref={tagsRef}
         type="text"
         placeholder="Enter tags separated by comma"
+        aria-label="tags separated by comma"
       />
       <div class="buttons">
         <button class="flat" type="button" onClick={onClose}>
