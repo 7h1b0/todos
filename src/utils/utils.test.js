@@ -55,7 +55,6 @@ describe('stringToArray', () => {
     ['test, jest', ['test', 'jest']],
     [', jest  ', ['jest']],
     ['', []],
-    ['', []],
     [undefined, []],
   ])('should return the right array', (input, expected) => {
     expect(stringToArray(input)).toEqual(expected);
