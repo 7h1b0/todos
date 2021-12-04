@@ -15,7 +15,7 @@
     "babel-loader": "^8.2.2",
     "babel-plugin-istanbul": "^6.0.0",
     "clean-webpack-plugin": "^4.0.0",
-    "cypress": "^8.2.0",
+    "cypress": "^9.1.1",
     "eslint": "^8.0.1",
     "eslint-plugin-cypress": "^2.11.3",
     "eslint-plugin-jsx-a11y": "^6.4.1",
