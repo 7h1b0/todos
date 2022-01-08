@@ -25,22 +25,9 @@ function Task(props) {
       onDragStart={handleDrag}
       aria-labelledby={props.id}
     >
-      <div class="content">
-        <h2 id={props.id} class="title">
-          {props.title}
-        </h2>
-        <ul class="tags">
-          {tags.map((tag) => {
-            const color = getColorFromString(tag);
-            return (
-              <li class="tag" style={{ backgroundColor: color }} key={tag}>
-                {tag}
-              </li>
-            );
-          })}
-        </ul>
-        <p class="caption">Last update: {formatDate(updatedAt)}</p>
-      </div>
+      <h2 id={props.id} class="title">
+        {props.title}
+      </h2>
       <button
         class="delete"
         onClick={handleRemove}
@@ -56,6 +43,17 @@ function Task(props) {
           <path stroke-width="2" d="M6 18L18 6M6 6l12 12" />
         </svg>
       </button>
+      <ul class="tags">
+        {tags.map((tag) => {
+          const color = getColorFromString(tag);
+          return (
+            <li class="tag" style={{ backgroundColor: color }} key={tag}>
+              {tag}
+            </li>
+          );
+        })}
+      </ul>
+      <p class="caption">Last update: {formatDate(updatedAt)}</p>
     </article>
   );
 }

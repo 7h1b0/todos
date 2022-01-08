@@ -44,9 +44,7 @@ function TaskList({ label, categoryId, tasks }) {
       onDrop={handleDragDrop}
       class={over && 'over'}
     >
-      <div class="tasks-header">
-        <h2 id={categoryId}>{label}</h2>
-      </div>
+      <h2 id={categoryId}>{label}</h2>
       {showForm ? (
         <AddTask
           categoryId={categoryId}
