@@ -1,18 +1,20 @@
 # Todos &middot; ![Node.js CI](https://github.com/7h1b0/todos/workflows/Node.js%20CI/badge.svg) [![codecov](https://codecov.io/gh/7h1b0/todos/branch/master/graph/badge.svg?token=57PNU1ERS8)](https://codecov.io/gh/7h1b0/todos)
 
-Dead simple kanban board built with Preact and IndexedDB
+Dead simple kanban board built with Svelte and IndexedDB
 
 ## Browsers support
 
-| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/opera/opera_48x48.png" alt="Opera" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Opera |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| last 3 versions                                                                                                                                                                                                   | last 3 versions                                                                                                                                                                                               | last 1 versions                                                                                                                                                                                               | last 3 versions                                                                                                                                                                                           |
+## Browsers support
+
+| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br/>Safari |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| >= 91                                                                                                                                                                                                             | >= 90                                                                                                                                                                                                         | >= 14                                                                                                                                                                                                         |
 
 ---
 
 ## Requirements
 
-- [Node.js 14.x](https://nodejs.org/)
+- [Node.js 16.x](https://nodejs.org/)
 
 ---
 

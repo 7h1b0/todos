@@ -1,10 +1,8 @@
-import { h } from 'preact';
+<script>
+  export let tasks;
 
-import { useTaskDispatch } from 'contexts/TaskContext';
-import { addAll } from 'utils/actions';
-
-function Export({ tasks }) {
-  const dispatch = useTaskDispatch();
+  import { addAll } from '../utils/actions';
+  import dispatch from '../stores';
 
   function handleExport() {
     const dataStr =
@@ -23,6 +21,7 @@ function Export({ tasks }) {
     reader.onload = (event) => {
       try {
         const data = JSON.parse(event.target.result);
+        console.log('YOLO', data);
         dispatch(addAll(data));
       } catch (e) {
         console.error(e);
@@ -30,18 +29,12 @@ function Export({ tasks }) {
     };
     reader.readAsText(event.target.files[0]);
   }
+</script>
 
-  return (
-    <header>
-      <button class="export" onClick={handleExport} type="button">
-        Export
-      </button>
-      <label class="export">
-        Import
-        <input class="hidden" onInput={handleImport} type="file" />
-      </label>
-    </header>
-  );
-}
-
-export default Export;
+<header>
+  <button class="export" on:click={handleExport} type="button"> Export </button>
+  <label class="export">
+    Import
+    <input class="hidden" on:input={handleImport} type="file" />
+  </label>
+</header>

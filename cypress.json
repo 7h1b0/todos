@@ -1,6 +1,7 @@
 {
   "baseUrl": "http://127.0.0.1:3000",
   "video": true,
+  "pluginsFile": "cypress/plugins/index.cjs",
   "retries": {
     "runMode": 2,
     "openMode": 0
