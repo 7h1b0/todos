@@ -61,8 +61,8 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           browser: ${{ matrix.browser }}
-          start: npm run serve
-          wait-on: 'http://localhost:3000'
+          start: npm run preview
+          wait-on: 'http://localhost:5000'
 
       - name: Upload coverage
         uses: codecov/codecov-action@v1
