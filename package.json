@@ -23,6 +23,8 @@
   "devDependencies": {
     "@cypress/code-coverage": "^3.9.12",
     "@sveltejs/vite-plugin-svelte": "^1.0.0-next.30",
+    "@swc/core": "^1.2.130",
+    "@swc/jest": "^0.2.17",
     "@testing-library/cypress": "^8.0.2",
     "cypress": "^9.2.1",
     "gh-pages": "^3.2.3",
