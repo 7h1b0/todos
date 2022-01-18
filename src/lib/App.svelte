@@ -2,10 +2,10 @@
   import TaskList from './TaskList.svelte';
   import Export from './Export.svelte';
   import { CATEGORIES } from '../utils/categories';
-  import { groupedTasks, tasks } from '../stores';
+  import { groupedTasks } from '../stores';
 </script>
 
-<Export {tasks} />
+<Export />
 <main>
   {#each CATEGORIES as category}
     <TaskList

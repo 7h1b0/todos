@@ -1,13 +1,11 @@
 <script>
-  export let tasks;
-
   import { set } from '../utils/actions';
-  import dispatch from '../stores';
+  import dispatch, { tasks } from '../stores';
 
   function handleExport() {
     const dataStr =
       'data:text/json;charset=utf-8,' +
-      encodeURIComponent(JSON.stringify(tasks));
+      encodeURIComponent(JSON.stringify($tasks));
     const a = document.createElement('a');
     a.setAttribute('href', dataStr);
     a.setAttribute('download', 'tasks.json');
