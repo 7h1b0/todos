@@ -14,13 +14,13 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '16'
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
 
-      - name: Run lint check
-        run: npm run lint:check
+      - name: Run svelte check
+        run: npm run check
 
       - name: Run format check
         run: npm run format:check
@@ -49,7 +49,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '16'
 
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
@@ -61,8 +61,8 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           browser: ${{ matrix.browser }}
-          start: npm run serve
-          wait-on: 'http://localhost:3000'
+          start: npm run preview
+          wait-on: 'http://localhost:5000'
 
       - name: Upload coverage
         uses: codecov/codecov-action@v1

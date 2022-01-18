@@ -40,9 +40,9 @@ describe('getColorFromString', () => {
     expect(getColorFromString('DrPlop')).toBe(getColorFromString('DrPlop'));
   });
 
-  it('should return ', () => {
+  it('should return a valid color', () => {
     expect(getColorFromString('important')).toBe('#bf616a');
-    expect(getColorFromString('DrPlop')).toBe('#a3be8c');
+    expect(getColorFromString('Svelte')).toBe('#ebcb8b');
     expect(getColorFromString('Preact')).toBe('#ebcb8b');
     expect(getColorFromString('Jest')).toBe('#d08770');
   });
@@ -56,6 +56,7 @@ describe('stringToArray', () => {
     [', jest  ', ['jest']],
     ['', []],
     [undefined, []],
+    [' ', []],
   ])('should return the right array', (input, expected) => {
     expect(stringToArray(input)).toEqual(expected);
   });

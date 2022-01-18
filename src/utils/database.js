@@ -14,7 +14,7 @@ export default function getDb(table = 'tasks') {
       promisifyRequest(
         db.transaction(table, 'readwrite').objectStore(table).add(task),
       ),
-    addAll: (tasks) => {
+    set: (tasks) => {
       return new Promise((resolve, reject) => {
         const tx = db.transaction(table, 'readwrite');
 

@@ -5,4 +5,7 @@ module.exports = {
   testPathIgnorePatterns: ['<rootDir>/cypress/'],
   testEnvironment: 'jest-environment-node',
   collectCoverageFrom: ['src/**/*.{js,jsx}'],
+  transform: {
+    '^.+\\.(t|j)sx?$': '@swc/jest',
+  },
 };

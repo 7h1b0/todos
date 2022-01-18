@@ -1,11 +1,11 @@
 import { reduceTasks } from './reducers';
-import { ADD, REMOVE, UPDATE, ADD_ALL } from './actions';
+import { ADD, REMOVE, UPDATE, SET } from './actions';
 
 describe('reduceTasks', () => {
   describe('ALL_ALL action', () => {
     it('should add everything to the state', () => {
       const state = [1];
-      const action = { type: ADD_ALL, data: [2, 3] };
+      const action = { type: SET, data: [2, 3] };
       const newState = reduceTasks(state, action);
 
       expect(newState).toEqual([1, 2, 3]);

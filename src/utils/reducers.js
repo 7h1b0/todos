@@ -1,8 +1,8 @@
-import { ADD, REMOVE, UPDATE, ADD_ALL } from './actions';
+import { ADD, REMOVE, UPDATE, SET } from './actions';
 
 export function reduceTasks(state, action) {
   switch (action.type) {
-    case ADD_ALL:
+    case SET:
     case ADD:
       return state.concat(action.data);
     case REMOVE:

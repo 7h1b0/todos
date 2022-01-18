@@ -1,4 +1,6 @@
-import { h, render } from 'preact';
-import App from './components/App';
+import App from './lib/App.svelte';
 
-render(<App />, document.body);
+const app = new App({
+  target: document.body,
+});
+export default app;
