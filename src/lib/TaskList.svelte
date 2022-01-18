@@ -5,9 +5,9 @@
 
   import Task from './Task.svelte';
   import AddTask from './AddTask.svelte';
-  import dispatch from '../stores';
   import { updateTask } from '../utils/actions';
   import { sortByUpdated } from '../utils/utils';
+  import dispatch from '../stores';
 
   let showForm = false;
   let over = false;

@@ -28,6 +28,8 @@ export function getColorFromString(tag) {
 }
 
 export function stringToArray(input = '') {
-  const list = input.split(',').filter(Boolean);
-  return list.map((item) => item.trim());
+  return input
+    .split(',')
+    .map((item) => item.trim())
+    .filter(Boolean);
 }

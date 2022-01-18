@@ -1,7 +1,7 @@
 <script>
   export let tasks;
 
-  import { addAll } from '../utils/actions';
+  import { set } from '../utils/actions';
   import dispatch from '../stores';
 
   function handleExport() {
@@ -21,8 +21,7 @@
     reader.onload = (event) => {
       try {
         const data = JSON.parse(event.target.result);
-        console.log('YOLO', data);
-        dispatch(addAll(data));
+        dispatch(set(data));
       } catch (e) {
         console.error(e);
       }
@@ -32,7 +31,7 @@
 </script>
 
 <header>
-  <button class="export" on:click={handleExport} type="button"> Export </button>
+  <button class="export" on:click={handleExport} type="button">Export</button>
   <label class="export">
     Import
     <input class="hidden" on:input={handleImport} type="file" />

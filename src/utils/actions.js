@@ -1,7 +1,7 @@
 export const REMOVE = 'REMOVE';
 export const ADD = 'ADD';
 export const UPDATE = 'UPDATE';
-export const ADD_ALL = 'ADD_ALL';
+export const SET = 'SET';
 
 export function addTask(title, categoryId, tags, date = Date.now()) {
   return {
@@ -24,9 +24,9 @@ export function updateTask(task) {
   };
 }
 
-export function addAll(tasks) {
+export function set(tasks) {
   return {
-    type: ADD_ALL,
+    type: SET,
     data: tasks,
   };
 }

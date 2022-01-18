@@ -31,7 +31,7 @@
     bind:value={tags}
   />
   <div class="buttons">
-    <button class="flat" type="button" on:click={onClose}> Cancel </button>
+    <button class="flat" type="button" on:click={onClose}>Cancel</button>
     <button class="raise">Add task</button>
   </div>
 </form>

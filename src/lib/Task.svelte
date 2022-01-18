@@ -7,8 +7,8 @@
   export let categoryId;
 
   import { formatDate, getColorFromString } from '../utils/utils';
-  import dispatch from '../stores';
   import { removeTask } from '../utils/actions';
+  import dispatch from '../stores';
 
   function handleDrag(e) {
     e.dataTransfer.setData(

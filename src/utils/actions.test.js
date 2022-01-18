@@ -2,11 +2,11 @@ import {
   addTask,
   removeTask,
   updateTask,
-  addAll,
+  set,
   ADD,
   REMOVE,
   UPDATE,
-  ADD_ALL,
+  SET,
 } from './actions';
 
 describe('addTask', () => {
@@ -51,15 +51,15 @@ describe('updateTask', () => {
   });
 });
 
-describe('addAll', () => {
-  it('should create a ADD_ALL action', () => {
-    const action = addAll([
+describe('set', () => {
+  it('should create a SET action', () => {
+    const action = set([
       { id: 1, title: 'test' },
       { id: 2, title: 'unit' },
     ]);
 
     expect(action).toEqual({
-      type: ADD_ALL,
+      type: SET,
       data: [
         { id: 1, title: 'test' },
         { id: 2, title: 'unit' },
