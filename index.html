@@ -18,8 +18,8 @@
         --border-radius: 8px;
         --color-accent: #6b5ecd;
         --color-bg: #1e1e2c;
+        --color-task: #242636;
         --color-input: #434c5e;
-        --color-section: #242636;
         --color-text: #fff;
         --color-caption: #d8dee9;
       }
@@ -87,9 +87,9 @@
         display: grid;
         grid-template-columns: 1fr auto;
         gap: var(--space-s);
+        background: var(--color-task);
         align-items: center;
-        background: var(--color-bg);
-        border: 2px solid var(--color-bg);
+        border: 2px solid var(--color-task);
         border-radius: var(--border-radius);
         padding: var(--space-m);
         transition: border 0.3s ease-in-out;
@@ -106,8 +106,8 @@
         display: flex;
         gap: var(--space-s);
         flex-direction: column;
+        border: 2px solid var(--color-task);
         padding: var(--space-m);
-        background: var(--color-section);
         border-radius: var(--border-radius);
         box-shadow: 0 1px 7px rgba(0, 0, 0, 0.05);
       }
@@ -126,8 +126,8 @@
         width: 100%;
         padding: var(--space-s) 0;
         color: var(--color-caption);
+        background: var(--color-task);
         border-radius: var(--border-radius);
-        background: var(--color-bg);
       }
       .add svg {
         padding-right: var(--space-s);
@@ -169,9 +169,7 @@
       .task:hover .delete {
         opacity: 1;
       }
-      .over {
-        outline: var(--color-accent) solid 2px;
-      }
+      .over,
       .task:hover {
         border: 2px solid var(--color-accent);
       }
