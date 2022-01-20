@@ -88,8 +88,11 @@ it('exports tasks to a file', { browser: '!firefox' }, () => {
 });
 
 it('imports tasks from a file', () => {
+  cy.fixture('tasks.json').as('tasks');
   cy.findByText('import feature').should('not.exist');
-  cy.findByLabelText('Import').attachFile('tasks.json', 'application/json');
+
+  // Input is hidden but the label isn't
+  cy.findByLabelText('Import').selectFile('@tasks', { force: true });
 
   cy.findByRole('region', { name: 'Todo' })
     .findByRole('article', { name: 'import feature' })
