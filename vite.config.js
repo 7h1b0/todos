@@ -18,4 +18,7 @@ export default defineConfig({
   server: {
     open: '/',
   },
+  preview: {
+    port: 5000,
+  },
 });
