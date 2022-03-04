@@ -51,7 +51,7 @@
         border: none;
         outline: none;
       }
-      input:focus {
+      :is(input, button):focus {
         outline: var(--color-accent) solid 2px;
       }
       label,
@@ -109,7 +109,6 @@
         border: 2px solid var(--color-task);
         padding: var(--space-m);
         border-radius: var(--border-radius);
-        box-shadow: 0 1px 7px rgba(0, 0, 0, 0.05);
       }
       button {
         border: none;
@@ -134,12 +133,12 @@
         height: 20px;
         fill: var(--color-caption);
       }
-      .add:hover,
-      .add:hover svg,
-      .export:hover {
+
+      :is(.add, .export):hover {
         color: var(--color-accent);
         fill: var(--color-accent);
       }
+
       .buttons {
         display: flex;
         place-content: flex-end;
