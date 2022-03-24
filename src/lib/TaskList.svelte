@@ -45,7 +45,7 @@
   on:drop={handleDragDrop}
 >
   <div class="header">
-    <h2 id={categoryId}>{label}</h2>
+    <h1 id={categoryId}>{label}</h1>
     {#if showForm}
       <AddTask
         {categoryId}

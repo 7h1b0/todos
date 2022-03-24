@@ -18,18 +18,18 @@
 </script>
 
 <form on:submit={handleSubmit}>
-  <input
-    type="text"
-    placeholder="Enter task title"
-    aria-label="task title"
-    bind:value={title}
-  />
-  <input
-    type="text"
-    placeholder="Enter tags separated by comma"
-    aria-label="tags separated by comma"
-    bind:value={tags}
-  />
+  <label>
+    Title
+    <input type="text" placeholder="Enter task title" bind:value={title} />
+  </label>
+  <label>
+    Tags
+    <input
+      type="text"
+      placeholder="Enter tags separated by comma"
+      bind:value={tags}
+    />
+  </label>
   <div class="buttons">
     <button class="flat" type="button" on:click={onClose}>Cancel</button>
     <button class="raise">Add task</button>
