@@ -30,7 +30,7 @@
   aria-labelledby={id}
   on:dragstart={handleDrag}
 >
-  <h2 {id} class="title">
+  <h2 {id}>
     {title}
   </h2>
   <button

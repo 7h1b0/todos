@@ -37,14 +37,18 @@
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
           Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
       }
-      h2 {
+      h1 {
         font-size: 1.05rem;
+      }
+      label {
+        display: block;
+        padding: var(--space-s) 0;
       }
       input {
         display: block;
         width: 100%;
         padding: var(--space-m);
-        margin-top: var(--space-s);
+        margin-top: calc(var(--space-s) / 2);
         background: var(--color-input);
         color: var(--color-text);
         border-radius: var(--border-radius);
@@ -66,9 +70,9 @@
         place-content: center;
         align-items: center;
       }
-      .title {
+      input,
+      h2 {
         font-size: 1rem;
-        word-break: break-all;
       }
       .tags {
         list-style-type: none;
