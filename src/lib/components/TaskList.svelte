@@ -7,7 +7,7 @@
   import AddTask from './AddTask.svelte';
   import { updateTask } from '../utils/actions';
   import { sortByUpdated } from '../utils/utils';
-  import dispatch from '../stores';
+  import dispatch from '../stores/tasks';
 
   let showForm = false;
   let over = false;
@@ -79,3 +79,30 @@
     <Task {...task} />
   {/each}
 </section>
+
+<style>
+  section {
+    flex: 1;
+    display: flex;
+    gap: var(--space-s);
+    flex-direction: column;
+    border: 2px solid var(--color-task);
+    padding: var(--space-m);
+    border-radius: var(--border-radius);
+  }
+
+  h1 {
+    font-size: 1.05rem;
+  }
+
+  .header {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-s);
+    margin: var(--space-m) 0;
+  }
+
+  .over {
+    border: 2px solid var(--color-accent);
+  }
+</style>

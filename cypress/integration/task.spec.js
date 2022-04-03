@@ -52,6 +52,10 @@ it('allows to add, remove and drag and drop tasks', () => {
   cy.findByRole('region', { name: 'In Progress' })
     .findByRole('article', { name: 'increase coverage' })
     .should('be.visible');
+
+  cy.findByRole('searchbox').type('e2e');
+  cy.findByRole('article', { name: 'increase coverage' }).should('not.exist');
+  cy.findByRole('article', { name: 'Make e2e tests' }).should('be.visible');
 });
 
 it('saves tasks', () => {
@@ -74,7 +78,7 @@ it('saves tasks', () => {
 // Headless firefox doesn't support downloading a file
 it('exports tasks to a file', { browser: '!firefox' }, () => {
   cy.addTask('Todo', 'Should be exported', 'important');
-  cy.findByText('Export').click();
+  cy.findByRole('button', { name: 'Export' }).click();
 
   const downloadedFilename = path.join('cypress/downloads', 'tasks.json');
 

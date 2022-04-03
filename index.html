@@ -37,25 +37,12 @@
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
           Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
       }
-      h1 {
-        font-size: 1.05rem;
-      }
       label {
         display: block;
         padding: var(--space-s) 0;
       }
-      input {
-        display: block;
-        width: 100%;
-        padding: var(--space-m);
-        margin-top: calc(var(--space-s) / 2);
-        background: var(--color-input);
-        color: var(--color-text);
-        border-radius: var(--border-radius);
-        border: none;
-        outline: none;
-      }
-      :is(input, button):focus {
+
+      :is(input, button):focus-visible {
         outline: var(--color-accent) solid 2px;
       }
       label,
@@ -64,39 +51,13 @@
         color: var(--color-caption);
         font-size: var(--caption);
       }
-      header,
       .add {
         display: flex;
         place-content: center;
         align-items: center;
       }
-      input,
-      h2 {
+      input {
         font-size: 1rem;
-      }
-      .tags {
-        list-style-type: none;
-        display: flex;
-        gap: var(--space-s);
-        flex-wrap: wrap;
-      }
-      .tag {
-        padding: 4px;
-        border-radius: var(--border-radius);
-        color: var(--color-bg);
-      }
-      .task {
-        cursor: grab;
-        position: relative;
-        display: grid;
-        grid-template-columns: 1fr auto;
-        gap: var(--space-s);
-        background: var(--color-task);
-        align-items: center;
-        border: 2px solid var(--color-task);
-        border-radius: var(--border-radius);
-        padding: var(--space-m);
-        transition: border 0.3s ease-in-out;
       }
       main {
         max-width: 1400px;
@@ -105,42 +66,23 @@
         align-items: flex-start;
         gap: 32px;
       }
-      section {
-        flex: 1;
-        display: flex;
-        gap: var(--space-s);
-        flex-direction: column;
-        border: 2px solid var(--color-task);
-        padding: var(--space-m);
-        border-radius: var(--border-radius);
-      }
       button {
         border: none;
         background: none;
         cursor: pointer;
       }
-      .header {
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-s);
-        margin: var(--space-m) 0;
-      }
       .add {
-        width: 100%;
-        padding: var(--space-s) 0;
+        padding: var(--space-s) var(--space-m);
         color: var(--color-caption);
         background: var(--color-task);
         border-radius: var(--border-radius);
         fill: var(--color-caption);
       }
-      .add svg {
-        padding-right: var(--space-s);
+      svg {
         height: 20px;
       }
-
-      :is(.add, .export):hover {
-        color: var(--color-accent);
-        fill: var(--color-accent);
+      .add svg {
+        padding-right: var(--space-s);
       }
 
       .buttons {
@@ -160,28 +102,8 @@
         font-size: var(--caption);
         border-radius: var(--border-radius);
       }
-      .delete {
-        grid-row-end: span 3;
-        opacity: 0;
-        transition: opacity 0.3s ease-in-out;
-        color: var(--color-accent);
-        width: 24px;
-        height: 24px;
-      }
-      .delete:focus,
-      .task:hover .delete {
-        opacity: 1;
-      }
-      .over,
-      .task:hover {
-        border: 2px solid var(--color-accent);
-      }
       .hidden {
         display: none;
-      }
-      .export {
-        cursor: pointer;
-        margin: var(--space-m);
       }
     </style>
   </head>
