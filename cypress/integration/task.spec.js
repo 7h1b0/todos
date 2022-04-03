@@ -52,6 +52,10 @@ it('allows to add, remove and drag and drop tasks', () => {
   cy.findByRole('region', { name: 'In Progress' })
     .findByRole('article', { name: 'increase coverage' })
     .should('be.visible');
+
+  cy.findByRole('searchbox').type('e2e');
+  cy.findByRole('article', { name: 'increase coverage' }).should('not.exist');
+  cy.findByRole('article', { name: 'Make e2e tests' }).should('be.visible');
 });
 
 it('saves tasks', () => {

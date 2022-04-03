@@ -8,7 +8,7 @@
 
   import { formatDate, getColorFromString } from '../utils/utils';
   import { removeTask } from '../utils/actions';
-  import dispatch from '../stores';
+  import dispatch from '../stores/tasks';
 
   function handleDrag(e) {
     e.dataTransfer.setData(
@@ -58,3 +58,50 @@
   </ul>
   <p class="caption">Last update: {formatDate(updatedAt)}</p>
 </article>
+
+<style>
+  h2 {
+    font-size: 1rem;
+  }
+  .task {
+    cursor: grab;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: var(--space-s);
+    background: var(--color-task);
+    align-items: center;
+    border: 2px solid var(--color-task);
+    border-radius: var(--border-radius);
+    padding: var(--space-m);
+    transition: border 0.3s ease-in-out;
+  }
+  .task:hover {
+    border: 2px solid var(--color-accent);
+  }
+  .delete {
+    grid-row-end: span 3;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    color: var(--color-accent);
+    width: 24px;
+    height: 24px;
+  }
+
+  .delete:focus,
+  .task:hover .delete {
+    opacity: 1;
+  }
+
+  .tags {
+    list-style-type: none;
+    display: flex;
+    gap: var(--space-s);
+    flex-wrap: wrap;
+  }
+  .tag {
+    padding: 4px;
+    border-radius: var(--border-radius);
+    color: var(--color-bg);
+  }
+</style>
