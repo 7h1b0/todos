@@ -78,7 +78,7 @@ it('saves tasks', () => {
 // Headless firefox doesn't support downloading a file
 it('exports tasks to a file', { browser: '!firefox' }, () => {
   cy.addTask('Todo', 'Should be exported', 'important');
-  cy.findByText('Export').click();
+  cy.findByRole('button', { name: 'Export' }).click();
 
   const downloadedFilename = path.join('cypress/downloads', 'tasks.json');
 
