@@ -24,21 +24,11 @@
   }
 </script>
 
-<article
-  class="task"
-  draggable="true"
-  aria-labelledby={id}
-  on:dragstart={handleDrag}
->
+<article draggable="true" aria-labelledby={id} on:dragstart={handleDrag}>
   <h2 {id}>
     {title}
   </h2>
-  <button
-    class="delete"
-    on:click={handleRemove}
-    aria-label={`Remove ${title}`}
-    type="button"
-  >
+  <button on:click={handleRemove} aria-label={`Remove ${title}`} type="button">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
@@ -48,22 +38,22 @@
       <path stroke-width="2" d="M6 18L18 6M6 6l12 12" />
     </svg>
   </button>
-  <ul class="tags">
+  <ul>
     {#each tags as tag}
       {@const backgroundColor = getColorFromString(tag)}
-      <li class="tag" style:background-color={backgroundColor}>
+      <li style:background-color={backgroundColor}>
         {tag}
       </li>
     {/each}
   </ul>
-  <p class="caption">Last update: {formatDate(updatedAt)}</p>
+  <p>Last update: {formatDate(updatedAt)}</p>
 </article>
 
 <style>
   h2 {
     font-size: 1rem;
   }
-  .task {
+  article {
     cursor: grab;
     position: relative;
     display: grid;
@@ -76,10 +66,10 @@
     padding: var(--space-m);
     transition: border 0.3s ease-in-out;
   }
-  .task:hover {
+  article:hover {
     border: 2px solid var(--color-accent);
   }
-  .delete {
+  button {
     grid-row-end: span 3;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
@@ -88,20 +78,25 @@
     height: 24px;
   }
 
-  .delete:focus,
-  .task:hover .delete {
+  button:focus,
+  article:hover button {
     opacity: 1;
   }
 
-  .tags {
+  ul {
     list-style-type: none;
     display: flex;
     gap: var(--space-s);
     flex-wrap: wrap;
   }
-  .tag {
+  li {
     padding: 4px;
     border-radius: var(--border-radius);
     color: var(--color-bg);
+  }
+
+  p {
+    color: var(--color-caption);
+    font-size: var(--caption);
   }
 </style>

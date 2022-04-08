@@ -44,7 +44,7 @@
   on:dragleave={handleDragLeave}
   on:drop={handleDragDrop}
 >
-  <div class="header">
+  <div>
     <h1 id={categoryId}>{label}</h1>
     {#if showForm}
       <AddTask
@@ -55,7 +55,6 @@
       />
     {:else}
       <button
-        class="add"
         type="button"
         on:click={() => {
           showForm = true;
@@ -95,7 +94,7 @@
     font-size: 1.05rem;
   }
 
-  .header {
+  div {
     display: flex;
     flex-direction: column;
     gap: var(--space-s);
@@ -104,5 +103,19 @@
 
   .over {
     border: 2px solid var(--color-accent);
+  }
+
+  button {
+    display: flex;
+    place-content: center;
+    align-items: center;
+    padding: var(--space-s) var(--space-m);
+    color: var(--color-caption);
+    background: var(--color-task);
+    border-radius: var(--border-radius);
+    fill: var(--color-caption);
+  }
+  button svg {
+    padding-right: var(--space-s);
   }
 </style>

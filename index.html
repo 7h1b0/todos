@@ -45,16 +45,9 @@
       :is(input, button):focus-visible {
         outline: var(--color-accent) solid 2px;
       }
-      label,
-      .caption,
-      .export {
+      label {
         color: var(--color-caption);
         font-size: var(--caption);
-      }
-      .add {
-        display: flex;
-        place-content: center;
-        align-items: center;
       }
       input {
         font-size: 1rem;
@@ -71,39 +64,8 @@
         background: none;
         cursor: pointer;
       }
-      .add {
-        padding: var(--space-s) var(--space-m);
-        color: var(--color-caption);
-        background: var(--color-task);
-        border-radius: var(--border-radius);
-        fill: var(--color-caption);
-      }
       svg {
         height: 20px;
-      }
-      .add svg {
-        padding-right: var(--space-s);
-      }
-
-      .buttons {
-        display: flex;
-        place-content: flex-end;
-        padding: var(--space-m) 0;
-      }
-      .flat {
-        color: var(--color-accent);
-        font-size: var(--caption);
-        margin-right: var(--space-m);
-      }
-      .raise {
-        color: white;
-        background: var(--color-accent);
-        padding: var(--space-s) var(--space-m);
-        font-size: var(--caption);
-        border-radius: var(--border-radius);
-      }
-      .hidden {
-        display: none;
       }
     </style>
   </head>

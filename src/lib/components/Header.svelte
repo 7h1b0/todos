@@ -36,12 +36,7 @@
 <header>
   <label>
     <span class="hidden">Search Tags</span>
-    <input
-      type="search"
-      placeholder="Search tags"
-      class="search"
-      on:input={handleInput}
-    />
+    <input type="search" placeholder="Search tags" on:input={handleInput} />
   </label>
   <button
     class="export start-3"
@@ -93,11 +88,6 @@
     margin: 0 auto var(--space-m);
   }
 
-  :is(.add, .export):hover {
-    color: var(--color-accent);
-    fill: var(--color-accent);
-  }
-
   .start-3 {
     grid-column-start: 3;
   }
@@ -105,9 +95,15 @@
   .export {
     cursor: pointer;
     margin: var(--space-m);
+    color: var(--color-caption);
+    font-size: var(--caption);
+  }
+  .export:hover {
+    color: var(--color-accent);
+    fill: var(--color-accent);
   }
 
-  .search {
+  [type='search'] {
     display: block;
     width: 100%;
     padding: var(--space-m) var(--space-s) var(--space-m) 36px;
@@ -119,8 +115,11 @@
     border: none;
     outline: none;
   }
-
-  .search:focus {
+  [type='search']:focus {
     outline: var(--color-accent) solid 2px;
+  }
+
+  .hidden {
+    display: none;
   }
 </style>
