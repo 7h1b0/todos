@@ -118,4 +118,8 @@
   button svg {
     padding-right: var(--space-s);
   }
+  button:hover {
+    color: var(--color-accent);
+    fill: var(--color-accent);
+  }
 </style>
