@@ -3,11 +3,23 @@ export const ADD = 'ADD';
 export const UPDATE = 'UPDATE';
 export const SET = 'SET';
 
-export function addTask(title, categoryId, tags, date = Date.now()) {
+export function addTask(title, categoryId, tags, boardId, date = Date.now()) {
   return {
     type: ADD,
-    data: { id: date, title, categoryId, date, updatedAt: date, tags },
+    data: {
+      id: date,
+      title,
+      categoryId,
+      date,
+      updatedAt: date,
+      tags,
+      board: boardId,
+    },
   };
+}
+
+export function addBoard(title) {
+  return { type: ADD, data: { id: Date.now(), title } };
 }
 
 export function removeTask(id) {

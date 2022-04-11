@@ -1,9 +1,10 @@
-import { writable, derived } from 'svelte/store';
+import { derived, writable } from 'svelte/store';
 import { reduceTasks } from '../utils/reducers';
 import dispatchMiddleware from '../utils/dispatchMiddleware';
 import { groupBy } from '../utils/utils';
 import getDb from '../utils/database';
 import { search } from './search';
+import { currentBoard } from './boards';
 
 export const tasks = writable([], async (set) => {
   const db = await getDb();
@@ -15,15 +16,20 @@ async function dispatch(action) {
   tasks.update((state) => reduceTasks(state, action));
 }
 
-export default dispatchMiddleware(dispatch);
+export default dispatchMiddleware(dispatch, 'tasks');
 
 export const groupedFilteredTasks = derived(
-  [tasks, search],
-  ([$tasks, $search]) => {
+  [currentBoard, search, tasks],
+  async ([$currentBoard, $search], set) => {
+    const db = await getDb('tasks');
+    const event = await db.findAllByIndex('board', $currentBoard.id);
+    const tasks = event.target.result;
+
     const regex = new RegExp($search, 'gi');
-    const tasks = $tasks.filter((task) =>
+    const filteredTasks = tasks.filter((task) =>
       task.tags.some((tag) => regex.test(tag)),
     );
-    return groupBy(tasks, 'categoryId');
+    set(groupBy(filteredTasks, 'categoryId'));
   },
+  {},
 );

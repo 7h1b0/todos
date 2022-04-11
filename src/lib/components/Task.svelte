@@ -3,6 +3,7 @@
   export let title;
   export let tags;
   export let date;
+  export let board;
   export let updatedAt;
   export let categoryId;
 
@@ -13,7 +14,7 @@
   function handleDrag(e) {
     e.dataTransfer.setData(
       'task',
-      JSON.stringify({ id, title, updatedAt, tags, date, categoryId }),
+      JSON.stringify({ id, title, updatedAt, tags, date, categoryId, board }),
     );
     e.dataTransfer.effectAllowed = 'move';
     e.dataTransfer.dropEffect = 'move';
