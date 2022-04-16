@@ -1,9 +1,9 @@
 import getDb from './database';
 import { ADD, REMOVE, UPDATE, SET } from './actions';
 
-export default function dispatchMiddleware(dispatch) {
+export default function dispatchMiddleware(dispatch, table = 'tasks') {
   return async (action) => {
-    const db = await getDb();
+    const db = await getDb(table);
     switch (action.type) {
       case SET:
         await db.set(action.data);

@@ -1,22 +1,14 @@
 <script>
-  export let categoryId;
   export let onClose;
 
-  import { get } from 'svelte/store';
-  import { stringToArray } from '../utils/utils';
-  import dispatch from '../stores/tasks';
-  import { currentBoard } from '../stores/boards';
-  import { addTask } from '../utils/actions';
+  import dispatch from '../stores/boards';
+  import { addBoard } from '../utils/actions';
 
   let value = '';
-  let tags = '';
 
   function handleSubmit(e) {
     e.preventDefault();
-    const board = get(currentBoard);
-
-    const tagsList = stringToArray(tags);
-    dispatch(addTask(value, categoryId, tagsList, board.id));
+    dispatch(addBoard(value));
     onClose();
   }
 </script>
@@ -26,17 +18,9 @@
     Title
     <input type="text" placeholder="Enter task title" bind:value />
   </label>
-  <label>
-    Tags
-    <input
-      type="text"
-      placeholder="Enter tags separated by comma"
-      bind:value={tags}
-    />
-  </label>
   <div>
     <button type="button" on:click={onClose}>Cancel</button>
-    <button type="submit">Add task</button>
+    <button type="submit">Add board</button>
   </div>
 </form>
 

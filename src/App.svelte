@@ -1,17 +1,42 @@
 <script>
   import TaskList from './lib/components/TaskList.svelte';
   import Header from './lib/components/Header.svelte';
+  import Nav from './lib/components/Nav.svelte';
   import { CATEGORIES } from './lib/utils/categories';
   import { groupedFilteredTasks } from './lib/stores/tasks';
 </script>
 
-<Header />
-<main>
-  {#each CATEGORIES as category}
-    <TaskList
-      label={category.title}
-      categoryId={category.id}
-      tasks={$groupedFilteredTasks[category.id] || []}
-    />
-  {/each}
-</main>
+<div>
+  <Nav />
+  <Header />
+  <main>
+    {#each CATEGORIES as category}
+      <TaskList
+        label={category.title}
+        categoryId={category.id}
+        tasks={$groupedFilteredTasks[category.id] || []}
+      />
+    {/each}
+  </main>
+</div>
+
+<style>
+  div {
+    display: grid;
+    grid-template-columns: clamp(200px, 20%, 300px) 1fr 0px;
+    grid-template-rows: auto 1fr;
+    justify-items: stretch;
+    gap: var(--space-m) 32px;
+    min-height: 100vh;
+  }
+
+  main {
+    grid-row: 2;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto 2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 32px;
+  }
+</style>
