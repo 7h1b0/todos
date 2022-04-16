@@ -11,11 +11,6 @@ export function groupBy(items, key) {
   }, {});
 }
 
-export function getBoardIdFromLocation() {
-  const params = new URLSearchParams(document.location.search);
-  return params.get('boardId');
-}
-
 export function sortByUpdated(taskA, taskB) {
   return taskA.updatedAt - taskB.updatedAt;
 }
