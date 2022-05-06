@@ -1,4 +1,4 @@
-import { ADD, REMOVE, UPDATE, SET } from './actions';
+import { ADD, REMOVE, UPDATE, SET } from './actions.js';
 
 export function reduceTasks(state, action) {
   switch (action.type) {

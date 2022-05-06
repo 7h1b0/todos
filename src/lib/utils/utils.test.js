@@ -1,14 +1,17 @@
-import { groupBy, getColorFromString, stringToArray } from './utils';
+import test from 'node:test';
+import assert from 'node:assert/strict';
 
-describe('groupBy', () => {
-  it('should group entries by a given key', () => {
+import { groupBy, getColorFromString, stringToArray } from './utils.js';
+
+test('groupBy', async (t) => {
+  await t.test('should group entries by a given key', () => {
     const tasks = [
       { id: 2, group: 1 },
       { id: 1, group: 1 },
       { id: 3, group: 2 },
     ];
 
-    expect(groupBy(tasks, 'group')).toEqual({
+    assert.deepStrictEqual(groupBy(tasks, 'group'), {
       1: [
         { id: 2, group: 1 },
         { id: 1, group: 1 },
@@ -17,7 +20,7 @@ describe('groupBy', () => {
     });
   });
 
-  it('should ignore entries without the given key', () => {
+  await t.test('should ignore entries without the given key', () => {
     const tasks = [
       { id: 2, group: 0 },
       { id: 1, group: 0 },
@@ -25,7 +28,7 @@ describe('groupBy', () => {
       { id: 3, groups: 2 },
     ];
 
-    expect(groupBy(tasks, 'group')).toEqual({
+    assert.deepStrictEqual(groupBy(tasks, 'group'), {
       0: [
         { id: 2, group: 0 },
         { id: 1, group: 0 },
@@ -35,21 +38,24 @@ describe('groupBy', () => {
   });
 });
 
-describe('getColorFromString', () => {
-  it('should return the same color for a same String', () => {
-    expect(getColorFromString('DrPlop')).toBe(getColorFromString('DrPlop'));
+test('getColorFromString', async (t) => {
+  await t.test('should return the same color for a same String', () => {
+    assert.strictEqual(
+      getColorFromString('DrPlop'),
+      getColorFromString('DrPlop'),
+    );
   });
 
-  it('should return a valid color', () => {
-    expect(getColorFromString('important')).toBe('#bf616a');
-    expect(getColorFromString('Svelte')).toBe('#ebcb8b');
-    expect(getColorFromString('Preact')).toBe('#ebcb8b');
-    expect(getColorFromString('Jest')).toBe('#d08770');
+  await t.test('should return a valid color', () => {
+    assert.strictEqual(getColorFromString('important'), '#bf616a');
+    assert.strictEqual(getColorFromString('Svelte'), '#ebcb8b');
+    assert.strictEqual(getColorFromString('Preact'), '#ebcb8b');
+    assert.strictEqual(getColorFromString('Jest'), '#d08770');
   });
 });
 
-describe('stringToArray', () => {
-  it.each([
+test('stringToArray', async (t) => {
+  const data = [
     ['test', ['test']],
     [' jest', ['jest']],
     ['test, jest', ['test', 'jest']],
@@ -57,7 +63,13 @@ describe('stringToArray', () => {
     ['', []],
     [undefined, []],
     [' ', []],
-  ])('should return the right array', (input, expected) => {
-    expect(stringToArray(input)).toEqual(expected);
-  });
+  ];
+
+  await Promise.all(
+    data.map(([input, expected]) =>
+      t.test('should return the right array', () => {
+        assert.deepStrictEqual(stringToArray(input), expected);
+      }),
+    ),
+  );
 });
