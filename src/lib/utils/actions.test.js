@@ -1,3 +1,7 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import FakeTimers from '@sinonjs/fake-timers';
+
 import {
   addTask,
   removeTask,
@@ -7,58 +11,60 @@ import {
   REMOVE,
   UPDATE,
   SET,
-} from './actions';
+} from './actions.js';
 
-describe('addTask', () => {
-  it('should create a ADD action', () => {
+test('addTask', async (t) => {
+  await t.test('should create a ADD action', () => {
     const date = new Date('2018-08-01T16:00').getTime();
-    jest.useFakeTimers('modern').setSystemTime(date);
-    const action = addTask('test', 2, ['tests', 'important']);
+    const clock = FakeTimers.install({ now: date });
+    const action = addTask('test', 2, ['tests', 'important'], 1);
 
-    expect(action).toEqual({
+    assert.deepStrictEqual(action, {
       type: ADD,
       data: {
         id: date,
         title: 'test',
         categoryId: 2,
+        board: 1,
         tags: ['tests', 'important'],
         date: date,
         updatedAt: date,
       },
     });
+    clock.uninstall();
   });
 });
 
-describe('removeTask', () => {
-  it('should create a REMOVE action', () => {
+test('removeTask', async (t) => {
+  await t.test('should create a REMOVE action', () => {
     const action = removeTask(2);
 
-    expect(action).toEqual({
+    assert.deepStrictEqual(action, {
       type: REMOVE,
       data: 2,
     });
   });
 });
 
-describe('updateTask', () => {
-  it('should create a UPDATE action', () => {
+test('updateTask', async (t) => {
+  await t.test('should create a UPDATE action', () => {
     const action = updateTask({ id: 2, title: 'test' });
 
-    expect(action).toEqual({
+    assert.deepStrictEqual(action, {
       type: UPDATE,
       data: { id: 2, title: 'test' },
     });
   });
 });
 
-describe('set', () => {
-  it('should create a SET action', () => {
+test('set', async (t) => {
+  await t.test('should create a SET action', () => {
     const action = set([
       { id: 1, title: 'test' },
       { id: 2, title: 'unit' },
     ]);
 
-    expect(action).toEqual({
+    assert.deepStrictEqual(action, {
       type: SET,
       data: [
         { id: 1, title: 'test' },
