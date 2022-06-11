@@ -6,13 +6,12 @@ beforeEach(() => {
 });
 
 it('allows to add, remove and drag and drop tasks', () => {
-  cy.addTask('Todo', 'Get more sleep', 'task');
+  cy.addTask('Todo', 'Get more sleep');
   cy.addTask('Todo', 'increase coverage', 'important, test');
 
   cy.findByRole('region', { name: 'Todo' }).within(() => {
     cy.findByRole('article', { name: 'Get more sleep' }).within(() => {
       cy.findByRole('heading', { name: 'Get more sleep' }).should('be.visible');
-      cy.findByText('task').should('be.visible');
     });
     cy.findByRole('article', { name: 'increase coverage' }).within(() => {
       cy.findByRole('heading', { name: 'increase coverage' }).should(

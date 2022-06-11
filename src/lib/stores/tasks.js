@@ -26,9 +26,14 @@ export const groupedFilteredTasks = derived(
     const tasks = event.target.result;
 
     const regex = new RegExp($search, 'gi');
-    const filteredTasks = tasks.filter((task) =>
-      task.tags.some((tag) => regex.test(tag)),
-    );
+    const filteredTasks = tasks.filter((task) => {
+      if (task.tags.length > 0) {
+        return task.tags.some((tag) => regex.test(tag));
+      } else if ($search === '') {
+        return true;
+      }
+      return false;
+    });
     set(groupBy(filteredTasks, 'categoryId'));
   },
   {},
