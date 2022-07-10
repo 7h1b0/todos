@@ -1,5 +1,4 @@
 import '@testing-library/cypress/add-commands';
-import '@cypress/code-coverage/support';
 
 Cypress.Commands.add('addTask', (category, label, tags = '') => {
   cy.findByRole('button', { name: `Add ${category} task` }).click();
