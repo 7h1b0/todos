@@ -19,9 +19,9 @@
   },
   "devDependencies": {
     "@sinonjs/fake-timers": "^9.1.2",
-    "@sveltejs/vite-plugin-svelte": "^1.0.0-next.30",
-    "@swc/core": "^1.2.130",
-    "@swc/jest": "^0.2.17",
+    "@sveltejs/vite-plugin-svelte": "^1.0.1",
+    "@swc/core": "^1.2.218",
+    "@swc/jest": "^0.2.22",
     "@testing-library/cypress": "^8.0.2",
     "cypress": "^10.3.0",
     "husky": "^8.0.1",
@@ -31,6 +31,6 @@
     "svelte": "^3.44.0",
     "svelte-check": "^2.2.7",
     "svelte-preprocess": "^4.9.8",
-    "vite": "^2.7.2"
+    "vite": "^3.0.2"
   }
 }
