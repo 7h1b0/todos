@@ -55,7 +55,7 @@ jobs:
         uses: cypress-io/github-action@v3
         with:
           browser: ${{ matrix.browser }}
-          start: npm run preview
+          start: npm run preview -- --host
           wait-on: 'http://localhost:4173'
 
   release:
