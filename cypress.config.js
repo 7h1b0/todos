@@ -7,6 +7,6 @@ export default defineConfig({
     openMode: 0,
   },
   e2e: {
-    baseUrl: 'http://127.0.0.1:5000',
+    baseUrl: 'http://localhost:4173',
   },
 });
