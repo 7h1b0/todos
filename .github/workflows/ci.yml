@@ -56,7 +56,7 @@ jobs:
         with:
           browser: ${{ matrix.browser }}
           start: npm run preview
-          wait-on: 'http://localhost:5000'
+          wait-on: 'http://localhost:4173'
 
   release:
     if: ${{ contains('refs/heads/master', github.ref) }}
