@@ -1,10 +1,10 @@
-import test from 'node:test';
+import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 
 import { groupBy, getColorFromString, stringToArray } from './utils.js';
 
-test('groupBy', async (t) => {
-  await t.test('should group entries by a given key', () => {
+describe('groupBy', () => {
+  it('should group entries by a given key', () => {
     const tasks = [
       { id: 2, group: 1 },
       { id: 1, group: 1 },
@@ -20,7 +20,7 @@ test('groupBy', async (t) => {
     });
   });
 
-  await t.test('should ignore entries without the given key', () => {
+  it('should ignore entries without the given key', () => {
     const tasks = [
       { id: 2, group: 0 },
       { id: 1, group: 0 },
@@ -38,15 +38,15 @@ test('groupBy', async (t) => {
   });
 });
 
-test('getColorFromString', async (t) => {
-  await t.test('should return the same color for a same String', () => {
+describe('getColorFromString', () => {
+  it('should return the same color for a same String', () => {
     assert.strictEqual(
       getColorFromString('DrPlop'),
       getColorFromString('DrPlop'),
     );
   });
 
-  await t.test('should return a valid color', () => {
+  it('should return a valid color', () => {
     assert.strictEqual(getColorFromString('important'), '#bf616a');
     assert.strictEqual(getColorFromString('Svelte'), '#ebcb8b');
     assert.strictEqual(getColorFromString('Preact'), '#ebcb8b');
@@ -54,7 +54,7 @@ test('getColorFromString', async (t) => {
   });
 });
 
-test('stringToArray', async (t) => {
+describe('stringToArray', async () => {
   const data = [
     ['test', ['test']],
     [' jest', ['jest']],
@@ -65,11 +65,9 @@ test('stringToArray', async (t) => {
     [' ', []],
   ];
 
-  await Promise.all(
-    data.map(([input, expected]) =>
-      t.test('should return the right array', () => {
-        assert.deepStrictEqual(stringToArray(input), expected);
-      }),
-    ),
+  data.map(([input, expected]) =>
+    it('should return the right array', () => {
+      assert.deepStrictEqual(stringToArray(input), expected);
+    }),
   );
 });
