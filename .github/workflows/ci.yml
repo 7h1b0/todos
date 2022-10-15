@@ -31,9 +31,6 @@ jobs:
   test:
     name: Cypress run
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        browser: ['chrome', 'firefox']
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
@@ -54,7 +51,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v3
         with:
-          browser: ${{ matrix.browser }}
+          browser: 'chrome'
           start: npm run preview -- --host
           wait-on: 'http://localhost:4173'
 
