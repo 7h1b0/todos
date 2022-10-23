@@ -6,7 +6,7 @@
 <header>
   <h1>{$currentBoard.title}</h1>
   <label>
-    <span class="hidden">Search Tags</span>
+    <span>Search Tags</span>
     <input type="search" placeholder="Search tags" bind:value={$search} />
   </label>
 </header>
@@ -25,7 +25,7 @@
     font-size: 2rem;
   }
 
-  [type='search'] {
+  input {
     display: block;
     width: 100%;
     padding: var(--space-m) var(--space-s) var(--space-m) 36px;
@@ -37,11 +37,11 @@
     border: none;
     outline: none;
   }
-  [type='search']:focus {
+  input:focus {
     outline: var(--color-accent) solid 2px;
   }
 
-  .hidden {
+  span {
     display: none;
   }
 </style>
