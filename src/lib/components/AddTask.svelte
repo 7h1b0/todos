@@ -4,9 +4,8 @@
 
   import { get } from 'svelte/store';
   import { stringToArray } from '../utils/utils';
-  import dispatch from '../stores/tasks';
+  import { tasksStore } from '../stores/tasks';
   import { currentBoard } from '../stores/boards';
-  import { addTask } from '../utils/actions';
 
   let value = '';
   let tags = '';
@@ -15,8 +14,16 @@
     e.preventDefault();
     const board = get(currentBoard);
 
-    const tagsList = stringToArray(tags);
-    dispatch(addTask(value, categoryId, tagsList, board.id));
+    const now = Date.now();
+    tasksStore.add({
+      id: now,
+      title: value,
+      categoryId,
+      tags: stringToArray(tags),
+      board: board.id,
+      date: now,
+      updatedAt: now,
+    });
     onClose();
   }
 </script>

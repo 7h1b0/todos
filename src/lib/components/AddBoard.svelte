@@ -1,14 +1,13 @@
 <script>
   export let onClose;
 
-  import dispatch from '../stores/boards';
-  import { addBoard } from '../utils/actions';
+  import { boards } from '../stores/boards';
 
   let value = '';
 
   function handleSubmit(e) {
     e.preventDefault();
-    dispatch(addBoard(value));
+    boards.add({ id: Date.now(), title: value });
     onClose();
   }
 </script>

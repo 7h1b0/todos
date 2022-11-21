@@ -1,11 +1,6 @@
 <script lang="ts">
-  import { set } from '../utils/actions';
-  import dispatchTasks, { tasks } from '../stores/tasks';
-  import dispatchBoards, {
-    boards,
-    currentBoard,
-    INITIAL_BOARD,
-  } from '../stores/boards';
+  import { tasksStore } from '../stores/tasks';
+  import { boards, currentBoard, INITIAL_BOARD } from '../stores/boards';
   import AddBoard from './AddBoard.svelte';
 
   let showForm = false;
@@ -17,7 +12,9 @@
   function handleExport() {
     const dataStr =
       'data:text/json;charset=utf-8,' +
-      encodeURIComponent(JSON.stringify({ tasks: $tasks, boards: $boards }));
+      encodeURIComponent(
+        JSON.stringify({ tasks: $tasksStore, boards: $boards }),
+      );
     const a = document.createElement('a');
     a.setAttribute('href', dataStr);
     a.setAttribute('download', 'tasks.json');
@@ -31,8 +28,8 @@
     reader.onload = (event) => {
       try {
         const data = JSON.parse(`${event.target.result}`);
-        dispatchTasks(set(data.tasks));
-        dispatchBoards(set(data.boards));
+        tasksStore.set(data.tasks);
+        boards.set(data.boards);
       } catch (e) {
         console.error(e);
       }
