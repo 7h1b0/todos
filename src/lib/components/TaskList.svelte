@@ -5,9 +5,8 @@
 
   import Task from './Task.svelte';
   import AddTask from './AddTask.svelte';
-  import { updateTask } from '../utils/actions';
   import { sortByUpdated } from '../utils/utils';
-  import dispatch from '../stores/tasks';
+  import { tasksStore } from '../stores/tasks';
 
   let showForm = false;
   let over = false;
@@ -27,13 +26,11 @@
     over = false;
 
     const task = JSON.parse(e.dataTransfer.getData('task'));
-    dispatch(
-      updateTask({
-        ...task,
-        categoryId,
-        updatedAt: Date.now(),
-      }),
-    );
+    tasksStore.update({
+      ...task,
+      categoryId,
+      updatedAt: Date.now(),
+    });
   }
 </script>
 

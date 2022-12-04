@@ -8,8 +8,7 @@
   export let categoryId;
 
   import { formatDate, getColorFromString } from '../utils/utils';
-  import { removeTask } from '../utils/actions';
-  import dispatch from '../stores/tasks';
+  import { tasksStore } from '../stores/tasks';
 
   function handleDrag(e) {
     e.dataTransfer.setData(
@@ -21,7 +20,7 @@
   }
 
   function handleRemove() {
-    dispatch(removeTask(id));
+    tasksStore.remove(id);
   }
 </script>
 
