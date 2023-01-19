@@ -8,5 +8,5 @@ export const currentBoard = writable(INITIAL_BOARD);
 export const boards = dbWritable(async (set) => {
   const db = await getDb('boards');
   const event = await db.findAll();
-  set(event.target.result);
+  set([INITIAL_BOARD, ...event.target.result]);
 }, 'boards');

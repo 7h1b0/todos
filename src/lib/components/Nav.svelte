@@ -63,14 +63,12 @@
     {/if}
   </header>
   <ul>
-    <li>
-      <button on:click={() => ($currentBoard = INITIAL_BOARD)}
-        >{INITIAL_BOARD.title}</button
-      >
-    </li>
     {#each $boards as board}
       <li>
-        <button on:click={() => ($currentBoard = board)}>{board.title}</button>
+        <button
+          aria-current={$currentBoard.id === board.id}
+          on:click={() => ($currentBoard = board)}>{board.title}</button
+        >
       </li>
     {/each}
   </ul>
@@ -124,8 +122,8 @@
     gap: var(--space-m);
     width: 100%;
     grid-row: 1 /3;
-    background: var(--color-nav);
     padding: var(--space-m);
+    border-right: 3px solid var(--color-task);
   }
 
   header {
@@ -170,8 +168,9 @@
     color: var(--color-text);
   }
 
-  ul button:hover {
-    outline: var(--color-accent) solid 2px;
+  ul button:hover,
+  ul [aria-current='true'] {
+    color: var(--color-accent);
   }
 
   footer {
