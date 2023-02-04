@@ -103,14 +103,15 @@ it('exports tasks to a file', { browser: '!firefox' }, () => {
   cy.readFile(downloadedFilename, { timeout: 15000 }).should(
     ({ tasks, boards }) => {
       expect(tasks.length).to.equals(1);
-      expect(boards.length).to.equals(1);
+      expect(boards.length).to.equals(2);
 
       const [task] = tasks;
       expect(task.title).to.equals('Should be exported');
       expect(task.categoryId).to.equals(0);
 
-      const [board] = boards;
-      expect(board.title).to.equals('New board');
+      const [main, newBoard] = boards;
+      expect(main.title).to.equals('Main');
+      expect(newBoard.title).to.equals('New board');
     },
   );
 });
