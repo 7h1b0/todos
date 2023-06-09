@@ -16,9 +16,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto;
+    inline-size: 100%;
+    max-inline-size: 1400px;
+    margin-inline: auto;
+    margin-block: 0;
   }
 
   h1 {
@@ -27,9 +28,10 @@
 
   input {
     display: block;
-    width: 100%;
-    padding: var(--space-m) var(--space-s) var(--space-m) 36px;
-    margin-top: calc(var(--space-s) / 2);
+    inline-size: 100%;
+    padding-block: var(--space-m);
+    padding-inline: 36px var(--space-s);
+    margin-block-start: calc(var(--space-s) / 2);
     background: var(--color-task) url('./search.svg') 8px center / 20px
       no-repeat;
     color: var(--color-text);

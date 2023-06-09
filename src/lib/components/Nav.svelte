@@ -118,16 +118,17 @@
 <style>
   nav {
     display: grid;
+    inline-size: 100%;
     grid-template-rows: auto 1fr auto;
     gap: var(--space-m);
-    width: 100%;
     grid-row: 1 /3;
     padding: var(--space-m);
-    border-right: 3px solid var(--color-task);
+    border-inline-end: 3px solid var(--color-task);
   }
 
   header {
-    margin: 0 var(--space-m) 0;
+    margin-block: 0;
+    margin-inline: var(--space-m);
   }
 
   header button {
@@ -135,12 +136,13 @@
     border-radius: var(--border-radius);
     color: var(--color-text);
     fill: var(--color-text);
-    width: 100%;
+    inline-size: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: var(--space-s);
-    padding: var(--space-s) var(--space-m);
+    padding-block: var(--space-s);
+    padding-inline: var(--space-m);
   }
 
   header button:hover {
@@ -161,7 +163,7 @@
 
   ul button {
     text-align: start;
-    width: 100%;
+    inline-size: 100%;
     padding: var(--space-m);
     border-radius: var(--border-radius);
     font-size: 1rem;

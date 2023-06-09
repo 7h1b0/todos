@@ -27,14 +27,15 @@
     grid-template-rows: auto 1fr;
     justify-items: stretch;
     gap: var(--space-m) 32px;
-    min-height: 100vh;
+    min-block-size: 100vh;
   }
 
   main {
     grid-row: 2;
-    width: 100%;
-    max-width: 1400px;
-    margin: 0 auto 2rem;
+    inline-size: 100%;
+    max-inline-size: 1400px;
+    margin-inline: auto;
+    margin-block: 0 2rem;
     display: flex;
     align-items: flex-start;
     gap: 32px;

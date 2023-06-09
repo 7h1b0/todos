@@ -74,8 +74,8 @@
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
     color: var(--color-accent);
-    width: 24px;
-    height: 24px;
+    block-size: 24px;
+    inline-size: 24px;
   }
 
   button:focus,

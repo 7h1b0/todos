@@ -95,7 +95,8 @@
     display: flex;
     flex-direction: column;
     gap: var(--space-s);
-    margin: var(--space-m) 0;
+    margin-block: var(--space-m);
+    margin-inline: 0;
   }
 
   .over {
@@ -106,14 +107,15 @@
     display: flex;
     place-content: center;
     align-items: center;
-    padding: var(--space-s) var(--space-m);
+    padding-block: var(--space-s);
+    padding-inline: var(--space-m);
     color: var(--color-caption);
     background: var(--color-task);
     border-radius: var(--border-radius);
     fill: var(--color-caption);
   }
   button svg {
-    padding-right: var(--space-s);
+    padding-inline-end: var(--space-s);
   }
   button:hover {
     color: var(--color-accent);

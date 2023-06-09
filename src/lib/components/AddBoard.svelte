@@ -26,9 +26,9 @@
 <style>
   input {
     display: block;
-    width: 100%;
+    inline-size: 100%;
     padding: var(--space-m);
-    margin-top: calc(var(--space-s) / 2);
+    margin-block-start: calc(var(--space-s) / 2);
     background: var(--color-input);
     color: var(--color-text);
     border-radius: var(--border-radius);
@@ -42,7 +42,8 @@
   div {
     display: flex;
     place-content: flex-end;
-    padding: var(--space-m) 0;
+    padding-block: var(--space-m);
+    padding-inline: 0;
   }
 
   [type='button'] {
@@ -54,7 +55,8 @@
   [type='submit'] {
     color: white;
     background: var(--color-accent);
-    padding: var(--space-s) var(--space-m);
+    padding-block: var(--space-s);
+    padding-inline: var(--space-m);
     font-size: var(--caption);
     border-radius: var(--border-radius);
   }
