@@ -1,13 +1,12 @@
 <script>
-  import TaskList from './lib/components/TaskList.svelte';
   import Header from './lib/components/Header.svelte';
-  import Nav from './lib/components/Nav.svelte';
+  import TaskList from './lib/components/TaskList.svelte';
+  import Footer from './lib/components/Footer.svelte';
   import { CATEGORIES } from './lib/utils/categories';
-  import { groupedFilteredTasks } from './lib/stores/tasks';
+  import { groupedFilteredTasks, progress } from './lib/stores/tasks';
 </script>
 
-<div>
-  <Nav />
+<div style="--progress: {$progress}">
   <Header />
   <main>
     {#each CATEGORIES as category}
@@ -18,26 +17,37 @@
       />
     {/each}
   </main>
+  <Footer />
 </div>
 
 <style>
   div {
     display: grid;
-    grid-template-columns: clamp(200px, 20%, 300px) 1fr 0px;
-    grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
     justify-items: stretch;
-    gap: var(--space-m) 32px;
+    gap: var(--space-4);
     min-block-size: 100vh;
-  }
-
-  main {
-    grid-row: 2;
     inline-size: 100%;
     max-inline-size: 1400px;
     margin-inline: auto;
-    margin-block: 0 2rem;
+    padding-block-start: var(--space-4);
+  }
+
+  div::before {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    inline-size: var(--progress);
+    content: '';
+    block-size: 3px;
+    background: var(--color-accent);
+    transition: inline-size 0.3s linear;
+  }
+
+  main {
     display: flex;
     align-items: flex-start;
-    gap: 32px;
+    gap: var(--space-4);
   }
 </style>

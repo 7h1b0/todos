@@ -1,8 +1,8 @@
 import { derived } from 'svelte/store';
 import { groupBy } from '../utils/utils';
 import getDb from '../utils/database';
+import { DONE } from '../utils/categories';
 import { search } from './search';
-import { currentBoard } from './boards';
 import dbWritable from './dbWritable';
 
 export const tasksStore = dbWritable(async (set) => {
@@ -12,14 +12,10 @@ export const tasksStore = dbWritable(async (set) => {
 }, 'tasks');
 
 export const groupedFilteredTasks = derived(
-  [currentBoard, search, tasksStore],
-  async ([$currentBoard, $search], set) => {
-    const db = await getDb('tasks');
-    const event = await db.findAllByIndex('board', $currentBoard.id);
-    const tasks = event.target.result;
-
+  [search, tasksStore],
+  async ([$search, $tasks], set) => {
     const regex = new RegExp($search, 'gi');
-    const filteredTasks = tasks.filter((task) => {
+    const filteredTasks = $tasks.filter((task) => {
       if (task.tags.length > 0) {
         return task.tags.some((tag) => regex.test(tag));
       } else if ($search === '') {
@@ -27,7 +23,13 @@ export const groupedFilteredTasks = derived(
       }
       return false;
     });
+
     set(groupBy(filteredTasks, 'categoryId'));
   },
   {},
 );
+
+export const progress = derived(tasksStore, ($tasks) => {
+  const doneTask = $tasks.filter((task) => DONE.id === task.categoryId);
+  return `${(doneTask.length * 100) / $tasks.length}%`;
+});
