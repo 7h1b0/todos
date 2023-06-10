@@ -57,23 +57,6 @@ it('allows to add, remove and drag and drop tasks', () => {
   cy.findByRole('article', { name: 'Make e2e tests' }).should('be.visible');
 });
 
-it('allows to create boards', () => {
-  cy.addBoard('New board');
-
-  // Switch to new board and create task
-  cy.findByRole('button', { name: 'New board' }).click();
-  cy.addTask('Todo', 'Get more sleep', 'task');
-  cy.addTask('In Progress', 'Make e2e tests', 'e2e');
-
-  cy.findByRole('button', { name: 'Main' }).click();
-  cy.findByRole('article', { name: 'Get more sleep' }).should('not.exist');
-  cy.findByRole('article', { name: 'Make e2e tests' }).should('not.exist');
-
-  cy.findByRole('button', { name: 'New board' }).click();
-  cy.findByRole('article', { name: 'Get more sleep' }).should('be.visible');
-  cy.findByRole('article', { name: 'Make e2e tests' }).should('be.visible');
-});
-
 it('saves tasks', () => {
   cy.addTask('Todo', 'Get more sleep', 'task');
   cy.addTask('Done', 'Add e2e tests', 'e2e');
@@ -94,26 +77,18 @@ it('saves tasks', () => {
 // Headless firefox doesn't support downloading a file
 it('exports tasks to a file', { browser: '!firefox' }, () => {
   cy.addTask('Todo', 'Should be exported', 'important');
-  cy.addBoard('New board');
 
   cy.findByRole('button', { name: 'Export' }).click();
 
   const downloadedFilename = path.join('cypress/downloads', 'tasks.json');
 
-  cy.readFile(downloadedFilename, { timeout: 15000 }).should(
-    ({ tasks, boards }) => {
-      expect(tasks.length).to.equals(1);
-      expect(boards.length).to.equals(2);
+  cy.readFile(downloadedFilename, { timeout: 15000 }).should(({ tasks }) => {
+    expect(tasks.length).to.equals(1);
 
-      const [task] = tasks;
-      expect(task.title).to.equals('Should be exported');
-      expect(task.categoryId).to.equals(0);
-
-      const [main, newBoard] = boards;
-      expect(main.title).to.equals('Main');
-      expect(newBoard.title).to.equals('New board');
-    },
-  );
+    const [task] = tasks;
+    expect(task.title).to.equals('Should be exported');
+    expect(task.categoryId).to.equals(0);
+  });
 });
 
 it('imports tasks from a file', () => {

@@ -2,17 +2,14 @@
   export let categoryId;
   export let onClose;
 
-  import { get } from 'svelte/store';
   import { stringToArray } from '../utils/utils';
   import { tasksStore } from '../stores/tasks';
-  import { currentBoard } from '../stores/boards';
 
   let value = '';
   let tags = '';
 
   function handleSubmit(e) {
     e.preventDefault();
-    const board = get(currentBoard);
 
     const now = Date.now();
     tasksStore.add({
@@ -20,7 +17,6 @@
       title: value,
       categoryId,
       tags: stringToArray(tags),
-      board: board.id,
       date: now,
       updatedAt: now,
     });

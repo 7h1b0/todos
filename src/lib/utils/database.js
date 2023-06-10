@@ -8,14 +8,6 @@ export default function getDb(table = 'tasks') {
   let db = undefined;
 
   const scope = {
-    findAllByIndex: (index, id) =>
-      promisifyRequest(
-        db
-          .transaction(table)
-          .objectStore(table)
-          .index(index)
-          .getAll(IDBKeyRange.only(id)),
-      ),
     findAll: () =>
       promisifyRequest(db.transaction(table).objectStore(table).getAll()),
     add: (task) =>
@@ -42,7 +34,7 @@ export default function getDb(table = 'tasks') {
   };
 
   return new Promise((resolve, reject) => {
-    const request = window.indexedDB.open('Todos', 6);
+    const request = window.indexedDB.open('Todos', 7);
     request.onerror = reject;
     request.onsuccess = (event) => {
       db = event.target.result;
@@ -52,10 +44,6 @@ export default function getDb(table = 'tasks') {
     request.onupgradeneeded = (event) => {
       const db = event.target.result;
       const tasks = db.createObjectStore('tasks', {
-        keyPath: 'id',
-      });
-      tasks.createIndex('board', 'board', { unique: false });
-      db.createObjectStore('boards', {
         keyPath: 'id',
       });
     };

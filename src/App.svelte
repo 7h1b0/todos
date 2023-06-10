@@ -1,13 +1,12 @@
 <script>
   import TaskList from './lib/components/TaskList.svelte';
   import Header from './lib/components/Header.svelte';
-  import Nav from './lib/components/Nav.svelte';
+  import Footer from './lib/components/Footer.svelte';
   import { CATEGORIES } from './lib/utils/categories';
   import { groupedFilteredTasks } from './lib/stores/tasks';
 </script>
 
 <div>
-  <Nav />
   <Header />
   <main>
     {#each CATEGORIES as category}
@@ -18,13 +17,14 @@
       />
     {/each}
   </main>
+  <Footer />
 </div>
 
 <style>
   div {
     display: grid;
-    grid-template-columns: clamp(200px, 20%, 300px) 1fr 0px;
-    grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
     justify-items: stretch;
     gap: var(--space-m) 32px;
     min-block-size: 100vh;

@@ -1,10 +1,9 @@
 <script>
   import { search } from '../stores/search';
-  import { currentBoard } from '../stores/boards';
 </script>
 
 <header>
-  <h1>{$currentBoard.title}</h1>
+  <h1>Board</h1>
   <label>
     <span>Search Tags</span>
     <input type="search" placeholder="Search tags" bind:value={$search} />

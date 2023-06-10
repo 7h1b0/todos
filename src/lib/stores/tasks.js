@@ -2,7 +2,6 @@ import { derived } from 'svelte/store';
 import { groupBy } from '../utils/utils';
 import getDb from '../utils/database';
 import { search } from './search';
-import { currentBoard } from './boards';
 import dbWritable from './dbWritable';
 
 export const tasksStore = dbWritable(async (set) => {
@@ -12,10 +11,10 @@ export const tasksStore = dbWritable(async (set) => {
 }, 'tasks');
 
 export const groupedFilteredTasks = derived(
-  [currentBoard, search, tasksStore],
-  async ([$currentBoard, $search], set) => {
+  [search, tasksStore],
+  async ([$search], set) => {
     const db = await getDb('tasks');
-    const event = await db.findAllByIndex('board', $currentBoard.id);
+    const event = await db.findAll();
     const tasks = event.target.result;
 
     const regex = new RegExp($search, 'gi');
