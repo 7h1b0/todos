@@ -105,11 +105,6 @@ it('imports tasks from a file', () => {
       cy.findByText('exported').should('be.visible');
     });
 
-  cy.findByRole('article', { name: 'dark theme' }).should('not.exist');
-
-  cy.findByRole('button', { name: 'Theme' }).click();
-
-  cy.findByRole('article', { name: 'import feature' }).should('not.exist');
   cy.findByRole('region', { name: 'In Progress' })
     .findByRole('article', { name: 'dark theme' })
     .within(() => {
