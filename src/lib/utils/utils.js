@@ -6,7 +6,7 @@ export function groupBy(items, key) {
   return items.reduce((result, item) => {
     if (result[item[key]]) {
       result[item[key]].push(item);
-    } else {
+    } else if (item[key] !== undefined) {
       result[item[key]] = [item];
     }
     return result;
