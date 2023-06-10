@@ -58,12 +58,12 @@
     position: relative;
     display: grid;
     grid-template-columns: 1fr auto;
-    gap: var(--space-s);
+    gap: var(--space-1);
     background: var(--color-task);
     align-items: center;
     border: 2px solid var(--color-task);
     border-radius: var(--border-radius);
-    padding: var(--space-m);
+    padding: var(--space-2);
     transition: border 0.3s ease-in-out;
   }
   article:hover {
@@ -86,7 +86,7 @@
   ul {
     list-style-type: none;
     display: flex;
-    gap: var(--space-s);
+    gap: var(--space-1);
     flex-wrap: wrap;
   }
   li {

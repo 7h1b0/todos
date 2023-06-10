@@ -12,8 +12,9 @@
     <title>Todos</title>
     <style>
       :root {
-        --space-m: 16px;
-        --space-s: 8px;
+        --space-4: calc(var(--space-1) * 4);
+        --space-2: calc(var(--space-1) * 2);
+        --space-1: 8px;
         --caption: 0.8rem;
         --border-radius: 8px;
         --color-accent: #6b5ecd;
@@ -40,7 +41,7 @@
       }
       label {
         display: block;
-        padding: var(--space-s) 0;
+        padding: var(--space-1) 0;
       }
 
       :is(input, button):focus-visible {

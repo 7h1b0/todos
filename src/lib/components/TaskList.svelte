@@ -80,10 +80,10 @@
   section {
     flex: 1;
     display: flex;
-    gap: var(--space-s);
+    gap: var(--space-1);
     flex-direction: column;
     border: 2px solid var(--color-task);
-    padding: var(--space-m);
+    padding: var(--space-2);
     border-radius: var(--border-radius);
   }
 
@@ -94,8 +94,8 @@
   div {
     display: flex;
     flex-direction: column;
-    gap: var(--space-s);
-    margin-block: var(--space-m);
+    gap: var(--space-1);
+    margin-block: var(--space-2);
     margin-inline: 0;
   }
 
@@ -107,15 +107,15 @@
     display: flex;
     place-content: center;
     align-items: center;
-    padding-block: var(--space-s);
-    padding-inline: var(--space-m);
+    padding-block: var(--space-1);
+    padding-inline: var(--space-2);
     color: var(--color-caption);
     background: var(--color-task);
     border-radius: var(--border-radius);
     fill: var(--color-caption);
   }
   button svg {
-    padding-inline-end: var(--space-s);
+    padding-inline-end: var(--space-1);
   }
   button:hover {
     color: var(--color-accent);

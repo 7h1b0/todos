@@ -72,13 +72,13 @@
   footer {
     display: flex;
     justify-content: center;
-    gap: var(--space-m);
+    gap: var(--space-2);
   }
 
   .export {
     display: flex;
     align-items: center;
-    gap: var(--space-s);
+    gap: var(--space-1);
     cursor: pointer;
     color: var(--color-caption);
     font-size: 1rem;

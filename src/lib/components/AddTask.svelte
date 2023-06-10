@@ -47,8 +47,8 @@
   input {
     display: block;
     inline-size: 100%;
-    padding: var(--space-m);
-    margin-block-start: calc(var(--space-s) / 2);
+    padding: var(--space-2);
+    margin-block-start: calc(var(--space-1) / 2);
     background: var(--color-input);
     color: var(--color-text);
     border-radius: var(--border-radius);
@@ -62,21 +62,21 @@
   div {
     display: flex;
     place-content: flex-end;
-    padding-block: var(--space-m);
+    padding-block: var(--space-2);
     padding-inline: 0;
   }
 
   [type='button'] {
     color: var(--color-accent);
     font-size: var(--caption);
-    margin-inline-end: var(--space-m);
+    margin-inline-end: var(--space-2);
   }
 
   [type='submit'] {
     color: white;
     background: var(--color-accent);
-    padding-block: var(--space-s);
-    padding-inline: var(--space-m);
+    padding-block: var(--space-1);
+    padding-inline: var(--space-2);
     font-size: var(--caption);
     border-radius: var(--border-radius);
   }

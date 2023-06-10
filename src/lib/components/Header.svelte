@@ -16,21 +16,21 @@
     justify-content: space-between;
     align-items: center;
     inline-size: 100%;
-    max-inline-size: 1400px;
-    margin-inline: auto;
-    margin-block: 0;
   }
 
   h1 {
     font-size: 2rem;
   }
 
+  label {
+    padding: 0;
+  }
+
   input {
     display: block;
     inline-size: 100%;
-    padding-block: var(--space-m);
-    padding-inline: 36px var(--space-s);
-    margin-block-start: calc(var(--space-s) / 2);
+    padding-block: var(--space-2);
+    padding-inline: 36px var(--space-1);
     background: var(--color-task) url('./search.svg') 8px center / 20px
       no-repeat;
     color: var(--color-text);

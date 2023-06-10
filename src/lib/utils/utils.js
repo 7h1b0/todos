@@ -4,8 +4,10 @@ export function formatDate(timestamp) {
 
 export function groupBy(items, key) {
   return items.reduce((result, item) => {
-    if (Object.prototype.hasOwnProperty.call(item, key)) {
-      result[item[key]] = [...(result[item[key]] || []), item];
+    if (result[item[key]]) {
+      result[item[key]].push(item);
+    } else {
+      result[item[key]] = [item];
     }
     return result;
   }, {});
