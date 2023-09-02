@@ -28,8 +28,7 @@
     justify-items: stretch;
     gap: var(--space-4);
     min-block-size: 100vh;
-    inline-size: 100%;
-    max-inline-size: 1400px;
+    inline-size: clamp(600px, 95%, 1400px);
     margin-inline: auto;
     padding-block-start: var(--space-4);
   }
