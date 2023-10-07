@@ -15,18 +15,23 @@
     "test": "node --test",
     "test:e2e": "cypress run --quiet",
     "cypress": "cypress",
-    "pre-commit": "pretty-quick --staged"
+    "pre-commit": "lint-staged",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^2.4.2",
     "@testing-library/cypress": "^9.0.0",
     "cypress": "^12.2.0",
     "husky": "^8.0.1",
-    "prettier": "^2.8.8",
-    "pretty-quick": "^3.1.3",
+    "lint-staged": "^14.0.1",
+    "prettier": "^3.0.3",
+    "prettier-plugin-svelte": "^3.0.3",
     "svelte": "^4.0.5",
     "svelte-check": "^3.4.5",
     "svelte-preprocess": "^5.0.0",
-    "vite": "^4.4.2"
+    "vite": "^4.4.11"
+  },
+  "lint-staged": {
+    "*.{js,svelte}": "prettier --write"
   }
 }
