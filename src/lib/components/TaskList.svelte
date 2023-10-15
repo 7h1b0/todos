@@ -10,7 +10,6 @@
 
   let showForm = false;
   let over = false;
-  $: sortedTasks = tasks.sort(sortByUpdated);
 
   function handleDragOver(e) {
     e.preventDefault();
@@ -71,7 +70,7 @@
     {/if}
   </div>
 
-  {#each sortedTasks as task}
+  {#each tasks.toSorted(sortByUpdated) as task}
     <Task {...task} />
   {/each}
 </section>

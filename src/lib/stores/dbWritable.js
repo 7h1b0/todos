@@ -42,11 +42,7 @@ export default function dbWritable(start, table) {
       const indexTargetTask = state.findIndex(({ id }) => id === action.id);
 
       if (~indexTargetTask) {
-        return set([
-          ...state.slice(0, indexTargetTask),
-          action,
-          ...state.slice(indexTargetTask + 1),
-        ]);
+        return set(state.with(indexTargetTask, action));
       }
       set(state);
     },
