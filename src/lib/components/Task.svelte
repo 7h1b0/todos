@@ -7,8 +7,8 @@
   export let updatedAt;
   export let categoryId;
 
-  import { formatDate, getColorFromString } from '../utils/utils';
-  import { tasksStore } from '../stores/tasks';
+  import { formatDate, getColorFromString } from '../utils/utils.js';
+  import { tasksStore } from '../stores/tasks.js';
 
   function handleDrag(e) {
     e.dataTransfer.setData(
@@ -51,7 +51,7 @@
 
 <style>
   h2 {
-    font-size: 1rem;
+    font-size: var(--fontSize-header);
   }
   article {
     cursor: grab;
@@ -67,13 +67,13 @@
     transition: border 0.3s ease-in-out;
   }
   article:hover {
-    border: 2px solid var(--color-accent);
+    border: 2px solid var(--color-accent-200);
   }
   button {
     grid-row-end: span 3;
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
-    color: var(--color-accent);
+    color: var(--color-accent-200);
     block-size: 24px;
     inline-size: 24px;
   }
@@ -93,10 +93,11 @@
     padding: 4px;
     border-radius: var(--border-radius);
     color: var(--color-bg);
+    font-size: var(--fontSize-caption);
   }
 
   p {
     color: var(--color-caption);
-    font-size: var(--caption);
+    font-size: var(--fontSize-caption);
   }
 </style>

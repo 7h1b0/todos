@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { tasksStore } from '../stores/tasks';
+  import { tasksStore } from '../stores/tasks.js';
 
   function handleExport() {
     const dataStr =
@@ -81,12 +81,12 @@
     gap: var(--space-1);
     cursor: pointer;
     color: var(--color-caption);
-    font-size: 1rem;
+    font-size: var(--fontSize-text);
   }
 
   .export:hover {
-    color: var(--color-accent);
-    fill: var(--color-accent);
+    color: var(--color-accent-200);
+    fill: var(--color-accent-200);
   }
 
   .hidden {

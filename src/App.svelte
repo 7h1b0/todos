@@ -3,7 +3,7 @@
   import TaskList from './lib/components/TaskList.svelte';
   import Footer from './lib/components/Footer.svelte';
   import { CATEGORIES } from './lib/utils/categories';
-  import { groupedFilteredTasks, progress } from './lib/stores/tasks';
+  import { groupedFilteredTasks, progress } from './lib/stores/tasks.js';
 </script>
 
 <div style="--progress: {$progress}">
@@ -28,7 +28,7 @@
     justify-items: stretch;
     gap: var(--space-4);
     min-block-size: 100vh;
-    inline-size: clamp(600px, 95%, 1400px);
+    inline-size: min(95%, 1400px);
     margin-inline: auto;
     padding-block-start: var(--space-4);
   }
@@ -40,13 +40,20 @@
     inline-size: var(--progress);
     content: '';
     block-size: 3px;
-    background: var(--color-accent);
+    background: var(--color-accent-200);
     transition: inline-size 0.3s linear;
   }
 
   main {
     display: flex;
     align-items: flex-start;
+    flex-direction: column;
     gap: var(--space-4);
+  }
+
+  @media (width > 800px) {
+    main {
+      flex-direction: row;
+    }
   }
 </style>

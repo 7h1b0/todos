@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -15,9 +15,13 @@
         --space-4: calc(var(--space-1) * 4);
         --space-2: calc(var(--space-1) * 2);
         --space-1: 8px;
-        --caption: 0.8rem;
+        --fontSize-caption: 0.8rem;
+        --fontSize-text: 1rem;
+        --fontSize-header: 1.1rem;
         --border-radius: 8px;
-        --color-accent: #6b5ecd;
+        --color-accent-100: #9ab3cd;
+        --color-accent-200: #81a1c1;
+        --color-accent-300: #67809a;
         --color-nav: #101119;
         --color-bg: #181823;
         --color-task: #242636;
@@ -45,11 +49,11 @@
       }
 
       :is(input, button):focus-visible {
-        outline: var(--color-accent) solid 2px;
+        outline: var(--color-accent-200) solid 2px;
       }
       label {
         color: var(--color-caption);
-        font-size: var(--caption);
+        font-size: var(--fontSize-text);
       }
       input {
         font-size: 1rem;

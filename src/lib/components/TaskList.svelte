@@ -5,8 +5,8 @@
 
   import Task from './Task.svelte';
   import AddTask from './AddTask.svelte';
-  import { sortByUpdated } from '../utils/utils';
-  import { tasksStore } from '../stores/tasks';
+  import { sortByUpdated } from '../utils/utils.js';
+  import { tasksStore } from '../stores/tasks.js';
 
   let showForm = false;
   let over = false;
@@ -79,6 +79,7 @@
   section {
     flex: 1;
     display: flex;
+    width: 100%;
     gap: var(--space-1);
     flex-direction: column;
     border: 2px solid var(--color-task);
@@ -87,7 +88,7 @@
   }
 
   h1 {
-    font-size: 1.05rem;
+    font-size: var(--fontSize-header);
   }
 
   div {
@@ -99,7 +100,7 @@
   }
 
   .over {
-    border: 2px solid var(--color-accent);
+    border: 2px solid var(--color-accent-200);
   }
 
   button {
@@ -112,12 +113,13 @@
     background: var(--color-task);
     border-radius: var(--border-radius);
     fill: var(--color-caption);
+    font-size: var(--fontSize-caption);
   }
   button svg {
     padding-inline-end: var(--space-1);
   }
   button:hover {
-    color: var(--color-accent);
-    fill: var(--color-accent);
+    color: var(--color-accent-200);
+    fill: var(--color-accent-200);
   }
 </style>

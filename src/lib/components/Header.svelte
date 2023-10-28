@@ -1,5 +1,5 @@
 <script>
-  import { search } from '../stores/search';
+  import { search } from '../stores/search.js';
 </script>
 
 <header>
@@ -39,7 +39,7 @@
     outline: none;
   }
   input:focus {
-    outline: var(--color-accent) solid 2px;
+    outline: var(--color-accent-200) solid 2px;
   }
 
   span {

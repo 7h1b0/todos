@@ -3,10 +3,10 @@ import { svelte } from '@sveltejs/vite-plugin-svelte';
 
 export default defineConfig({
   build: {
-    sourcemap: true,
+    sourcemap: false,
     assetsInlineLimit: 0,
-    target: ['firefox91', 'safari15', 'chrome100'],
-    reportCompressedSize: false,
+    target: ['firefox115', 'safari16', 'chrome110'],
+    reportCompressedSize: true,
   },
   plugins: [svelte()],
   server: {

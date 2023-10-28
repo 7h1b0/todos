@@ -2,8 +2,8 @@
   export let categoryId;
   export let onClose;
 
-  import { stringToArray } from '../utils/utils';
-  import { tasksStore } from '../stores/tasks';
+  import { stringToArray } from '../utils/utils.js';
+  import { tasksStore } from '../stores/tasks.js';
 
   let value = '';
   let tags = '';
@@ -56,7 +56,7 @@
     outline: none;
   }
   input:focus {
-    outline: var(--color-accent) solid 2px;
+    outline: var(--color-accent-200) solid 2px;
   }
 
   div {
@@ -67,17 +67,25 @@
   }
 
   [type='button'] {
-    color: var(--color-accent);
-    font-size: var(--caption);
+    color: var(--color-accent-200);
+    font-size: var(--fontSize-text);
     margin-inline-end: var(--space-2);
   }
 
+  [type='button']:hover {
+    color: var(--color-accent-100);
+  }
+
   [type='submit'] {
-    color: white;
-    background: var(--color-accent);
+    color: var(--color-bg);
+    background: var(--color-accent-200);
     padding-block: var(--space-1);
     padding-inline: var(--space-2);
-    font-size: var(--caption);
+    font-size: var(--fontSize-text);
     border-radius: var(--border-radius);
+  }
+
+  [type='submit']:hover {
+    background: var(--color-accent-300);
   }
 </style>
