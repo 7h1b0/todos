@@ -1,3 +1,7 @@
+/**
+ * @param {number} timestamp
+ * @returns {string}
+ */
 export function formatDate(timestamp) {
   return new Intl.DateTimeFormat().format(new Date(timestamp));
 }
@@ -13,11 +17,25 @@ export function groupBy(items, key) {
   }, {});
 }
 
+/**
+ * @typedef {{ id: number, title: string, category: number, date: number, updatedAt: number, tags: string[] }} Task
+ */
+
+/**
+ * @param {Task} taskA
+ * @param {Task} taskB
+ * @returns {number}
+ */
 export function sortByUpdated(taskA, taskB) {
   return taskA.updatedAt - taskB.updatedAt;
 }
 
 export const COLORS = ['#bf616a', '#d08770', '#ebcb8b', '#a3be8c', '#b48ead'];
+
+/**
+ * @param {string} tag
+ * @returns {string}
+ */
 export function getColorFromString(tag) {
   const length = tag.length;
   let score = 0;
@@ -29,6 +47,10 @@ export function getColorFromString(tag) {
   return COLORS[index];
 }
 
+/**
+ * @param {string} tag
+ * @returns {string}
+ */
 export function stringToArray(input = '') {
   return input
     .split(',')
