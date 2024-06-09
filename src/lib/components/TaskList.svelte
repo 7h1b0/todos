@@ -1,15 +1,14 @@
 <script>
-  export let label;
-  export let categoryId;
-  export let tasks;
+  /** @type {{ label: string,categoryId: string, tasks: unknown[] }} */
+  let { label, categoryId, tasks } = $props();
 
   import Task from './Task.svelte';
   import AddTask from './AddTask.svelte';
   import { sortByUpdated } from '../utils/utils.js';
   import { tasksStore } from '../stores/tasks.js';
 
-  let showForm = false;
-  let over = false;
+  let showForm = $state(false);
+  let over = $state(false);
 
   function handleDragOver(e) {
     e.preventDefault();
@@ -36,9 +35,9 @@
 <section
   aria-labelledby={categoryId}
   class:over
-  on:dragover={handleDragOver}
-  on:dragleave={handleDragLeave}
-  on:drop={handleDragDrop}
+  ondragover={handleDragOver}
+  ondragleave={handleDragLeave}
+  ondrop={handleDragDrop}
 >
   <div>
     <h1 id={categoryId}>{label}</h1>
@@ -52,7 +51,7 @@
     {:else}
       <button
         type="button"
-        on:click={() => {
+        onclick={() => {
           showForm = true;
         }}
       >
