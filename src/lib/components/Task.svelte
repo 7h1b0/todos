@@ -1,14 +1,7 @@
 <script>
-  export let id;
-  export let title;
-  export let tags;
-  export let date;
-  export let board;
-  export let updatedAt;
-  export let categoryId;
-
   import { formatDate, getColorFromString } from '../utils/utils.js';
   import { tasksStore } from '../stores/tasks.js';
+  let { id, title, tags, date, board, updatedAt, categoryId } = $props();
 
   function handleDrag(e) {
     e.dataTransfer.setData(
@@ -24,11 +17,11 @@
   }
 </script>
 
-<article draggable="true" aria-labelledby={id} on:dragstart={handleDrag}>
+<article draggable="true" aria-labelledby={id} ondragstart={handleDrag}>
   <h2 {id}>
     {title}
   </h2>
-  <button on:click={handleRemove} aria-label={`Remove ${title}`} type="button">
+  <button onclick={handleRemove} aria-label={`Remove ${title}`} type="button">
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
