@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
   import { tasksStore } from '../stores/tasks.js';
 
   function handleExport() {
@@ -30,7 +30,7 @@
 <footer>
   <button
     class="export"
-    on:click={handleExport}
+    onclick={handleExport}
     type="button"
     aria-label="Export"
   >
@@ -64,7 +64,7 @@
         d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"
       />
     </svg>
-    <input class="hidden" on:input={handleImport} type="file" />
+    <input class="hidden" oninput={handleImport} type="file" />
   </label>
 </footer>
 

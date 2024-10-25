@@ -1,12 +1,12 @@
 <script>
-  export let categoryId;
-  export let onClose;
-
   import { stringToArray } from '../utils/utils.js';
   import { tasksStore } from '../stores/tasks.js';
 
-  let value = '';
-  let tags = '';
+  /** @type {{ categoryId: string, onClose: () => void }} */
+  let { categoryId, onClose } = $props();
+
+  let value = $state('');
+  let tags = $state('');
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -24,7 +24,7 @@
   }
 </script>
 
-<form on:submit={handleSubmit}>
+<form onsubmit={handleSubmit}>
   <label>
     Title
     <input type="text" placeholder="Enter task title" bind:value />
@@ -38,7 +38,7 @@
     />
   </label>
   <div>
-    <button type="button" on:click={onClose}>Cancel</button>
+    <button type="button" onclick={onClose}>Cancel</button>
     <button type="submit">Add task</button>
   </div>
 </form>
