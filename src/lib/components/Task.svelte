@@ -58,9 +58,10 @@
     border-radius: var(--border-radius);
     padding: var(--space-2);
     transition: border 0.3s ease-in-out;
-  }
-  article:hover {
-    border: 2px solid var(--color-accent-200);
+
+    &:hover {
+      border: 2px solid var(--color-accent-200);
+    }
   }
   button {
     grid-row-end: span 3;

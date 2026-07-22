@@ -1,8 +1,8 @@
-import sveltePreprocess from 'svelte-preprocess';
+import { sveltePreprocess } from 'svelte-preprocess';
 
 export default {
   preprocess: sveltePreprocess(),
   compilerOptions: {
-    cssHash: ({ hash, css }) => `_${hash(css)}`,
+    cssHash: ({ hash, filename, css }) => `_${hash(filename ?? css)}`,
   },
 };

@@ -6,17 +6,6 @@ export function formatDate(timestamp) {
   return new Intl.DateTimeFormat().format(new Date(timestamp));
 }
 
-export function groupBy(items, key) {
-  return items.reduce((result, item) => {
-    if (result[item[key]]) {
-      result[item[key]].push(item);
-    } else if (item[key] !== undefined) {
-      result[item[key]] = [item];
-    }
-    return result;
-  }, {});
-}
-
 /**
  * @typedef {{ id: number, title: string, category: number, date: number, updatedAt: number, tags: string[] }} Task
  */

@@ -13,7 +13,7 @@
       <TaskList
         label={category.title}
         categoryId={category.id}
-        tasks={$groupedFilteredTasks[category.id] || []}
+        tasks={$groupedFilteredTasks.get(category.id) || []}
       />
     {/each}
   </main>
@@ -31,17 +31,17 @@
     inline-size: min(95%, 1400px);
     margin-inline: auto;
     padding-block-start: var(--space-4);
-  }
 
-  div::before {
-    position: absolute;
-    inset-block: 0;
-    inset-inline-start: 0;
-    inline-size: var(--progress);
-    content: '';
-    block-size: 3px;
-    background: var(--color-accent-200);
-    transition: inline-size 0.3s linear;
+    &::before {
+      position: absolute;
+      inset-block: 0;
+      inset-inline-start: 0;
+      inline-size: var(--progress);
+      content: '';
+      block-size: 3px;
+      background: var(--color-accent-200);
+      transition: inline-size 0.3s linear;
+    }
   }
 
   main {
@@ -49,10 +49,8 @@
     align-items: flex-start;
     flex-direction: column;
     gap: var(--space-4);
-  }
 
-  @media (width > 800px) {
-    main {
+    @media (width > 800px) {
       flex-direction: row;
     }
   }

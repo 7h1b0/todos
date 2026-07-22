@@ -37,9 +37,10 @@
     border-radius: var(--border-radius);
     border: none;
     outline: none;
-  }
-  input:focus {
-    outline: var(--color-accent-200) solid 2px;
+
+    &:focus {
+      outline: var(--color-accent-200) solid 2px;
+    }
   }
 
   span {

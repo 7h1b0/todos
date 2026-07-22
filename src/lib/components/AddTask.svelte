@@ -54,9 +54,10 @@
     border-radius: var(--border-radius);
     border: none;
     outline: none;
-  }
-  input:focus {
-    outline: var(--color-accent-200) solid 2px;
+
+    &:focus {
+      outline: var(--color-accent-200) solid 2px;
+    }
   }
 
   div {
@@ -70,10 +71,10 @@
     color: var(--color-accent-200);
     font-size: var(--fontSize-text);
     margin-inline-end: var(--space-2);
-  }
 
-  [type='button']:hover {
-    color: var(--color-accent-100);
+    &:hover {
+      color: var(--color-accent-100);
+    }
   }
 
   [type='submit'] {
@@ -83,9 +84,9 @@
     padding-inline: var(--space-2);
     font-size: var(--fontSize-text);
     border-radius: var(--border-radius);
-  }
 
-  [type='submit']:hover {
-    background: var(--color-accent-300);
+    &:hover {
+      background: var(--color-accent-300);
+    }
   }
 </style>

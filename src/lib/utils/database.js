@@ -43,7 +43,7 @@ export default function getDb(table = 'tasks') {
 
     request.onupgradeneeded = (event) => {
       const db = event.target.result;
-      const tasks = db.createObjectStore('tasks', {
+      db.createObjectStore('tasks', {
         keyPath: 'id',
       });
     };

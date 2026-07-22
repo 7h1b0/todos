@@ -103,22 +103,24 @@
   }
 
   button {
+    --color: var(--color-caption);
     display: flex;
     place-content: center;
     align-items: center;
     padding-block: var(--space-1);
     padding-inline: var(--space-2);
-    color: var(--color-caption);
     background: var(--color-task);
     border-radius: var(--border-radius);
-    fill: var(--color-caption);
     font-size: var(--fontSize-caption);
-  }
-  button svg {
-    padding-inline-end: var(--space-1);
-  }
-  button:hover {
-    color: var(--color-accent-200);
-    fill: var(--color-accent-200);
+    color: var(--color);
+    fill: var(--color);
+
+    &:hover {
+      --color: var(--color-accent-200);
+    }
+
+    svg {
+      padding-inline-end: var(--space-1);
+    }
   }
 </style>

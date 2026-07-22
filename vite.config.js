@@ -5,7 +5,7 @@ export default defineConfig({
   build: {
     sourcemap: false,
     assetsInlineLimit: 0,
-    target: ['firefox115', 'safari16', 'chrome110'],
+    target: ['firefox140', 'safari18', 'chrome120'],
     reportCompressedSize: true,
   },
   plugins: [svelte()],

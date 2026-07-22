@@ -1,5 +1,4 @@
 import { derived } from 'svelte/store';
-import { groupBy } from '../utils/utils';
 import getDb from '../utils/database';
 import { DONE } from '../utils/categories';
 import { search } from './search';
@@ -24,7 +23,7 @@ export const groupedFilteredTasks = derived(
       return false;
     });
 
-    set(groupBy(filteredTasks, 'categoryId'));
+    set(Map.groupBy(filteredTasks, ({ categoryId }) => categoryId));
   },
   {},
 );

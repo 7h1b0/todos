@@ -82,11 +82,11 @@
     cursor: pointer;
     color: var(--color-caption);
     font-size: var(--fontSize-text);
-  }
 
-  .export:hover {
-    color: var(--color-accent-200);
-    fill: var(--color-accent-200);
+    &:hover {
+      color: var(--color-accent-200);
+      fill: var(--color-accent-200);
+    }
   }
 
   .hidden {
